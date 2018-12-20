@@ -15,5 +15,15 @@ namespace WEBProject.Controllers
 
             return View();
         }
+
+        public IActionResult Upload_Subscriber(string Mail)
+        {
+            using(var db = new WebsiteContext())
+            {
+                db.Subscribers.add(new Subscriber(Mail));
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
