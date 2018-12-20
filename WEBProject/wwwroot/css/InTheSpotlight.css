@@ -1,12 +1,9 @@
 #responsive{
 	width:100%
 }
-.center{
-	margin-left: 40%
-}
 .caption{
 	background-color: #ECECE6;
-	heigt: 100px;
+	height: 100px;
 	margin-bottom: 15%; 
 }
 
