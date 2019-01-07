@@ -7,13 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBProject.Models
 {
-    public class Product_Details
+    public class NormalCategory_Product
     {
-        [Key]
-        public int DetailID {get; set;}
-        [Required]
-        public string ProductDetails { get; set; }
-        [ForeignKey("ArticleNumber")]
+        public int CategoryID { get; set; }
+        public virtual Normal_Category Normal_Category { get; set; }
         public int ArticleNumber { get; set; }
         public virtual Product Product { get; set; }
     }

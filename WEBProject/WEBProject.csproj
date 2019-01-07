@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190107140425_fix_WebsiteContext_and_ArticleNumber_Name.cs" />
+    <Compile Remove="Migrations\20190107140425_fix_WebsiteContext_and_ArticleNumber_Name.Designer.cs" />
+    <Compile Remove="Migrations\20190107141102_fix_WebsiteContext_Navigation.cs" />
+    <Compile Remove="Migrations\20190107141102_fix_WebsiteContext_Navigation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.4" />

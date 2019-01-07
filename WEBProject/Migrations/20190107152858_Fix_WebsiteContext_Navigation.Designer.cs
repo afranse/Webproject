@@ -3,35 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WEBProject.Data;
 
 namespace WEBProject.Migrations
 {
     [DbContext(typeof(WebsiteContext))]
-    partial class WebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190107152858_Fix_WebsiteContext_Navigation")]
+    partial class Fix_WebsiteContext_Navigation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("WEBProject.Models.Branch_Category", b =>
-                {
-                    b.Property<int>("BranchID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("BranchID");
-
-                    b.ToTable("Branch_Categories");
-                });
 
             modelBuilder.Entity("WEBProject.Models.Employee_Profile", b =>
                 {
@@ -131,37 +119,6 @@ namespace WEBProject.Migrations
                     b.ToTable("News_Items");
                 });
 
-            modelBuilder.Entity("WEBProject.Models.Normal_Category", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("TypeID");
-
-                    b.HasKey("CategoryID");
-
-                    b.HasIndex("TypeID");
-
-                    b.ToTable("Normal_Categories");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.NormalCategory_Product", b =>
-                {
-                    b.Property<int>("CategoryID");
-
-                    b.Property<int>("ArticleNumber");
-
-                    b.HasKey("CategoryID", "ArticleNumber");
-
-                    b.HasIndex("ArticleNumber");
-
-                    b.ToTable("NormalCategory_Products");
-                });
-
             modelBuilder.Entity("WEBProject.Models.Photo", b =>
                 {
                     b.Property<int>("PhotoID")
@@ -190,7 +147,7 @@ namespace WEBProject.Migrations
 
             modelBuilder.Entity("WEBProject.Models.Product", b =>
                 {
-                    b.Property<int>("ArticleNumber")
+                    b.Property<int>("ArtikelNumber")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -201,7 +158,7 @@ namespace WEBProject.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("ArticleNumber");
+                    b.HasKey("ArtikelNumber");
 
                     b.ToTable("Products");
                 });
@@ -212,81 +169,16 @@ namespace WEBProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArticleNumber");
+                    b.Property<int>("ArtikelNumber");
 
                     b.Property<string>("ProductDetails")
                         .IsRequired();
 
                     b.HasKey("DetailID");
 
-                    b.HasIndex("ArticleNumber");
+                    b.HasIndex("ArtikelNumber");
 
                     b.ToTable("Product_Details");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Product_Photo", b =>
-                {
-                    b.Property<int>("ArticleNumber");
-
-                    b.Property<int>("PhotoID");
-
-                    b.HasKey("ArticleNumber", "PhotoID");
-
-                    b.HasIndex("PhotoID");
-
-                    b.ToTable("Product_Photos");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Product_Text", b =>
-                {
-                    b.Property<int>("TextID");
-
-                    b.Property<int>("ArticleNumber");
-
-                    b.HasKey("TextID", "ArticleNumber");
-
-                    b.HasIndex("ArticleNumber");
-
-                    b.ToTable("Product_Texts");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Recipe", b =>
-                {
-                    b.Property<int>("RecipeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("RecipeID");
-
-                    b.ToTable("Recipes");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Recipe_Photo", b =>
-                {
-                    b.Property<int>("PhotoID");
-
-                    b.Property<int>("RecipeID");
-
-                    b.HasKey("PhotoID", "RecipeID");
-
-                    b.HasIndex("RecipeID");
-
-                    b.ToTable("Recipe_Photos");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Recipe_Text", b =>
-                {
-                    b.Property<int>("RecipeID");
-
-                    b.Property<int>("TextID");
-
-                    b.HasKey("RecipeID", "TextID");
-
-                    b.HasIndex("TextID");
-
-                    b.ToTable("Recipe_Texts");
                 });
 
             modelBuilder.Entity("WEBProject.Models.Subscriber", b =>
@@ -330,41 +222,6 @@ namespace WEBProject.Migrations
                     b.ToTable("Text_News");
                 });
 
-            modelBuilder.Entity("WEBProject.Models.Type_Category", b =>
-                {
-                    b.Property<int>("TypeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BranchID");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("TypeID");
-
-                    b.HasIndex("BranchID");
-
-                    b.ToTable("Type_Categories");
-                });
-
-            modelBuilder.Entity("WEBProject.Models.TypeCategory_Recipe", b =>
-                {
-                    b.Property<int>("RecipeID");
-
-                    b.Property<int>("TypeID");
-
-                    b.Property<int>("Percent");
-
-                    b.Property<double>("Weight");
-
-                    b.HasKey("RecipeID", "TypeID");
-
-                    b.HasIndex("TypeID");
-
-                    b.ToTable("TypeCategory_Recipes");
-                });
-
             modelBuilder.Entity("WEBProject.Models.Employee_Profile_Email", b =>
                 {
                     b.HasOne("WEBProject.Models.Employee_Profile", "Employee")
@@ -387,27 +244,6 @@ namespace WEBProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("WEBProject.Models.Normal_Category", b =>
-                {
-                    b.HasOne("WEBProject.Models.Type_Category", "TypeCategory")
-                        .WithMany("NormalCategory")
-                        .HasForeignKey("TypeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.NormalCategory_Product", b =>
-                {
-                    b.HasOne("WEBProject.Models.Product", "Product")
-                        .WithMany("NormalCategory")
-                        .HasForeignKey("ArticleNumber")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Normal_Category", "Normal_Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("WEBProject.Models.Photo_News", b =>
                 {
                     b.HasOne("WEBProject.Models.News_Item", "News")
@@ -425,59 +261,7 @@ namespace WEBProject.Migrations
                 {
                     b.HasOne("WEBProject.Models.Product", "Product")
                         .WithMany("Details")
-                        .HasForeignKey("ArticleNumber")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Product_Photo", b =>
-                {
-                    b.HasOne("WEBProject.Models.Product", "Product")
-                        .WithMany("ProductPhoto")
-                        .HasForeignKey("ArticleNumber")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Photo", "Photo")
-                        .WithMany("PhotoProducts")
-                        .HasForeignKey("PhotoID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Product_Text", b =>
-                {
-                    b.HasOne("WEBProject.Models.Product", "Product")
-                        .WithMany("ProductText")
-                        .HasForeignKey("ArticleNumber")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Text", "Text")
-                        .WithMany("TextProducts")
-                        .HasForeignKey("TextID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Recipe_Photo", b =>
-                {
-                    b.HasOne("WEBProject.Models.Photo", "Photo")
-                        .WithMany("PhotoRecipes")
-                        .HasForeignKey("PhotoID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Recipe", "Recipe")
-                        .WithMany("RecipePhotos")
-                        .HasForeignKey("RecipeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Recipe_Text", b =>
-                {
-                    b.HasOne("WEBProject.Models.Recipe", "Recipe")
-                        .WithMany("RecipeTexts")
-                        .HasForeignKey("RecipeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Text", "Text")
-                        .WithMany("TextRecipes")
-                        .HasForeignKey("TextID")
+                        .HasForeignKey("ArtikelNumber")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -491,27 +275,6 @@ namespace WEBProject.Migrations
                     b.HasOne("WEBProject.Models.Text", "Text")
                         .WithMany("TextNews")
                         .HasForeignKey("TextID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.Type_Category", b =>
-                {
-                    b.HasOne("WEBProject.Models.Branch_Category", "BranchCategory")
-                        .WithMany("TypeCategory")
-                        .HasForeignKey("BranchID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WEBProject.Models.TypeCategory_Recipe", b =>
-                {
-                    b.HasOne("WEBProject.Models.Recipe", "Recipe")
-                        .WithMany("TypeCategories")
-                        .HasForeignKey("RecipeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WEBProject.Models.Type_Category", "Type_Category")
-                        .WithMany("Recipes")
-                        .HasForeignKey("TypeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

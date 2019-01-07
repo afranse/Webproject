@@ -7,14 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBProject.Models
 {
-    public class Product_Details
+    public class Product_Photo
     {
-        [Key]
-        public int DetailID {get; set;}
-        [Required]
-        public string ProductDetails { get; set; }
-        [ForeignKey("ArticleNumber")]
         public int ArticleNumber { get; set; }
         public virtual Product Product { get; set; }
+        public int PhotoID { get; set; }
+        public virtual Photo Photo { get; set; }
     }
 }

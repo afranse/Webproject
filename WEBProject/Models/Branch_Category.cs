@@ -7,14 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBProject.Models
 {
-    public class Product_Details
+    public class Branch_Category
     {
         [Key]
-        public int DetailID {get; set;}
+        public int BranchID { get; set; }
         [Required]
-        public string ProductDetails { get; set; }
-        [ForeignKey("ArticleNumber")]
-        public int ArticleNumber { get; set; }
-        public virtual Product Product { get; set; }
+        public string Name { get; set; } // BranchName: What is there inside this branch?
+        public virtual List<Type_Category> TypeCategory { get; set; }
+
     }
 }
