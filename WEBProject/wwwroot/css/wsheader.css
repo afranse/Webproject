@@ -12,7 +12,7 @@
 }
 
 #quickmenu{
-	top: 2%;
+	top: 10%;
 	right:5%;
 	position: absolute;
 	color: white;
@@ -65,7 +65,7 @@
     background-position: center center;
 	background-color: red;
 	height: 100%;
-	padding: 1%;
+	padding: 15%;
 	
 }
 #clear{
