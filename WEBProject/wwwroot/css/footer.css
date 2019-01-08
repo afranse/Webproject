@@ -62,6 +62,10 @@ a {
     ;
 }
 
+#socialmedia{
+    margin-top: 50px;
+}
+
 .newsletter {
     margin: auto;
 }
@@ -83,10 +87,6 @@ a {
     margin-left: 40%;
     width: 80px;
     height: 80px;
-}
-
-.col-md-4 {
-    margin: auto;
 }
 
 .short {
@@ -133,28 +133,6 @@ a {
     font-family: 'La Belle Aurore', cursive;
 }
 
-#socialmedia_button {
-    background-color: #CD0B35;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 10%;
-}
-
-#YT-logo {
-    width: 30px;
-    height: 20px;
-}
-
-#FB-logo {
-    width: 15px;
-    height: 20px;
-}
-
-#Twitter-logo {
-    width: 25px;
-    height: 25px;
-}
 
 #submit-button {
     background-color: #CD0B35;
@@ -182,10 +160,6 @@ a {
         position: relative;
         margin-top: 5%;
         margin-left: 25%
-    }
-
-    .col-md-4 {
-        padding-top: 5%;
     }
 
     .certificate_button {
