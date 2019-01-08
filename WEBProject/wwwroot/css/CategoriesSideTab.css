@@ -1,0 +1,145 @@
+.title{
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-left: 0px;
+}
+.cbcontainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: gray;
+  font-weight: 100;
+  width: 100%;
+  left: 10px;
+}
+
+/* Hide default checkbox */
+.cbcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* grey background color */
+.cbcontainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When checked red background */
+.cbcontainer input:checked ~ .checkmark {
+  background-color: red;
+}
+
+/* create checkmark */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show checkmark */
+.cbcontainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style checkmark */
+.cbcontainer .checkmark:after {
+  left: 6px;
+  top: -5px;
+  width: 10px;
+  height: 19px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#moreCategories{
+	display:none;
+}
+
+
+.dropbtn {
+	background-color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+  	box-shadow:  0 0 10px  rgba(0,0,0,0.6);
+	-moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+	-o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-radius: 8px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: lightgray;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+.arrow{
+	border: solid black;
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	margin-left: 10px;
+	margin-bottom: 2px;
+}
+
+#toggle{
+	color: red;
+}

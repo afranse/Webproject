@@ -1,0 +1,15 @@
+
+#gray{
+	background-color: lightgray;
+	border-radius: 5px;
+}
+
+#tab{
+	margin:2%;
+	color: #A9A9A94;
+}
+
+#arrow{
+	margin-left:auto; 
+	margin-right:0;
+}

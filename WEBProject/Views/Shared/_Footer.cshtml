@@ -2,10 +2,9 @@
     ViewData["Title"] = "_Footer";
 }
 
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/footer.css" rel="stylesheet" />
@@ -13,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=La+Belle+Aurore" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</head>
     <body>
         <footer>
             <div class="footer_container" id="wrapper">
@@ -21,18 +21,39 @@
                 <div class="column certificates_row">
                     <h3>Our certificates</h3>
                     <div class="certificate_button">
-                        <input type="image" src="img/BK.jpg" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/BRC.png" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/pizza.png" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/IFS.png" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/HIC.png" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/EL.jpg" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/RP.jpg" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/KH.jpg" alt="pic1" id="downloadButton"></input>
-                        <input type="image" src="img/SVO.png" alt="pic1" id="downloadButton"></input>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/BK.jpg" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/BRC.png" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/pizza.png" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/IFS.png" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/HIC.png" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/EL.jpg" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/RP.jpg" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/KH.jpg" alt="pic1" id="downloadButton"></input>
+                        </a>
+                        <a href="pdf/Certificate.pdf" target="_blank" download>
+                            <input type="image" src="img/SVO.png" alt="pic1" id="downloadButton"></input>
+                        </a>
+
                     </div>
                     <span class="full"><h6>Click on a certificate to download</h6></span>
-                    <span class="short"><h6>Download all our certificates</h6></span>
+                    <a href="pdf/Certificate.pdf" download>
+                        <span class="short"><h6>Download all our certificates</h6></span>
+                    </a>
                 </div>
 
                 <!--Contact row-->
@@ -69,12 +90,12 @@
                     <div class="col-md-4">
                         <div class="newsletter">
                             <div id="title"><h5>Newsletter</h5></div>
-                            <h6><i><div>Stay up to date about Verstegen</div></i></h6>
+                            <div><h6><i>Stay up to date about Verstegen</i></h6></div>
 
 
                             <!-- The subscribe on newsletter form is defined here -->
                             <div class="emailform">
-                                <form action="/action_page.php" method="get" id="mailform">
+                                <form action="/Home/Upload_Subscriber" method="get" id="mailform">
                                     <input type="text" name="fname" id="input" placeholder="E-mail address">
                                     <button type="submit" form="mailform" value="Submit" id="submit-button">Subscribe</button>
                                 </form>
@@ -103,9 +124,15 @@
                     </div>
 
                     <div class="col-md-4" id="socialmedia">
-                        <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteYT.png" id="YT-logo" alt="Youtube logo"></button>
-                        <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteFB.png" id="FB-logo" alt="Facebook logo"></button>
-                        <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteTwitter.png" id="Twitter-logo" alt="Twitter logo"></button>
+                        <a href="https://www.youtube.com/channel/UCm3nQjm1SwJ2S_HsCs3E_8w/featured" target="_blank">
+                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteYT.png" id="YT-logo" alt="Youtube logo"></button>
+                        </a>
+                        <a href="https://www.facebook.com/VerstegenNL" target="_blank">
+                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteFB.png" id="FB-logo" alt="Facebook logo"></button>
+                        </a>
+                        <a href="https://twitter.com/Verstegen_NL" target="_blank">
+                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteTwitter.png" id="Twitter-logo" alt="Twitter logo"></button>
+                        </a>
                     </div>
 
                 </div>
@@ -116,7 +143,5 @@
         </footer>
 
     </body>
-
-</head>
 
 </html>

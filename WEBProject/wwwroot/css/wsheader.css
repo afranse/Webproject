@@ -1,0 +1,103 @@
+#titlelogo {
+    top: 5%;
+    left: 5%;
+    position: absolute;
+}
+
+#arrow{
+	right: 5%;
+	position: absolute;
+	float: right;
+	bottom: 5%;
+}
+
+#quickmenu{
+	top: 2%;
+	right:5%;
+	position: absolute;
+	color: white;
+}
+#QuickMenuBottom{
+   margin-right:2%;
+}
+
+.align-right{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.wrapper{
+	position: absolute;
+	display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding-right: 0px;
+    padding-left: 75%;
+}
+
+#buttonsize{
+	background: transparent;
+	width: 35px;
+	height: 35px;
+	margin-top: 1px;
+	border-radius: 50%
+}
+
+.search{
+	display: flex
+	justify-content: flex-end;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%
+}
+
+
+.searchbtn{
+	position: absolute;
+	cursor: pointer;
+}
+
+#backgroundimage{
+	margin: auto;
+	background-image: url("images/spareribs.jpg");
+	background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center;
+	background-color: red;
+	height: 100%;
+	padding: 1%;
+	
+}
+#clear{
+	height: 60%
+}
+
+#bottomrow{
+	text-align: center;
+	font-size: 80px;
+	font-weight: bolder;
+	color: white;
+}
+
+#languages{
+	display: flex
+	justify-content:flex-end;
+	color:white;
+	margin-right: 5px;	
+	margin-top: 5px;
+
+}
+
+#languages:hover{
+	color: grey;
+}
+#foreground{
+	background-color: rgba(0,0,0,0.4);
+	opacity: 0.5;
+	filter: none;
+	color: white;
+}
+
+
+
+
