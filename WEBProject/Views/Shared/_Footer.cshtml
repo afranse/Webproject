@@ -1,147 +1,127 @@
-﻿@{
-    ViewData["Title"] = "_Footer";
-}
+﻿<footer>
+    <div class="footer_container" id="wrapper">
 
-<!DOCTYPE html>
+        <!--Certificate row-->
+        <div class="column certificates_row">
+            <h3>Our certificates</h3>
+            <div class="certificate_button">
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/BK.jpg" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/BRC.png" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/pizza.png" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/IFS.png" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/HIC.png" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/EL.jpg" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/RP.jpg" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/KH.jpg" alt="pic1" id="downloadButton" />
+                </a>
+                <a href="pdf/Certificate.pdf" target="_blank" download>
+                    <input type="image" src="img/SVO.png" alt="pic1" id="downloadButton" />
+                </a>
 
-<html lang="en">
-<head>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/footer.css" rel="stylesheet" />
-    <link href="css/fonts.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=La+Belle+Aurore" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-</head>
-    <body>
-        <footer>
-            <div class="footer_container" id="wrapper">
+            </div>
+            <span class="full"><h6>Click on a certificate to download</h6></span>
+            <a href="pdf/Certificate.pdf" download>
+                <span class="short"><h6>Download all our certificates</h6></span>
+            </a>
+        </div>
 
-                <!--Certificate row-->
-                <div class="column certificates_row">
-                    <h3>Our certificates</h3>
-                    <div class="certificate_button">
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/BK.jpg" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/BRC.png" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/pizza.png" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/IFS.png" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/HIC.png" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/EL.jpg" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/RP.jpg" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/KH.jpg" alt="pic1" id="downloadButton"></input>
-                        </a>
-                        <a href="pdf/Certificate.pdf" target="_blank" download>
-                            <input type="image" src="img/SVO.png" alt="pic1" id="downloadButton"></input>
-                        </a>
+        <!--Contact row-->
+        <div class="row contact_row">
 
-                    </div>
-                    <span class="full"><h6>Click on a certificate to download</h6></span>
-                    <a href="pdf/Certificate.pdf" download>
-                        <span class="short"><h6>Download all our certificates</h6></span>
-                    </a>
+            <div class="col-md-4">
+                <div class="company_info">
+                    <div id="title"><h5>Verstegen Spices & Sauces</h5></div>
+
+                    <small>
+                        <div>t.a.v. Business Unit Food Industry</div>
+                        <div>Industrieweg 161</div>
+                        <div>3044 AS Rotterdam</div>
+                        <div>The Netherlands</div>
+                    </small>
                 </div>
-
-                <!--Contact row-->
-                <div class="row contact_row">
-
-                    <div class="col-md-4">
-                        <div class="company_info">
-                            <div id="title"><h5>Verstegen Spices & Sauces</h5></div>
-
-                            <small>
-                                <div>t.a.v. Business Unit Food Industry</div>
-                                <div>Industrieweg 161</div>
-                                <div>3044 AS Rotterdam</div>
-                                <div>The Netherlands</div>
-                            </small>
-                        </div>
-                    </div>
-
-                    <!--contact details column-->
-                    <div class="col-md-4">
-                        <div class="contact_details">
-                            <div id="title"><h5>Contact details</h5></div>
-
-                            <small>
-                                <div>+31 (0)10-2455160</div>
-                                <div>foodindustry@verstegen.eu</div>
-                                <div>Send us a message</div>
-                            </small>
-                        </div>
-                    </div>
-
-
-                    <!--newsletter column-->
-                    <div class="col-md-4">
-                        <div class="newsletter">
-                            <div id="title"><h5>Newsletter</h5></div>
-                            <div><h6><i>Stay up to date about Verstegen</i></h6></div>
-
-
-                            <!-- The subscribe on newsletter form is defined here -->
-                            <div class="emailform">
-                                <form action="/Home/Upload_Subscriber" method="get" id="mailform">
-                                    <input type="text" name="fname" id="input" placeholder="E-mail address">
-                                    <button type="submit" form="mailform" value="Submit" id="submit-button">Subscribe</button>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--Newsletter ends here-->
-
-                </div>
-
-                <!--The last row of the footer-->
-                <div class="row company_row">
-
-                    <div class="col-md-4" id="logo-copyright">
-                        <div id="logo-Verstegen">
-                            <img src="https://www.sfa.nl/wp-content/uploads/2015/09/logo-Verstegen.png" class="logo" alt="temporary image">
-                        </div>
-                        <div id="copyright">
-                            <h6>©2017 Verstegen Spices & Sauces</h6>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" id="slogan">
-                        <h4>Verstegen. Enjoy great taste.</h4>
-                    </div>
-
-                    <div class="col-md-4" id="socialmedia">
-                        <a href="https://www.youtube.com/channel/UCm3nQjm1SwJ2S_HsCs3E_8w/featured" target="_blank">
-                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteYT.png" id="YT-logo" alt="Youtube logo"></button>
-                        </a>
-                        <a href="https://www.facebook.com/VerstegenNL" target="_blank">
-                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteFB.png" id="FB-logo" alt="Facebook logo"></button>
-                        </a>
-                        <a href="https://twitter.com/Verstegen_NL" target="_blank">
-                            <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteTwitter.png" id="Twitter-logo" alt="Twitter logo"></button>
-                        </a>
-                    </div>
-
-                </div>
-
-                <!--The ending div of footer container-->
             </div>
 
-        </footer>
+            <!--contact details column-->
+            <div class="col-md-4">
+                <div class="contact_details">
+                    <div id="title"><h5>Contact details</h5></div>
 
-    </body>
+                    <small>
+                        <div>+31 (0)10-2455160</div>
+                        <div>foodindustry@verstegen.eu</div>
+                        <div>Send us a message</div>
+                    </small>
+                </div>
+            </div>
 
-</html>
+
+            <!--newsletter column-->
+            <div class="col-md-4">
+                <div class="newsletter">
+                    <div id="title"><h5>Newsletter</h5></div>
+                    <div><h6><i>Stay up to date about Verstegen</i></h6></div>
+
+
+                    <!-- The subscribe on newsletter form is defined here -->
+                    <div class="emailform">
+                        <form action="/Home/Upload_Subscriber" method="get" id="mailform">
+                            <input type="text" name="fname" id="input" placeholder="E-mail address">
+                            <button type="submit" form="mailform" value="Submit" id="submit-button">Subscribe</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!--Newsletter ends here-->
+
+        </div>
+
+        <!--The last row of the footer-->
+        <div class="row company_row">
+
+            <div class="col-md-4" id="logo-copyright">
+                <div id="logo-Verstegen">
+                    <img src="https://www.sfa.nl/wp-content/uploads/2015/09/logo-Verstegen.png" class="logo" alt="temporary image">
+                </div>
+                <div id="copyright">
+                    <h6>©2017 Verstegen Spices & Sauces</h6>
+                </div>
+            </div>
+
+            <div class="col-md-4" id="slogan">
+                <h4>Verstegen. Enjoy great taste.</h4>
+            </div>
+
+            <div class="col-md-4" id="socialmedia">
+                <a href="https://www.youtube.com/channel/UCm3nQjm1SwJ2S_HsCs3E_8w/featured" target="_blank">
+                    <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteYT.png" id="YT-logo" alt="Youtube logo"></button>
+                </a>
+                <a href="https://www.facebook.com/VerstegenNL" target="_blank">
+                    <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteFB.png" id="FB-logo" alt="Facebook logo"></button>
+                </a>
+                <a href="https://twitter.com/Verstegen_NL" target="_blank">
+                    <button type="submit" form="YTform" value="Submit" id="socialmedia_button"><img src="img/whiteTwitter.png" id="Twitter-logo" alt="Twitter logo"></button>
+                </a>
+            </div>
+
+        </div>
+
+        <!--The ending div of footer container-->
+    </div>
+
+</footer>
