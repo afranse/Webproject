@@ -1,6 +1,6 @@
 #titlelogo {
-    top: 5%;
-    left: 5%;
+    top: 10%;
+    left: 2%;
     position: absolute;
 }
 
@@ -8,7 +8,7 @@
 	right: 5%;
 	position: absolute;
 	float: right;
-	bottom: 5%;
+	bottom: 2%;
 }
 
 #quickmenu{
@@ -65,7 +65,7 @@
     background-position: center center;
 	background-color: red;
 	height: 100%;
-	padding: 15%;
+	padding: 20%;
 	
 }
 #clear{
