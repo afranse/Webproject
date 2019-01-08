@@ -1,89 +1,73 @@
-﻿
-@{
-    ViewData["Title"] = "_Header";
-}
+﻿<div class="container-fluid" id="backgroundimage">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="css/wsHeader.css" />
-    <link rel="stylesheet" href="css/menuLooks.css" />
-    <link rel="stylesheet" href="https:/www.1001fonts.com/avenir+heavy-fonts.html" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <div class="container-fluid" id="backgroundimage">
+    <img id="titlelog" src="css/images/verstegenLogo.png" alt="logo">
 
-        <img id="titlelog" src="css/images/verstegenLogo.png" alt="logo">
+    <div id="quickmenu">
+        <div class="row" id="whitebackground">
 
-        <div id="quickmenu">
-            <div class="row" id="whitebackground">
+            <a id="foreground" class="d-none d-sm-block" href="">  Food industy  </a>
 
-                <a id="foreground" class="d-none d-sm-block" href="">  Food industy  </a>
-
-                <!--Start desktop menu-->
-                <div class="dropdown col-sm-2 col-md-2 d-none d-sm-block">
-                    <button type="button" id="dropdownMenuButton" class="btn dropdownColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="http://placehold.it/25x25">
-                        <text>Menu</text>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdownColor scrollMenu">
-                        <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                        <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
+            <!--Start desktop menu-->
+            <div class="dropdown col-sm-2 col-md-2 d-none d-sm-block">
+                <button type="button" id="dropdownMenuButton" class="btn dropdownColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="http://placehold.it/25x25">
+                    <text>Menu</text>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right dropdownColor scrollMenu">
+                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
+                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
+                </div>
+            </div>
+            <!--End desktop menu-->
+            <!--Start mobile menu-->
+            <div class="container modalContainerSize">
+                <div class="d-block d-sm-none">
+                    <div class="col-2">
+                        <button type="button" class="dropdownColor btn btn-info" id="popupButton" data-toggle="modal" data-target="#MenuModal">
+                            <img src="http://placehold.it/25x25">
+                        </button>
                     </div>
                 </div>
-                <!--End desktop menu-->
-                <!--Start mobile menu-->
-                <div class="container modalContainerSize">
-                    <div class="d-block d-sm-none">
-                        <div class="col-2">
-                            <button type="button" class="dropdownColor btn btn-info" id="popupButton" data-toggle="modal" data-target="#MenuModal">
-                                <img src="http://placehold.it/25x25">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="MenuModal" role="dialog" data-backdrop="static" data-keyboard="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content dropdownColor">
-                                <div class="modal-header">
-                                    <h4>Menu</h4>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <img src="http://placehold.it/25x25">
-                                    </button>
-                                </div>
-                                <div class="modal-body dropdownColor scrollModal">
-                                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                                </div>
+                <div class="modal fade" id="MenuModal" role="dialog" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content dropdownColor">
+                            <div class="modal-header">
+                                <h4>Menu</h4>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <img src="http://placehold.it/25x25">
+                                </button>
+                            </div>
+                            <div class="modal-body dropdownColor scrollModal">
+                                <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
+                                <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--End mobile menu-->
-
             </div>
-            <div class="wrapper container" id="QuickMenuBottom">
+            <!--End mobile menu-->
 
-                <a id="languages" href="www.google.com">EN</a>
-                <a id="languages" href="www.google.nl">NL</a>
-                <div class="search">
-                    <input type="image" src="css/images/whitesearch.png" alt="search" id="buttonsize">
-                </div>
-                <div class="buttonsearch">
-                    <i class="extrasearch"></i>
-                </div>
-                </a>
-            </div>
         </div>
+        <div class="wrapper container" id="QuickMenuBottom">
 
-        <div id="clear"></div>
-
-        <div id="bottomrow">
-            Enjoy great taste!
-            <img id="arrow" src="http://placehold.it/59x51" alt="arrow">
+            <a id="languages" href="www.google.com">EN</a>
+            <a id="languages" href="www.google.nl">NL</a>
+            <div class="search">
+                <input type="image" src="css/images/whitesearch.png" alt="search" id="buttonsize">
+            </div>
+            <div class="buttonsearch">
+                <i class="extrasearch"></i>
+            </div>
+            </a>
         </div>
     </div>
+
+    <div id="clear"></div>
+
+    <div id="bottomrow">
+        Enjoy great taste!
+        <img id="arrow" src="http://placehold.it/59x51" alt="arrow">
+    </div>
+</div>
 </body>
 </html>
