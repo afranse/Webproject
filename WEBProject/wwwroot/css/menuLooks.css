@@ -1,49 +1,11 @@
-.dropdownColor{
-	background-color: #CD0B35;
-	color: white;
-	border-color: black;
-	border-width: 1px;
+.menu_layout {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color: green;
+    min-width: 100%;
 }
 
-.scrollMenu{
-	max-height: 300px;
-	overflow-x: hidden;
+#menu_js {
+    display: none;
 }
-
-.modalContainerSize{
-	max-width: 0px;
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-}
-
-@media only screen and (max-width: 576px) {
-	.modalContainerSize{
-		max-width: 50px;
-		margin-right: 15px;
-		padding: 0;
-		margin-left: 0;
-		margin-bottom: 0;
-		margin-top: 0;
-		border: 0;
-	}
-}
-.scrollModal{
-	overflow-y: visible;
-	overflow-x: hidden;
-	max-height: 100%;
-}
-
-#popupButton{
-	border-radius: 10%;
-	padding: 6px;
-}
-
-#linkColor:hover {
-	background-color: gray;
-}
-
-#linkColor{
-	color: white;
-}
-

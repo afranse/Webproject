@@ -1,78 +1,56 @@
-﻿    <div class="container-fluid" id="backgroundimage">
+﻿<div class="container-fluid" id="headerBackgroundImageLayout" style="
+        background-image: url(@ViewData["HeaderBackgroundImg"]);
+     @{/*/images/spareribs.jpg*/ }
+    ">
 
-        <img id="titlelogo" src="css/images/verstegenLogo.png" alt="logo">
+    <img id="titlelogo" src="~/images/verstegenLogo.png" alt="logo">
 
-        <div id="quickmenu">
-            <div class="row img-fluid" id="whitebackground">
+    <div id="menu_js">
+        <div id="menu_content_js">
+            <div class="menu_layout container">
+                <div class="row">test</div>
+                <div class="d-none d-sm-block">
 
-                <a id="foreground" class="d-none d-sm-block" href="">  Food Industry  </a>
-
-                <!--Start desktop menu-->
-                <div class="dropdown col-sm-2 col-md-2 d-none d-sm-block">
-                    <button type="button" id="dropdownMenuButton" class="btn dropdownColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="http://placehold.it/25x25">
-                        <text>Menu</text>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdownColor scrollMenu">
-                        <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                        <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                    </div>
-                </div>
-                <!--End desktop menu-->
-                <!--Start mobile menu-->
-                <div class="container modalContainerSize">
-                    <div class="d-block d-sm-none">
-                        <div class="col-2">
-                            <button type="button" class="dropdownColor btn btn-info" id="popupButton" data-toggle="modal" data-target="#MenuModal">
-                                <img src="http://placehold.it/25x25">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="MenuModal" role="dialog" data-backdrop="static" data-keyboard="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content dropdownColor">
-                                <div class="modal-header">
-                                    <h4>Menu</h4>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <img src="http://placehold.it/25x25">
-                                    </button>
-                                </div>
-                                <div class="modal-body dropdownColor scrollModal">
-                                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                                    <a class="dropdown-item" id="linkColor" href="https://www.google.nl">Test</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--End mobile menu-->
-
-            </div>
-            <div class="wrapper container" id="QuickMenuBottom">
-
-                <a id="languages" href="www.google.com">EN</a>
-                <a id="languages" href="www.google.nl">NL</a>
-                <div class="search">
-                    <input type="image" src="css/images/whitesearch.png" alt="search" id="buttonsize">
-                </div>
-                <div class="buttonsearch">
-                    <i class="extrasearch"></i>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row img_space"></div>
-            <div class="row title_space">
-                <div class="col-12 col-md-12">
-                    <h1 id="bottomrow">Enjoy great taste!</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-12 headerarrow">
-                    <img src="http://placehold.it/59x51" alt="headerarrow">
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="quickmenu">
+        <div class="container">
+            <div class="container">
+                <div class="row header_menu_background">
+                    <div class="col-sm-6 col-md-6 d-none d-sm-block header_button">
+                        <button type="button" class="btn" id="header_industry_btn">
+                            test
+                        </button>
+                    </div>
+                    <div class="col-sm-6 col-md-6 header_button">
+                        <button type="button" class="btn" id="menu_button_js">
+                            test
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div>test</div>
+                <div>test</div>
+                <div>test</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row img_space"></div>
+        <div class="row title_space">
+            <div class="col-12 col-md-12">
+                <h1 id="bottomrow">Enjoy great taste!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12 headerarrow">
+                <img src="http://placehold.it/59x51" alt="headerarrow">
+            </div>
+        </div>
+    </div>
+</div>
