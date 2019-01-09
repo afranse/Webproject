@@ -1,0 +1,10 @@
+#responsive {
+    width: 100%
+}
+
+
+#smallFont {
+    font-size: small;
+    color: #89A99F;
+    padding-left: 0%;
+}

@@ -1,35 +1,7 @@
-﻿body {
-    background-color: white;
-    text-align: center;
-}
-
-h3{
-    font-size: 18pt;
-}
-h4{
-    font-size: 20pt;
-}
-
-h5{
-    font-size: 16pt;
-}
-
-h6{
-    font-size: 12pt;
-}
-
-a {
-    color: white;
-}
-
-    a:hover {
-        color: white;
-    }
-
-.footer_container {
-    margin: auto;
+﻿.footer_container {
     font-family: 'Avenir LT Std 35 Light';
     font-size: 16pt;
+    text-align: center;
 }
 
 .certificates_row {
@@ -42,7 +14,6 @@ a {
 }
 
 .contact_row {
-    display: flex;
     background-color: #89A99F;
     padding-left: 10%;
     padding-right: 10%;
@@ -53,25 +24,15 @@ a {
     text-align: left;
 }
 
-.company_info {
-    margin: auto;
-}
-
-.contact_details {
-    margin: auto;
-    ;
+#footer_title {
+    opacity: 0.5;
 }
 
 #socialmedia{
     margin-top: 50px;
 }
 
-.newsletter {
-    margin: auto;
-}
-
 .company_row {
-    display: flex;
     padding-top: 1%;
     padding-bottom: 1%;
     height: 200px;
@@ -140,16 +101,10 @@ a {
     border-radius: 10%;
 }
 
-#input {
-    background-color: white;
-    color: black;
+#email_input {
     font-size: 12pt;
     height: 35px;
     width: 180px;
-}
-
-#title {
-    opacity: 0.5;
 }
 
 @media (max-width: 760px) {
