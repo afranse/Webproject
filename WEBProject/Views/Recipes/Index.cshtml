@@ -1,3 +1,27 @@
 ﻿
 <h2>Recipes pagina</h2>
+@{
+    List<int> lijst = new List<int>
+{
+1,
+2,
+3,
+4,
+5,
+6
+};
+}
+
+@for (int x = 0; x < lijst.Count(); x = x + 3)
+{
+    <div class="row">
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="col-md-4">
+                <partial name="_Catalog" />
+            </div>
+        };
+
+    </div>
+};
 
