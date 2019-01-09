@@ -1,4 +1,12 @@
-﻿.footer_container {
+﻿a {
+    color: white;
+}
+
+    a:hover {
+        color: white;
+    }
+
+.footer_container {
     font-family: 'Avenir LT Std 35 Light';
     font-size: 16pt;
     text-align: center;
@@ -24,18 +32,11 @@
     text-align: left;
 }
 
-#footer_title {
-    opacity: 0.5;
-}
-
-#socialmedia{
-    margin-top: 50px;
-}
-
 .company_row {
     padding-top: 1%;
     padding-bottom: 1%;
     height: 200px;
+    width: 100%;
 }
 
 .logo {
@@ -44,8 +45,6 @@
     align-items: flex-start;
     position: relative;
     flex-flow: wrap;
-    margin-top: -10%;
-    margin-left: 40%;
     width: 80px;
     height: 80px;
 }
@@ -54,15 +53,24 @@
     display: none;
 }
 
+#footer_title {
+    opacity: 0.5;
+}
+
+#socialmedia{
+    margin-top: 50px;
+}
+
 #downloadButton {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
 }
 
 #logo-copyright {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    position: relative;
 }
 
 #logo-Verstegen {
@@ -70,10 +78,10 @@
     justify-content: flex-start;
     align-items: flex-start;
     position: relative;
-    margin-right: 5%;
 }
 
 #copyright {
+    font-size: 8pt;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -114,7 +122,6 @@
         align-content: flex-start;
         position: relative;
         margin-top: 5%;
-        margin-left: 25%
     }
 
     .certificate_button {
@@ -129,9 +136,25 @@
         display: inline-block;
     }
 
+    #logo-copyright {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    #logo-Verstegen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
     #copyright {
-        margin-left: 1%;
         width: 35%;
+        position: relative;
+        align-items: flex-start;
+        font-size: 10pt;
     }
 
     #slogan {
