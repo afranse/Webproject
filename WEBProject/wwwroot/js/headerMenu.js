@@ -2,23 +2,31 @@
 // http://api.jquery.com/
 // https://www.w3schools.com/jquery/
 
-var menu = true;
+var menuClick = true;
 
 $(document).ready(function () {
     $(window).click(function () {
-        if ($("#menu_js").is("#menu_js:visible") == true && menu == true) {
+        if ($("#menu_js").is("#menu_js:visible") == true && menuClick == true) {
             $("#menu_js").hide();
         } else {
-            menu = true;
+            menuClick = true;
         }
     });
 
     $("#menu_button_js").click(function () {
         $("#menu_js").toggle();
-        menu = false;
+        menuClick = false;
     });
 
     $("#menu_content_js").click(function () {
-        menu = false;
+        if (menuClick == null) {
+            menuClick = true;
+        } else {
+            menuClick = false;
+        }
+    });
+
+    $("#menu_exit_js").click(function () {
+        menuClick = null;
     });
 });
