@@ -28,3 +28,10 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+
+@media only screen and (max-device-width: 480px) {
+    .spotlight_bigscreen {
+        display: none;
+    }
+}
+

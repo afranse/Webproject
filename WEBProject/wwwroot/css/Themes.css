@@ -24,6 +24,7 @@
   right: 0%;
   padding-left: 5%;
   padding-right: 5%;
+  margin-bottom: 10%; 
 }
 #arrow {
     font-size: 20px;
@@ -47,4 +48,23 @@
   display: inline-block;
   font-size: 16px;
   border-radius: 8px;
+}
+
+
+@media only screen and (max-device-width: 480px){
+    .image-block{
+        display: none; 
+    }
+    .body{
+        flex-wrap:wrap;
+    }
+
+    .test {
+        margin-right:1%; 
+        flex-direction: column-reverse;
+    }
+
+    .themes_catalog{
+        display:flex;
+    }
 }

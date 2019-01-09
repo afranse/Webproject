@@ -7,121 +7,32 @@
     <div class="row align-items-center; justify-content-center">
         <h2> In the spotlight </h2>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/Products/Index">
-                    <img src="http://placekitten.com/200/100" alt="Allspice ground" id="responsive">
-                    <div class="text-block">
-                        <p>Product</p>
+    @{
+        List<int> lijst = new List<int>
+{
+1,2,3,4,5,6,7,8
+};
+    }
+
+    <div class="spotlight_bigscreen">
+
+        @for (int x = 0; x < lijst.Count(); x = x + 4)
+        {
+            <div class="row">
+                @for (int i = 0; i < 4; i++)
+                {
+                    <div class="col-md-3">
+                        <partial name="_Catalog2" />
                     </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title"> Allspice ground</p>
-                        <p id="subtitle"> Spices & Herbs </p>
-                    </div>
-                </a>
+                };
+
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/News/Index">
-                    <img src="http://placekitten.com/200/100" alt="Bio marinades" id="responsive">
-                    <div class="text-block">
-                        <p>Story</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">"Bio marinades: honest & sustainable" </p>
-                        <p id="subtitle"> Trend </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/Recipes/Index">
-                    <img src="http://placekitten.com/200/100" alt="African Farmer Sausages" id="responsive">
-                    <div class="text-block">
-                        <p>Recipe</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">African Farmer Sausages</p>
-                        <p id="subtitle"> Meat</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/Recipes/Index">
-                    <img src="http://placekitten.com/200/100" alt="African Farmer Sausages" id="responsive">
-                    <div class="text-block">
-                        <p>Recipe</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">African Farmer Sausages</p>
-                        <p id="subtitle"> Meat</p>
-                    </div>
-                </a>
-            </div>
-        </div>
+        };
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/Products/Index">
-                    <img src="http://placekitten.com/200/100" alt="Beakers" id="responsive">
-                    <div class="text-block">
-                        <p>packaging</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">Beakers</p>
-                        <p id="subtitle"> Subtitle or category</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/Products/Index">
-                    <img src="http://placekitten.com/200/100" alt="Cutter bags" id="responsive">
-                    <div class="text-block">
-                        <p>packaging</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">Cutter bags</p>
-                        <p id="subtitle"> Subtitle or category</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="/News/Index">
-                    <img src="http://placekitten.com/200/100" alt="Enjoy the burgundy trends" id="responsive">
-                    <div class="text-block">
-                        <p>Blog</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">Enjoy the burgundy trends of 2018</p>
-                        <p id="subtitle"> trend </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <a href="Products/Index">
-                    <img src="http://placekitten.com/200/100" alt="Beakers" id="responsive">
-                    <div class="text-block">
-                        <p>packaging</p>
-                    </div>
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title">Beakers</p>
-                        <p id="subtitle"> Subtitle or category</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+
+
+    <div class="spotlight_smallscreen">
+
 </div>
+
 
