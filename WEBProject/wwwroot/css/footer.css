@@ -99,6 +99,7 @@
     position: relative;
     flex-flow: wrap column;
     color: #007A51;
+    font-size: 20pt;
     font-family: 'La Belle Aurore', cursive;
 }
 
