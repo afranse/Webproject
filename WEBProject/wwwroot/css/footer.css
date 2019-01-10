@@ -57,7 +57,7 @@
     opacity: 0.5;
 }
 
-#socialmedia{
+.socialmedia{
     margin-top: 50px;
 }
 
@@ -162,8 +162,9 @@
         margin-top: 5%;
     }
 
-    #socialmedia {
-        margin-top: 5%;
-        margin-bottom: 5%;
+    .socialmedia {
+        margin:15%;
+        
     }
+    
 }
