@@ -1,6 +1,6 @@
 ﻿@using WEBProject.Data;
-@using (var db = new WebsiteContext())
-{
+@{List<Branch_Category> Branches = ViewBag.AllBranches as List<Branch_Category>; }
+@{
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -19,34 +19,25 @@
     <div class="container">
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">
-                @{
-                    if (ViewData["Branch"] == 0)
-                    {
-                        db.BranchCategories.Where(s => s.branchID == 1).FirstOrDefault();
-                    }
-                    else
-                    {
-                        db.BranchCategories.Where(s => s.branchID == ViewData["Branch"]).FirstOrDefault();
-
-                    }
-                }
+                
+                @Branches[(int) ViewBag.Branch-1].Name
                 <i class="arrow"></i>
             </button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="#branch1">@db.BranchCategories.Where(s => s.branchID == 1).FirstOrDefault();</a>
-                <a href="#branch2">@db.BranchCategories.Where(s => s.branchID == 2).FirstOrDefault();</a>
-                <a href="#branch3">@db.BranchCategories.Where(s => s.branchID == 3).FirstOrDefault();</a>
-                <a href="#branch4">@db.BranchCategories.Where(s => s.branchID == 4).FirstOrDefault();</a>
-                <a href="#branch5">@db.BranchCategories.Where(s => s.branchID == 5).FirstOrDefault();</a>
-                <a href="#branch6">@db.BranchCategories.Where(s => s.branchID == 6).FirstOrDefault();</a>
-                <a href="#branch7">@db.BranchCategories.Where(s => s.branchID == 7).FirstOrDefault();</a>
-                <a href="#branch8">@db.BranchCategories.Where(s => s.branchID == 8).FirstOrDefault();</a>
-                <a href="#branch9">@db.BranchCategories.Where(s => s.branchID == 9).FirstOrDefault();</a>
-                <a href="#branch10">@db.BranchCategories.Where(s => s.branchID == 10).FirstOrDefault();</a>
-                <a href="#branch11">@db.BranchCategories.Where(s => s.branchID == 11).FirstOrDefault();</a>
-                <a href="#branch12">@db.BranchCategories.Where(s => s.branchID == 12).FirstOrDefault();</a>
-                <a href="#branch13">@db.BranchCategories.Where(s => s.branchID == 13).FirstOrDefault();</a>
-                <a href="#branch14">@db.BranchCategories.Where(s => s.branchID == 14).FirstOrDefault();</a>
+                <a asp-action="filter" asp-route-id="@Branches[0].BranchID">@Branches[0].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[1].BranchID">@Branches[1].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[2].BranchID">@Branches[2].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[3].BranchID">@Branches[3].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[4].BranchID">@Branches[4].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[5].BranchID">@Branches[5].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[6].BranchID">@Branches[6].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[7].BranchID">@Branches[7].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[8].BranchID">@Branches[8].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[9].BranchID">@Branches[9].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[10].BranchID">@Branches[10].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[11].BranchID">@Branches[11].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[12].BranchID">@Branches[12].Name</a>
+                <a asp-action="filter" asp-route-id="@Branches[13].BranchID">@Branches[13].Name</a>
             </div>
         </div>
 
@@ -73,86 +64,43 @@
         </script>
 
         <div class="row title">
-           Type
+            Type
         </div>
-        @List<string> list = db.WebsiteContext.Where(s => s.branchID == viewData["Branch"])
-        @foreach (var type in list)
-         {
-             <div class="row">
+
+        @{List<Type_Category> list = ViewBag.Types as List<Type_Category>;
+        <form action="" method="get">
+            @for (int i = 0; i < 6 && i < list.Count(); i++)
+            {
+            var type = list[i];
+            <div class="row">
                 <label class="cbcontainer">
-                 Vegetable
-                 <input type="checkbox">
-                 <span class="checkmark"></span>
+                    @type.Name
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
                 </label>
-             </div>
-         }
-    <div class="row">
-    <label class="cbcontainer">
-        Fruit
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-</div>
-<div class="row">
-    <label class="cbcontainer">
-        Potato
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-</div>
-<div class="row">
-    <label class="cbcontainer">
-        Garlic, Peppers
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-</div>
-<div class="row">
-    <label class="cbcontainer">
-        Juices, Smoothies
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-</div>
-<div class="row">
-    <label class="cbcontainer">
-        Fruit, Salad
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-</div>
-<div id = "moreCategories" >
-    < div class="row">
-        <label class="cbcontainer">
-            1
-            <input type = "checkbox" >
-            < span class="checkmark"></span>
-        </label>
+            </div>
+            }
+            @if (list.Count() > 5)
+            {
+            <div id="moreCategories">
+                @for (int i = 6; i < list.Count(); i++)
+                {
+                    var type = list[i];
+
+                    <div class="row">
+                        <label class="cbcontainer">
+                            @type.Name
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                }
+            </div>
+            <a id="toggle"> +show all Categories</a>
+            }
+        </form>
+        }
     </div>
-    <div class="row">
-        <label class="cbcontainer">
-            2
-            <input type = "checkbox" >
-            < span class="checkmark"></span>
-        </label>
-    </div>
-    <div class="row">
-        <label class="cbcontainer">
-            3
-            <input type = "checkbox" >
-            < span class="checkmark"></span>
-        </label>
-    </div>
-    <div class="row">
-        <label class="cbcontainer">
-            4
-            <input type = "checkbox" >
-            < span class="checkmark"></span>
-        </label>
-    </div>
-</div>
-<a id = "toggle" > +show all Categories</a>
-</div>
 </body>
 </html>
-        }
+            }
