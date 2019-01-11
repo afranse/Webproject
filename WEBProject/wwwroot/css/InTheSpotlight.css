@@ -28,10 +28,16 @@
   padding-left: 5%;
   padding-right: 5%;
 }
-
+.spotlight_smallscreen{
+    display: none;
+}
 @media only screen and (max-device-width: 480px) {
     .spotlight_bigscreen {
         display: none;
+    }
+
+    .spotlight_smallscreen{
+        display:initial;
     }
 }
 

@@ -9,8 +9,9 @@ using System.Linq;
 
 namespace XUnitTesten
 {
-    class ProductsControllerTest
+    public class ProductsControllerTest
     {
+        [Fact]
         public void IndexInProductsController()
         {
             ProductsController c = new ProductsController();
