@@ -46,23 +46,13 @@
     margin-left: 15%
 }
 
-#contact_mbpic1 {
+#contact_mbpic {
     max-height: 25px;
     max-width: 25px;
     border-radius: 50%;
 }
 
-#contact_mbpic2 {
-    max-height: 25px;
-    max-width: 25px;
-    border-radius: 50%;
-}
 
-#contact_mbpic3 {
-    max-height: 25px;
-    max-width: 25px;
-    border-radius: 50%;
-}
 
 #contact_c1 {
     color: gray;
