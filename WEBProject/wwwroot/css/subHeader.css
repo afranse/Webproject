@@ -1,0 +1,17 @@
+#responsive {
+    width: 100%;
+}
+
+.customMadeBackground{
+	background-color: #007A51;
+	color: white;
+}
+
+.subHeaderButton{
+	background-color: white;
+	color: red;
+	border-radius: 10px;
+	border: 2px solid white;
+    margin-bottom: 5%; 
+    margin-left: 2%; 
+}
