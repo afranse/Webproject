@@ -12,5 +12,10 @@ namespace WEBProject.Controllers
         {
             return View();
         }
+
+        public IActionResult Products()
+        {
+            return View();
+        }
     }
 }
