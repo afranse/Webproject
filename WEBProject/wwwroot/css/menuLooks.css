@@ -45,10 +45,11 @@
 
 
 
-#menu_exit_js{
+#menu_exit_js {
     margin-left: 90px;
     width: 15%;
     height: 15%;
+    cursor: pointer;
 }
 
 #menu_js {
