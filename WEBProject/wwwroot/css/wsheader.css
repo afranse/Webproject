@@ -7,9 +7,6 @@
 }
 
 .headerarrow {
-    /*right: 0px;
-    position: absolute;
-    bottom: 2%;*/
     display: flex;
     justify-content: flex-end;
 }
@@ -21,6 +18,10 @@
 .header_button{
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.language_search{
+    justify-content: flex-end;
 }
 
 #header_industry_btn {
