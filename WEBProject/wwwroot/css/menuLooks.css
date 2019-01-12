@@ -16,6 +16,7 @@
 
 .FI_CloseButton{
     margin-top: 2%;
+    min-width: 100%;
 }
 
 .linkButton {
@@ -38,21 +39,67 @@
     font-size: 18pt;
 }
 
+.ls{
+    margin-right: 4%;
+    margin-top: 4%;
+    cursor: pointer;
+}
+
+.menuLogoColor{
+    color: white;
+    background-color: #CD0B35;
+}
+
+.menuText{
+    width: 40px;
+}
+
+.menuHamburger{
+    padding-left: 0px;
+    padding-right: 10px;
+    max-width: 25px;
+}
+
+.menuName {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 #foodIndustry {
-    margin-left: 130px;
-    margin-right: 50px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 
 
 #menu_exit_js {
-    margin-left: 90px;
-    width: 15%;
-    height: 15%;
+    margin-left: 60%;
+    width: 50px;
     cursor: pointer;
 }
 
 #menu_js {
     display: none;
+}
+
+@media screen and (min-width: 576px) {
+    .menu_layout {
+        position: relative;
+        min-height: 0%;
+        min-width: 0%;
+        overflow: visible;
+    }
+
+    .menu_desktop_position {
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+
+    .menu_desktop_above{
+        position: absolute;
+    }
+
+    .menuText{
+        width: 100px;
+    }
+
 }

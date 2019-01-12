@@ -5,7 +5,7 @@
 var menuClick = true;
 
 $(document).ready(function () {
-    $(window).click(function () {
+    $(window).click(function (event) {
         if ($("#menu_js").is("#menu_js:visible") == true && menuClick == true) {
             $("#menu_js").hide();
         } else {
