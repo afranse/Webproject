@@ -26,7 +26,11 @@ $(document).ready(function () {
         }
     });
 
-    $("#menu_exit_js").click(function () {
+    $("#menu_exitMobile_js").click(function () {
+        menuClick = null;
+    });
+
+    $("#menu_exitDesktop_js").click(function () {
         menuClick = null;
     });
 });

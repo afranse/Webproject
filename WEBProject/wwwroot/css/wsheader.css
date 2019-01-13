@@ -35,15 +35,15 @@
 }
 
 #titlelogo {
-    top: 10%;
+    top: 50px%;
     left: 2%;
     position: absolute;
     max-width: 18%;
 }
 
 #quickmenu {
-    top: 10%;
-    right: 5%;
+    top: 50px;
+    right: 50px;
     position: absolute;
     color: white;
 }
