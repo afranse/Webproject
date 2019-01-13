@@ -14,7 +14,7 @@
     z-index: 9999;
 }
 
-.FI_CloseButton{
+.FI_CloseButton {
     margin-top: 2%;
     min-width: 100%;
 }
@@ -29,32 +29,32 @@
     border-radius: 8px;
 }
 
-.linkButton :hover, .linkButton:focus {
+    .linkButton :hover, .linkButton:focus {
         background-color: white;
         color: #930D2A;
         padding: 10px;
     }
 
-.menuLinks{
+.menuLinks {
     font-size: 18pt;
 }
 
-.ls{
+.ls {
     margin-right: 4%;
     margin-top: 4%;
     cursor: pointer;
 }
 
-.menuLogoColor{
+.menuLogoColor {
     color: white;
     background-color: #CD0B35;
 }
 
-.menuText{
+.menuText {
     width: 40px;
 }
 
-.menuHamburger{
+.menuHamburger {
     padding-left: 0px;
     padding-right: 10px;
     max-width: 25px;
@@ -69,8 +69,6 @@
     cursor: pointer;
 }
 
-
-
 #menu_exit_js {
     margin-left: 60%;
     width: 50px;
@@ -81,12 +79,14 @@
     display: none;
 }
 
+/*Desktop view*/
 @media screen and (min-width: 576px) {
     .menu_layout {
         position: relative;
         min-height: 0%;
         min-width: 0%;
         overflow: visible;
+        opacity: 0.9;
     }
 
     .menu_desktop_position {
@@ -94,12 +94,23 @@
         padding-right: 0px;
     }
 
-    .menu_desktop_above{
+    .menu_desktop_above {
         position: absolute;
     }
 
-    .menuText{
+    .menuText {
         width: 100px;
     }
 
+    .menuLinks :hover {
+        background-color: #CD0B35;
+        border-radius: 5%;
+    }
+
+    .infoVerstegen {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 300px;
+    }
 }
