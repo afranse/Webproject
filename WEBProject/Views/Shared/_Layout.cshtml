@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE HTML>
 @{ 
     string lang = "";
     if (ViewData["Language"] == null || ViewData["Language"].ToString() == "")
@@ -35,7 +35,7 @@
     @*<partial name="_CookieConsentPartial" />*@
     <partial name="_Header" />
 
-    <div class="header_container">
+    <div>
         @RenderBody()
         <hr />
     </div>
