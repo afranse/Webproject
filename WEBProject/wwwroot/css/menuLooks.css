@@ -1,49 +1,148 @@
-.dropdownColor{
-	background-color: #CD0B35;
-	color: white;
-	border-color: black;
-	border-width: 1px;
+.menu_layout {
+    flex-direction: column;
+    align-items: center;
+    top: 0%;
+    left: 0%;
+    color: white;
+    background-color: #930D2A;
+    min-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: auto;
+    position: fixed;
+    z-index: 9999;
 }
 
-.scrollMenu{
-	max-height: 300px;
-	overflow-x: hidden;
+.FI_CloseButton {
+    padding-top: 2%;
+    min-width: 100%;
 }
 
-.modalContainerSize{
-	max-width: 0px;
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
+.menu_Desktop_graphics_right{
+    display: none;
 }
 
-@media only screen and (max-width: 576px) {
-	.modalContainerSize{
-		max-width: 50px;
-		margin-right: 15px;
-		padding: 0;
-		margin-left: 0;
-		margin-bottom: 0;
-		margin-top: 0;
-		border: 0;
-	}
-}
-.scrollModal{
-	overflow-y: visible;
-	overflow-x: hidden;
-	max-height: 100%;
+.linkButton {
+    background-color: #930D2A;
+    padding: 7px;
+    font-size: 16pt;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
 }
 
-#popupButton{
-	border-radius: 10%;
-	padding: 6px;
+.linkButton :hover, .linkButton:focus {
+        background-color: white;
+        color: #930D2A;
+        padding: 10px;
 }
 
-#linkColor:hover {
-	background-color: gray;
+.menuLinks {
+    padding-left: 50px;
+    font-size: 18pt;
 }
 
-#linkColor{
-	color: white;
+.ls {
+    margin-right: 4%;
+    margin-top: 4%;
+    cursor: pointer;
 }
 
+.menuLogoColor {
+    color: white;
+    background-color: #CD0B35;
+}
+
+.menuText {
+    width: 40px;
+}
+
+.menuHamburger {
+    padding-left: 0px;
+    padding-right: 10px;
+    max-width: 25px;
+}
+
+.menuName {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#menu_exitMobile_js {
+    margin-left: 60%;
+    width: 50px;
+    cursor: pointer;
+}
+
+#foodIndustry {
+    cursor: pointer;
+}
+
+#menu_js {
+    display: none;
+}
+
+/*Desktop view*/
+@media screen and (min-width: 576px) {
+
+    #menu_exitDesktop_js {
+        width: 115px;
+        margin: auto;
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+    .menu_layout {
+        position: relative;
+        min-height: 0%;
+        min-width: 0%;
+        overflow: visible;
+        background-color: rgba(147, 13, 42, 0.9);
+    }
+
+    .menu_desktop_position {
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+
+    .menu_desktop_above {
+        position: absolute;
+    }
+
+    .menuText {
+        width: 100px;
+    }
+
+    .linkButton:hover {
+        background-color: #CD0B35;
+        color: white;
+    }
+
+    .linkButton {
+        min-width: 40%;
+        text-align: left;
+        background-color: rgba(147, 13, 42, 0.0);
+    }
+
+    .linkButton:active{
+        background-color: white;
+        color: #CD0B35; 
+    }
+
+    .infoVerstegen {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 300px;
+    }
+
+    .menu_Desktop_graphics_right{
+        display: block;
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background-color: green;
+        left: 50%;
+        top: 0px;
+    }
+}
