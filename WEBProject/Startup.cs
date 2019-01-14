@@ -38,7 +38,9 @@ namespace WEBProject
 
             services.AddDbContext<WebsiteContext>(options => options
             .UseLazyLoadingProxies()
-            .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database = WEB.Verstegen;Trusted_Connection = True;MultipleActiveResultSets = true"));
+            //.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database = WEB.Verstegen;Trusted_Connection = True;MultipleActiveResultSets = true"));
+            .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 
         }
 

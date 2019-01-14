@@ -81,6 +81,26 @@
 	display:none;
 }
 
+#moreCategories2 {
+    display: none;
+}
+
+#toggle {
+    cursor: pointer;
+}
+#2toggle {
+    cursor: pointer;
+}
+
+#toggle2{
+    display: none;
+    cursor: pointer;
+}
+
+#2toggle2 {
+    display: none;
+    cursor: pointer;
+}
 
 .dropbtn {
 	background-color: white;
@@ -141,4 +161,7 @@
 
 #toggle{
 	color: red;
+}
+#toggle2 {
+    color: red;
 }
