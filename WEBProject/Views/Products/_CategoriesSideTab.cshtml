@@ -49,20 +49,9 @@
                 <i class="arrow"></i>
             </button>
             <div id="myDropdown" class="dropdown-content">
-                <a asp-action="filter" asp-route-id="@Branches[0].BranchID">@Branches[0].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[1].BranchID">@Branches[1].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[2].BranchID">@Branches[2].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[3].BranchID">@Branches[3].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[4].BranchID">@Branches[4].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[5].BranchID">@Branches[5].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[6].BranchID">@Branches[6].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[7].BranchID">@Branches[7].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[8].BranchID">@Branches[8].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[9].BranchID">@Branches[9].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[10].BranchID">@Branches[10].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[11].BranchID">@Branches[11].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[12].BranchID">@Branches[12].Name</a>
-                <a asp-action="filter" asp-route-id="@Branches[13].BranchID">@Branches[13].Name</a>
+                @for ( int i = 0; i < Branches.Count(); i++) {
+                <a asp-action="filter" asp-route-id="@Branches[i].BranchID">@Branches[i].Name</a>
+                }
             </div>
         </div>
 
