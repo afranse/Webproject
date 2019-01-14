@@ -1,11 +1,10 @@
 ﻿<div class="container-fluid" id="headerBackgroundImageLayout" style="
         background-image: url(@ViewData["HeaderBackgroundImg"]);
-     @{/*/images/spareribs.jpg*/ }
     ">
 
     <img id="titlelogo" src="~/images/verstegenLogo.png" alt="logo">
     <div class="container-fluid menu_desktop_position menu_desktop_above">
-        <div class="row">
+        <div class="row menuInScreen">
             <div class="col-md-6 col-sm-6 d-none d-sm-block"></div>
             <div id="menu_js" class="col-md-6 col-sm-6 col-12 menu_desktop_position">
                 <div class="menu_Desktop_graphics_right"></div>
@@ -88,7 +87,7 @@
         <div class="row img_space"></div>
         <div class="row title_space">
             <div class="col-12 col-md-12">
-                <h1 id="bottomrow">Enjoy great taste!</h1>
+                <h1 id="bottomrow">@ViewData["HeaderTitle"]</h1>
             </div>
         </div>
         <div class="row">

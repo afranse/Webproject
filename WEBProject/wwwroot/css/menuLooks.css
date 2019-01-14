@@ -1,8 +1,8 @@
 .menu_layout {
     flex-direction: column;
     align-items: center;
-    top: 0%;
-    left: 0%;
+    top: 0px;
+    left: 0px;
     color: white;
     background-color: #930D2A;
     min-width: 100%;
@@ -83,15 +83,31 @@
     display: none;
 }
 
+/*Mobile view*/
+@media screen and (max-width: 575px) {
+    .menuLinks {
+        margin: auto;
+        max-width: 300px;
+        padding-left: 0px;
+    }
+}
+
 /*Desktop view*/
 @media screen and (min-width: 576px) {
 
     #menu_exitDesktop_js {
         width: 115px;
         margin: auto;
-        margin-right: 50px;
-        margin-top: 5px;
+        margin-right: 10px;
+        margin-top: 32px;
+        cursor: pointer;
     }
+
+    .menuInScreen{
+        max-width: 100%;
+        margin-left: 0px;
+    }
+
     .menu_layout {
         position: relative;
         min-height: 0%;
@@ -103,6 +119,8 @@
     .menu_desktop_position {
         margin-right: 0px;
         padding-right: 0px;
+        left: 0px;
+        top: 0px;
     }
 
     .menu_desktop_above {
@@ -132,11 +150,12 @@
     .infoVerstegen {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        min-width: 300px;
+        margin-left: 50%;
+        max-width: 50%;
+        
     }
-
-    .menu_Desktop_graphics_right{
+    
+    .menu_Desktop_graphics_right {
         display: block;
         position: absolute;
         width: 50%;
@@ -144,5 +163,15 @@
         background-color: green;
         left: 50%;
         top: 0px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .infoVerstegen {
+        margin-left: 0%;
+    }
+
+    .menu_Desktop_graphics_right{
+        display: none;
     }
 }
