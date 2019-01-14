@@ -119,7 +119,7 @@
     }
 
     .linkButton {
-        min-width: 200px;
+        min-width: 40%;
         text-align: left;
         background-color: rgba(147, 13, 42, 0.0);
     }
