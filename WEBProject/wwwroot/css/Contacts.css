@@ -5,7 +5,12 @@
     height: 350px;
     margin: auto;
 }
-
+.WideContacts_container-looks {
+    background-color: #ececec;
+    opacity: 0.9;
+    height: 350px;
+    margin-bottom: 5%;
+}
 .contact_button_lineout {
     display: flex;
     justify-content: center;

@@ -1,0 +1,26 @@
+﻿<div class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+        <p id="smallFont"> Products</p>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <h2> Related Products</h2>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        @{
+            List<int> lijst = new List<int>
+            {1,2,3,4};
+        }
+
+        @for (int x = 0; x < lijst.Count(); x++)
+        {
+        <div class="col-md-3">
+            <partial name="_Catalog" />
+        </div>
+        }
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <a href="../Recipes/Index">
+            <div class="red_button"> All products &#10132 </div>
+        </a>
+    </div>
+</div>

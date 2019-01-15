@@ -1,0 +1,22 @@
+.greenBackground{
+	background-color: #89A99F;
+	color: white; 
+    padding: 4%;
+}
+
+#productRow{
+	background-color: #536B63;
+}
+.button {
+  background-color: #CD0B35;
+  border: none;
+  color: white;
+  padding: 5px 45px;
+  margin-top: 0%;
+  margin-bottom: 2%;  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}

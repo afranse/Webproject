@@ -1,0 +1,41 @@
+.SpecificProductContainers{
+margin:5%; 
+}
+.card-body {
+    background-color: #ECECE6;
+}
+
+.gray-row {
+    background-color: #ECECE6;
+    color: black;
+}
+.LearnMoreRow:visited {
+    background-color: red;
+    color: white;
+}
+
+.LearnMoreRow:focus {
+    background-color: red;
+    color: white;
+}
+
+.LearnMoreRow:hover {
+    background-color: red;
+    color: white;
+}
+
+.LearnMoreRow:active {
+    background-color: red;
+    color: white;
+}
+
+.white-row {
+    background-color: white;
+    color: black;
+}
+
+#plus-symbol {
+    margin-left: auto;
+    margin-right: 1%;
+    color: red;
+}

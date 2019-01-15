@@ -1,24 +1,25 @@
-﻿<div class="container">
+﻿<div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
-            <img src="~/css/images/verstegenLogo.png" alt="image" id="inspectimage">
+            <img src="~/images/verstegenLogo.png" alt="image" id="inspectimage">
         </div>
         <div class="col-md-8">
         </div>
     </div>
     <div class="row align-items-center justify-content-center">
-        <img src="http://placekitten.com/300/400" alt="image" id="inspectimg">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <img src="~/images/Marinade.png" alt="image" class="inspectimg" id="imageReplace">
+        </div>
     </div>
     <div class="row grayrow align-items-center justify-content-space-between">
-       <div class="col-md-3"></div>
-       <div class="col-md-6">
-           <img src="http://placekitten.com/50/50" alt="image" id="inspectimage">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <a href="#imageReplace" onclick="changeImage('/images/Marinade.png');"><img src="~/images/Marinade.png" id="inspectimage" /></a>
+            <a href="#imageReplace" onclick="changeImage('/images/ProductImg.png');"><img src="~/images/ProductImg.png" id="inspectimage" /></a>
+            <a href="#imageReplace" onclick="changeImage('/images/ProductImg2.png');"><img src="~/images/ProductImg2.png" id="inspectimage"/></a>
+        </div>
+        <div class="col-md-2"></div>
 
-           <img src="http://placekitten.com/50/50" alt="image" id="inspectimage">
-
-           <img src="http://placekitten.com/50/50" alt="image" id="inspectimage">
-       </div>
-       <div class="col-md-3"></div>
-        
     </div>
 </div>

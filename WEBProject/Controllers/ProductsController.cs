@@ -16,7 +16,7 @@ namespace WEBProject.Controllers
         public ProductsController(WebsiteContext context)
         {
             _context = context;
-            new Seeder(_context);
+           // new Seeder(_context);
         }
 
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
