@@ -1,85 +1,30 @@
 ﻿@using WEBProject.Data;
 @{List<Branch_Category> Branches = ViewBag.AllBranches as List<Branch_Category>; }
 @{
-<!DOCTYPE HTML>
-<html>
-<head>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/CategoriesSideTab.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#toggle").click(function () {
-                $("#moreCategories").toggle(1000);
-                $("#toggle").toggle(1);
-                $("#toggle2").toggle(1);
-            });
-        });
-        $(document).ready(function () {
-            $("#toggle2").click(function () {
-                $("#moreCategories").toggle(1000);
-                $("#toggle").toggle(1);
-                $("#toggle2").toggle(1);
-            });
-        });
-        $(document).ready(function () {
-            $("#2toggle").click(function () {
-                $("#moreCategories").toggle(1000);
-                $("#2toggle").toggle(1);
-                $("#2toggle2").toggle(1);
-            });
-        });
-        $(document).ready(function () {
-            $("#2toggle2").click(function () {
-                $("#moreCategories").toggle(1000);
-                $("#2toggle").toggle(1);
-                $("#2toggle2").toggle(1);
-            });
-        });
 
-        
-    </script>
-</head>
-<body>
-    <div class="container">
+
+    <div class="container" id="CatogoryContainer">
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">
-
+                @if (Branches.Count() == 0)
+                {
+                <P> no branches found </P>
+                }
+                else
+                {
                 @Branches[(int)ViewBag.Branch - 1].Name
+                }
                 <i class="arrow"></i>
             </button>
             <div id="myDropdown" class="dropdown-content">
-                @for ( int i = 0; i < Branches.Count(); i++) {
+                @for (int i = 0; i < Branches.Count(); i++)
+                {
                 <a asp-action="filter" asp-route-id="@Branches[i].BranchID">@Branches[i].Name</a>
                 }
             </div>
         </div>
 
-        <script>
-            /* When the user clicks on the button,
-            toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        
-
-            
-
-        </script>
+   
 
         <div class="row title">
             Type
@@ -193,28 +138,14 @@
                         <a id="2toggle1"> +show all Categories</a>
                         <a id="2toggle2"> -hide all Categories</a>
                         </div>
-                        }
-                        }
-
-
-
-
-
-
-
-
-
-
+                }
+            }
                         <input type="hidden" name="Branch" value="@ViewBag.Branch" />
                         <input type="submit" value="Filter" />
                 </form>
         }
-        @{List<Product> products = ViewBag.Products as List<Product>; }
-        @foreach (Product p in products)
-        {
-            @p.Name
-        }
+        
     </div>
-</body>
-</html>
-            }
+
+
+}

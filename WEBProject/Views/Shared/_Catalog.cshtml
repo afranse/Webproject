@@ -1,19 +1,12 @@
-﻿
-@{
-    string image = "~/images/product.png";
-    string link = "../Products/Product";
-    string title = "Allspice ground";
-    string subtitle = "Spices & Herbs";
-}
-
-
-            <div class="thumbnail">
-                <a href="@link">
-                    <img src="~/images/product.png" alt="product" id="responsive">
-                    <div class="spotlight_caption">
-                        <p id="spotlight_title"> @title </p>
-                        <p id="subtitle"> @subtitle </p>
-                    </div>
-                </a>
+﻿@model Product
+@{string s = "../Products/SpecificProduct/" + Model.ArticleNumber;}
+@{string p = "/images/product.png";}
+<div class="thumbnail">
+    <a href="@s">
+        <img src='@p' alt="product" id="responsive" />
+        <div class="spotlight_caption">
+            <p id="spotlight_title"> @Model.Name </p>
+            <p id="subtitle"> @Model.Description </p>
         </div>
- 
+    </a>
+</div>

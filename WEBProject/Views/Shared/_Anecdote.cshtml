@@ -1,0 +1,27 @@
+﻿@model PageContent
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            @if (Model.Texts.Count() != 0)
+            {
+                @Model.Texts[0]
+            }
+            else
+            {
+               <p> Text not found </p>
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Model.Texts.Count() != 0)
+            {
+               <img src='@Model.Photos[0]' alt="Anecdote Photo" /> 
+            }
+            else
+            {
+                <p>Photo not found</p>
+            }
+        </div>
+    </div>
+</div>
+

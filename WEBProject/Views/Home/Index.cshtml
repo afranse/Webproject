@@ -1,15 +1,8 @@
-﻿<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            text
-        </div>
-        <div class="col-md-9">
-            <img src="~/images/text" />
-        </div>
-    </div>
-</div>
-<partial name="_Themes" />
-<partial name="_Categorie" />
-<partial name="_Spotlight" />
+﻿@model PageContent
+<partial name="_Anecdote" model="@Model.Pages[0]" />
+<partial name="_Themes" model="@Model.Pages[1]" />
+@{List<Branch_Category> Branches = ViewBag.Branches as List<Branch_Category>; }
+<partial name="_Categorie" model="Branches" />
+<partial name="_Spotlight" model="Model.Pages[2]" />
 
 

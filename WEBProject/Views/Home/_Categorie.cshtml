@@ -1,4 +1,5 @@
-﻿<div class="container-fluid align-items-center justify-content-center">
+﻿@model List<Branch_Category>
+<div class="container-fluid align-items-center justify-content-center">
     <div class="row align-items-center justify-content-center">
         <a href="/Products/Index">Categories</a>
     </div>
@@ -6,93 +7,86 @@
         <h1>Find the best idea in your branch</h1>
     </div>
     <div class="row align-items-center justify-content-center">
-        <div class="col-md-5" id="tab">
-            <div class="row" id="gray">
-                &nbsp; Aardappel, Groente, Fruit
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
+        @if (Model.Count() > 6)
+        {
+            <div class="col-md-5" id="tab">
+                @{Boolean gray = true; }
+                @for (int i = 0; i < 7; i++)
+                {
+                    int ID = Model[i].BranchID - 1;
+
+                    if (gray)
+                    {
+                        gray = false;
+                        <div class="row" id="gray">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        gray = true;
+                        <div class="row">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+
+                }
             </div>
-            <div class="row">
-                &nbsp; Kant-en-Klaar, Salades
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
+            <div class="col-md-5" id="tab">
+                @{ gray = true; }
+                @for (int i = 7; i < Model.Count(); i++)
+                {
+                    int ID = Model[i].BranchID - 1;
+
+                    if (gray)
+                    {
+                        gray = false;
+                        <div class="row" id="gray">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        gray = true;
+                        <div class="row">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+
+                }
             </div>
-            <div class="row" id="gray">
-                &nbsp; Vlees, Kip, Vis, Vega
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
+        }
+        else
+        {
+            <div class="row align-items-center justify-content-center">
+                @{Boolean gray = true; }
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    int ID = Model[i].BranchID - 1;
+                        if (gray)
+                        {
+                            gray = false;
+                        <div class="row" id="gray">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        gray = true;
+                        <div class="row">
+                            &nbsp; @Model[i].Name
+                            <a asp-controller="Products" asp-action="Index" asp-route-BranchID="@ID" id="C_arrow"><i>&#10132 </i></a>
+                        </div>
+                    }
+
+                }
             </div>
-            <div class="row">
-                &nbsp; Kaas, Vleeswaren, Delicatessen
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row" id="gray">
-                &nbsp; Zuivel, Eieren
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row">
-                &nbsp; Bakkerij
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row" id="gray">
-                &nbsp; Ontbijtgranen, Broodbeleg, Tussendoor
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-5" id="tab">
-            <div class="row" id="gray">
-                &nbsp; Frisdrank, Sappen, Koffie, Thee
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row">
-                &nbsp; Bier, Sterke drank, Apperatieven
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row" id="gray">
-                &nbsp; Pasta, Rijst, internationale keuken
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row">
-                &nbsp; Soepen, Conserven, Sauzen, Smaakmakers
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row" id="gray">
-                &nbsp; Snoep, Koek, Chips
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row">
-                &nbsp; Diepvries
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-            <div class="row" id="gray">
-                &nbsp; Bewuste voeding
-                <a href="/Products/Index" id="C_arrow">
-                    <i >&#10132 </i>
-                </a>
-            </div>
-        </div>
+
+        }
     </div>
 </div>

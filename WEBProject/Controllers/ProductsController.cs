@@ -22,21 +22,9 @@ namespace WEBProject.Controllers
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
         {
             BranchID++;
-            List<Models.Type_Category> selectedTypes = new List<Models.Type_Category>();
-            foreach (string s in typestring)
-            {
-                int i = 0;
-                int.TryParse(s.Substring(2), out i);
-                selectedTypes.Add(_context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault());
-            }
+            List<Models.Type_Category> selectedTypes = getTypes(typestring);
 
-            List<Models.Normal_Category> selectedCategories = new List<Models.Normal_Category>();
-            foreach (string s in catstring)
-            {
-                int i = 0;
-                int.TryParse(s.Substring(2), out i);
-                selectedCategories.Add(_context.Normal_Categories.Where(x => x.CategoryID.Equals(i)).FirstOrDefault());
-            }
+            List<Models.Normal_Category> selectedCategories = GetCategories(catstring);
 
             ViewBag.SelectedTypes = selectedTypes;
             ViewBag.SelectedCategories = selectedCategories;
@@ -51,16 +39,42 @@ namespace WEBProject.Controllers
                         join TC in selectedTypes on C.TypeID equals TC.TypeID
                         select C).ToList();
             }
+            fillBags(BranchID, selectedTypes, selectedCategories);
+            return View();
+        }
 
+        //convert the string array to Type_Category List
+        private List<Models.Type_Category> getTypes(string[] typestring)
+        {
+            List<Models.Type_Category> selectedTypes = new List<Models.Type_Category>();
+            foreach (string s in typestring)
+            {
+                int i = 0;
+                int.TryParse(s.Substring(2), out i);
+                selectedTypes.Add(_context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault());
+            }
+            return selectedTypes;
+        }
 
-
-
-
-
-
-
-
+        //convert the string array to Normal_Category List
+        private List<Models.Normal_Category> GetCategories(string[] catstring)
+        {
+            List<Models.Normal_Category> selectedCategories = new List<Models.Normal_Category>();
+            foreach (string s in catstring)
+            {
+                int i = 0;
+                int.TryParse(s.Substring(2), out i);
+                selectedCategories.Add(_context.Normal_Categories.Where(x => x.CategoryID.Equals(i)).FirstOrDefault());
+            }
+            return selectedCategories;
+        }
+        
+        //fill the needed ViewBags 
+        private void fillBags(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
+        {
+            //current Branch
             ViewBag.Branch = BranchID;
+            //The query to search products
             var producten = (from p in _context.Products
                              join ncp in _context.NormalCategory_Products on p.ArticleNumber equals ncp.ArticleNumber
                              join nc in _context.Normal_Categories on ncp.CategoryID equals nc.CategoryID
@@ -71,6 +85,7 @@ namespace WEBProject.Controllers
                              where (bc.BranchID == BranchID)
                              select p);
 
+            //To catch any exceptions
             if(producten != null)
             {
                 ViewBag.Products = producten.ToList();
@@ -80,17 +95,16 @@ namespace WEBProject.Controllers
                 ViewBag.Products = new List <Models.Product>();
             }
 
-
+            //all Branches
             ViewBag.AllBranches = _context.Branch_Categories.ToList();
+            //all Types from certain Branch
             ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
+            //all Categories from certain Types
             ViewBag.AllCat = (from C in _context.Normal_Categories
                               join TC in selectedTypes on C.TypeID equals TC.TypeID
                               select C).ToList(); ;
-            
-
-
-            return View();
         }
+
 
         public IActionResult Filter(int id)
         {
@@ -122,6 +136,11 @@ namespace WEBProject.Controllers
             return RedirectToAction("Index", new {typestring = types, catstring = Categories, BranchID = Branch-1});
         }
 
+        public IActionResult SpecificProduct (int ID)
+        {
+            Models.Product P = _context.Products.Where(p => p.ArticleNumber == ID).FirstOrDefault();
+            return View(P);
+        }
 
 
 

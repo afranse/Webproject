@@ -102,7 +102,16 @@ namespace WEBProject.Data
                     }
                 }
             }
-
+            if(_context.Products.Where(p => p.ArticleNumber == 4).FirstOrDefault() != null)
+            {
+                Models.Product p = new Models.Product()
+                {
+                    ArticleNumber = 4, Description = "een product", Name = "product nummer 4",
+                };
+                List<Models.Product_Photo> PhotoList = new List<Models.Product_Photo> { new Models.Product_Photo { ArticleNumber = 4, Product = p, Photo = new Models.Photo { PhotoID = 1, PhotoPath = "~/images/product.png" }, PhotoID = 1 } };
+                p.ProductPhoto = PhotoList;
+                _context.Add(p);
+            }
 
             _context.SaveChanges();
         }
