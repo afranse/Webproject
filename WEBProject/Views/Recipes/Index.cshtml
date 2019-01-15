@@ -1,7 +1,15 @@
-﻿
-<h2>Recipes pagina</h2>
-@{
-    List<int> lijst = new List<int>
+﻿<div class="container">
+    <div class="row chapter">
+        <div class="col-md-4">
+            <img src="https://baconmockup.com/300/200/" alt="temp image" />
+        </div>
+        <div class="col-md-8">
+            <h2>Recipes page</h2>
+            <p>More or less bacon?</p>
+        </div>
+    </div>
+    @{
+        List<int> lijst = new List<int>
 {
 1,
 2,
@@ -10,18 +18,24 @@
 5,
 6
 };
-}
+    }
 
-@for (int x = 0; x < lijst.Count(); x = x + 3)
-{
-    <div class="row">
-        @for (int i = 0; i < 3; i++)
+    <div class="container recipeOverview">
+        @for (int x = 0; x < lijst.Count(); x = x + 3)
         {
-            <div class="col-md-4">
-                <partial name="_Catalog" />
+            <div class="row">
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="col-md-4">
+                        <partial name="_Catalog" />
+                    </div>
+                };
+
             </div>
         };
-
     </div>
-};
+</div>
+
+    <partial name="_SingleContact" />
+    <partial name="_RecipesSideTab" />
 
