@@ -16,7 +16,7 @@ namespace WEBProject.Controllers
         public ProductsController(WebsiteContext context)
         {
             _context = context;
-            new Seeder(_context);
+           // new Seeder(_context);
         }
 
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
@@ -122,7 +122,10 @@ namespace WEBProject.Controllers
             return RedirectToAction("Index", new {typestring = types, catstring = Categories, BranchID = Branch-1});
         }
 
-
+        public IActionResult SpecificProduct()
+        {
+            return View();
+        }
 
 
 

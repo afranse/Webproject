@@ -6,8 +6,13 @@
 	margin: 2%;
     margin-bottom: 5%;
     margin-top:5%;
+    max-height: 80px;
+    max-width:80px;
 }
 
-#inspectimg{
-	margin-left:35%;
+.inspectimg{
+    min-height:420px;
+    max-height:425px;
+    min-width: 420px;
+    max-width: 425px;
 }

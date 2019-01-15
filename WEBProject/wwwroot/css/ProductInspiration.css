@@ -1,0 +1,23 @@
+.inspiration-background{
+	background-color: #89A99F;
+	color: white; 
+	padding: 4%;
+}
+
+.inspiration_caption{
+	background-color: white;
+	color: black;
+	padding-left:5%; 
+}
+
+#inspiration_title{
+	color: #89A99F;
+}
+#responsive{
+	width: 100%;
+}
+#all_recipes{
+	background-color: white;
+	color: #930D2A;
+	border-radius: 5%;
+}
