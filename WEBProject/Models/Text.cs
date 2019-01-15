@@ -16,6 +16,9 @@ namespace WEBProject.Models
         public virtual List<Text_News> TextNews { get; set; }
         public virtual List<Product_Text> TextProducts { get; set; }
         public virtual List<Recipe_Text> TextRecipes { get; set; }
+        [ForeignKey("LangID")]
+        public int LangID { get; set; }
+        public virtual Language Language { get; set; }
 
     }
 }

@@ -9,6 +9,14 @@
     <Compile Remove="Migrations\20190107140425_fix_WebsiteContext_and_ArticleNumber_Name.Designer.cs" />
     <Compile Remove="Migrations\20190107141102_fix_WebsiteContext_Navigation.cs" />
     <Compile Remove="Migrations\20190107141102_fix_WebsiteContext_Navigation.Designer.cs" />
+    <Compile Remove="Migrations\20190114212917_LanguageFix.cs" />
+    <Compile Remove="Migrations\20190114212917_LanguageFix.Designer.cs" />
+    <Compile Remove="Migrations\20190114213435_languageFixUpdate.cs" />
+    <Compile Remove="Migrations\20190114213435_languageFixUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20190114213949_LanguageFixUpdateNavigation.cs" />
+    <Compile Remove="Migrations\20190114213949_LanguageFixUpdateNavigation.Designer.cs" />
+    <Compile Remove="Migrations\20190115092713_LanguageFixConnections.cs" />
+    <Compile Remove="Migrations\20190115092713_LanguageFixConnections.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
