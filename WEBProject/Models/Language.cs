@@ -14,6 +14,10 @@ namespace WEBProject.Models
         [MaxLength(4)]
         [Required]
         public string LangTag { get; set; }
+        public virtual List<Text> Texts { get; set; }
+
+        public Language(){
+        }
 
         public Language(int langID, string langTag)
         {
