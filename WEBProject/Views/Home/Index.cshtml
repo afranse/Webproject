@@ -1,8 +1,19 @@
 ﻿@model PageContent
-<partial name="_Anecdote" model="@Model.Pages[0]" />
-<partial name="_Themes" model="@Model.Pages[1]" />
+<div class="BufferAllPartialViews">
+    <partial name="_Anecdote" model="@Model.Pages[0]" />
+</div>
+<div class="BufferAllPartialViews">
+    <partial name="_Themes" model="@Model.Pages[1]" />
+</div>
+
 @{List<Branch_Category> Branches = ViewBag.Branches as List<Branch_Category>; }
-<partial name="_Categorie" model="Branches" />
-<partial name="_Spotlight" model="Model.Pages[2]" />
+<div class="BufferAllPartialViews">
+    <partial name="_Categorie" model="Branches" />
+</div>
+
+<div class="BufferAllPartialViews">
+    <partial name="_Spotlight" model="Model.Pages[2]" />
+</div>
+
 
 
