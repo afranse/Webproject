@@ -40,6 +40,7 @@ namespace WEBProject.Controllers
                         select C).ToList();
             }
             fillBags(BranchID, selectedTypes, selectedCategories);
+            
             return View();
         }
 
@@ -75,26 +76,7 @@ namespace WEBProject.Controllers
             //current Branch
             ViewBag.Branch = BranchID;
             //The query to search products
-            var producten = (from p in _context.Products
-                             join ncp in _context.NormalCategory_Products on p.ArticleNumber equals ncp.ArticleNumber
-                             join nc in _context.Normal_Categories on ncp.CategoryID equals nc.CategoryID
-                             join tc in _context.Type_Categories on nc.TypeID equals tc.TypeID
-                             join bc in _context.Branch_Categories on tc.BranchID equals bc.BranchID
-                             join stc in selectedTypes on tc.TypeID equals stc.TypeID
-                             join snc in selectedCategories on nc.CategoryID equals snc.CategoryID
-                             where (bc.BranchID == BranchID)
-                             select p);
-
-            //To catch any exceptions
-            if(producten != null)
-            {
-                ViewBag.Products = producten.ToList();
-            }
-            else
-            {
-                ViewBag.Products = new List <Models.Product>();
-            }
-
+            ViewBag.Products = GetProducts(BranchID, selectedTypes, selectedCategories);
             //all Branches
             ViewBag.AllBranches = _context.Branch_Categories.ToList();
             //all Types from certain Branch
@@ -140,6 +122,33 @@ namespace WEBProject.Controllers
         {
             Models.Product P = _context.Products.Where(p => p.ArticleNumber == ID).FirstOrDefault();
             return View(P);
+        }
+
+
+
+
+
+        public List<Models.Product> GetProducts(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
+        {
+            var producten = (from p in _context.Products
+                             join ncp in _context.NormalCategory_Products on p.ArticleNumber equals ncp.ArticleNumber
+                             join nc in _context.Normal_Categories on ncp.CategoryID equals nc.CategoryID
+                             join tc in _context.Type_Categories on nc.TypeID equals tc.TypeID
+                             join bc in _context.Branch_Categories on tc.BranchID equals bc.BranchID
+                             join stc in selectedTypes on tc.TypeID equals stc.TypeID
+                             join snc in selectedCategories on nc.CategoryID equals snc.CategoryID
+                             where (bc.BranchID == BranchID)
+                             select p);
+
+            //To catch any exceptions
+            if (producten != null)
+            {
+               return producten.ToList();
+            }
+            else
+            {
+                return new List<Models.Product>();
+            }
         }
 
 

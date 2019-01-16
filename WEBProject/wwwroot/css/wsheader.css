@@ -6,6 +6,11 @@
     margin-bottom: 10%;
 }
 
+.BufferAllPartialViews{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
 .headerarrow {
     display: flex;
     justify-content: flex-end;
