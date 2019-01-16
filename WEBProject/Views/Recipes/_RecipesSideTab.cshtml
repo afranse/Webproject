@@ -1,0 +1,88 @@
+﻿@using WEBProject.Data;
+@{List<Branch_Category> Branches = ViewBag.AllBranches as List<Branch_Category>; }
+@{
+
+    <div class="container">
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">
+                @Branches[(int)ViewBag.Branch - 1].Name
+                <i class="arrow"></i>
+            </button>
+            <div id="myDropdown" class="dropdown-content">
+                @for (int i = 0; i < Branches.Count(); i++)
+                {
+                    <a asp-action="filter" asp-route-id="@Branches[i].BranchID">@Branches[i].Name</a>
+                }
+            </div>
+        </div>
+
+    
+
+        <div class="row title">
+            Type
+        </div>
+
+        @{List<Type_Category> list = ViewBag.AllTypes as List<Type_Category>;
+            List<Type_Category> selectedlist = ViewBag.SelectedTypes as List<Type_Category>;
+
+            <form action="Products/Category" method="get">
+                @for (int i = 0; i < 6 && i < list.Count(); i++)
+                {
+                    var type = list[i];
+                    <div class="row">
+                        <label class="cbcontainer">
+                            @type.Name
+                            @if (selectedlist.Contains(type))
+                            {
+                                <input type="checkbox" name="types" value="C @type.TypeID" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="types" value="C @type.TypeID">
+                            }
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                }
+                @if (list.Count() > 5)
+                {
+                    <div id="moreCategories">
+                        @for (int i = 6; i < list.Count(); i++)
+                        {
+                            var type = list[i];
+
+                            <div class="row">
+                                <label class="cbcontainer">
+                                    @type.Name
+                                    @if (selectedlist.Contains(type))
+                                    {
+                                        <input type="checkbox" name="types" value="C @type.TypeID" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="types" value="C @type.TypeID">
+                                    }
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <a id="toggle"> +show all Categories</a>
+                        <a id="toggle2"> -hide all Categories</a>
+                    </div>
+
+                }
+
+                <input type="hidden" name="Branch" value="@ViewBag.Branch" />
+                <input type="submit" value="Filter" />
+            </form>
+        }
+        @{List<Recipe> recipes = ViewBag.Recipes as List<Recipe>; }
+        @foreach (Recipe r in recipes)
+        {
+            @r.Name
+        }
+    </div>
+}
+

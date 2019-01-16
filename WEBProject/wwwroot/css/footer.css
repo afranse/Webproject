@@ -66,6 +66,11 @@
     height: 80px;
 }
 
+    #downloadButton:hover {
+        background-color: #89A99F;
+        opacity: 0.5;
+    }
+
 #logo-copyright {
     display: flex;
     justify-content: flex-end;

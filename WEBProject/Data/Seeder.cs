@@ -58,6 +58,7 @@ namespace WEBProject.Data
                     }
                 }
             }
+            _context.SaveChanges();
             List<WEBProject.Models.Type_Category> Types = new List<Models.Type_Category>
             {
                 new Models.Type_Category(){Name = "Vegetable", BranchID = _context.Branch_Categories.ToList()[0].BranchID, BranchCategory = _context.Branch_Categories.ToList()[0]},
