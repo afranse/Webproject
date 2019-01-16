@@ -1,9 +1,9 @@
 ﻿<div class="container">
-    <div class="row chapter">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-4 col-sm-4 col-md-4">
             <img src="https://baconmockup.com/300/200/" alt="temp image" />
         </div>
-        <div class="col-md-8">
+        <div class="col-8 col-sm-8 col-md-8">
             <h2>Recipes page</h2>
             <p>More or less bacon?</p>
         </div>
@@ -20,22 +20,36 @@
 };
     }
 
-    <div class="container recipeOverview">
-        @for (int x = 0; x < lijst.Count(); x = x + 3)
-        {
-            <div class="row">
-                @for (int i = 0; i < 3; i++)
-                {
-                    <div class="col-md-4">
-                        <partial name="_Catalog" />
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-sm-4 col-md-4">
+                <partial name="_SingleContact" />
+            </div>
+
+            <div class="col-8 col-sm-8 col-md-8">
+                <div class="container">
+                    <div class="container recipeOverview">
+                        @for (int x = 0; x < lijst.Count(); x = x + 3)
+                        {
+                            <div class="row">
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    <div class="col-4 col-sm-4 col-md-4">
+                                        <partial name="_Catalog" />
+                                    </div>
+                                };
+
+                            </div>
+                        };
                     </div>
-                };
+                </div>
 
             </div>
-        };
-    </div>
-</div>
 
-    <partial name="_SingleContact" />
+        </div>
+    </div>
+
+
+</div>
     <partial name="_RecipesSideTab" />
 
