@@ -26,6 +26,10 @@
   left: 10px;
 }
 
+.filter{
+    margin: 10%;
+}
+
 /* Hide default checkbox */
 .cbcontainer input {
   position: absolute;

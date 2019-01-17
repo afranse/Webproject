@@ -1,0 +1,21 @@
+﻿
+@{
+    string image = "../images/sausage.jpg";
+    string link = "../Recipes/Index";
+    string text_block = "Recipe";
+    string title = "African Farmer Sausages";
+    string subtitle = "Meat";
+}
+
+<div class="thumbnail">
+    <a href="@link">
+        <img src="@image" alt="Allspice ground" id="responsive">
+        <div class="text-block">
+            <p>@text_block</p>
+        </div>
+        <div class="spotlight_caption">
+            <p id="spotlight_title"> @title</p>
+            <p id="subtitle"> @subtitle </p>
+        </div>
+    </a>
+</div>
