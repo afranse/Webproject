@@ -1,8 +1,8 @@
 ﻿.contacts_container-looks {
     background-color: #ececec;
     opacity: 0.9;
-    width: 300px;
-    height: 350px;
+    width: 400px;
+    height: 380px;
     margin: auto;
 }
 .WideContacts_container-looks {
@@ -40,6 +40,10 @@
     min-height: 210px;
 }
 
+.contactform{
+    margin: 50px;
+}
+
 #contact_profile {
     margin-top: 6%
 }
@@ -57,8 +61,6 @@
     border-radius: 50%;
 }
 
-
-
 #contact_c1 {
     color: gray;
 }
@@ -73,8 +75,34 @@
     border-radius: 8px;
 }
 
-@media (max-width: 750px) {
+.HowToContact{
+    display: flex;
+    justify-content: center;
+}
 
+#regiontekst {
+    color: #89A99F;
+}
+
+.contactContact {
+    margin-top: 35px;
+    
+}
+
+#filter {
+    background-color: #ececec;
+    opacity: 0.9;
+    width: 200px;
+    height: 240px;
+    border-radius: 8px;
+}
+
+#dropdownsize {
+    width: 250px;
+   
+}
+
+@media (max-width: 750px) {
     .contacts_container-looks {
         height: 390px;
     }
@@ -97,4 +125,5 @@
         text-align: center;
         border-radius: 8px;
     }
+
 }
