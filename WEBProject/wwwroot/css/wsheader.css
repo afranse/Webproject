@@ -44,6 +44,7 @@
     left: 2%;
     position: absolute;
     max-width: 18%;
+    z-index: 1;
 }
 
 #quickmenu {
@@ -51,6 +52,7 @@
     right: 50px;
     position: absolute;
     color: white;
+    z-index: 1;
 }
 
 #headerBackgroundImageLayout {

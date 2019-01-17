@@ -1,0 +1,28 @@
+﻿.searchSolidGrayBorderWhiteContent {
+    border: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-color: #e5e5e5;
+    background-color: white;
+}
+
+.searchbox_input {
+    min-width: 200px;
+}
+
+#search_exitIcon_js {
+    display: none;
+}
+
+#search_content_js {
+    display: none;
+    background-color: white;
+    position: absolute;
+    right: 35px;
+    top: 45px;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 2;
+}

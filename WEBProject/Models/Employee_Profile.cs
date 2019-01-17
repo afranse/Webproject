@@ -13,6 +13,9 @@ namespace WEBProject.Models
         [Required]
         public string Name { get; set; }
         public string Job { get; set; }
+        public string Profile_PhotoPath { get; set; }
+        public string Region { get; set; }
+        public string CountryOrProvince { get; set; }
         public virtual List<Employee_Profile_Email> Emails { get; set; }
         public virtual List<Employee_Profile_Phone_Number> Phone_Numbers { get; set; }
 
