@@ -1,8 +1,8 @@
 ﻿.contacts_container-looks {
     background-color: #ececec;
     opacity: 0.9;
-    width: 400px;
-    height: 380px;
+    width: 100%;
+    height: 100%;
     margin: auto;
 }
 .WideContacts_container-looks {
