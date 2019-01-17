@@ -1,6 +1,23 @@
-﻿<div class="container-fluid" id="headerBackgroundImageLayout" style="
-        background-image: url(@ViewData["HeaderBackgroundImg"]);
+﻿@{ if (ViewBag.ShowHeaderImg == null)
+    {
+        ViewBag.ShowHeaderImg = true;
+    }
+    if (ViewBag.ShowHeaderImg == false)
+    {
+        ViewData["HeaderBackgroundImg"] = null;
+    }
+}
+
+<div class="container-fluid" id="headerBackgroundImageLayout" style="
+         background-image: url(@ViewData["HeaderBackgroundImg"]);
     ">
+
+    <div id="search_content_js">
+        <form action="/Search" method="get">
+            <input type="text" name="q" id="searchBox" class="searchSolidGrayBorderWhiteContent searchbox_input" placeholder="KeyWord">
+            <input type="submit" value="&#128270;" class="searchSolidGrayBorderWhiteContent">
+        </form>
+    </div>
 
     <img id="titlelogo" src="~/images/verstegenLogo.png" alt="logo">
     <div class="container-fluid menu_desktop_position menu_desktop_above">
@@ -43,7 +60,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -78,22 +94,26 @@
             <div class="row language_search">
                 <div class="ls">EN</div>
                 <div class="ls">NL</div>
-                <div class="ls">&#128269;</div>
+                <div class="ls" id="search_searchIcon_js">&#128269;</div>
+                <div class="ls" id="search_exitIcon_js">&#x2716;</div>
             </div>
         </div>
     </div>
-
-    <div class="container-fluid">
-        <div class="row img_space"></div>
-        <div class="row title_space">
-            <div class="col-12 col-md-12">
-                <h1 id="bottomrow">@ViewData["HeaderTitle"]</h1>
+    @{ if (ViewBag.ShowHeaderImg == true)
+        {
+            <div class="container-fluid">
+                <div class="row img_space"></div>
+                <div class="row title_space">
+                    <div class="col-12 col-md-12">
+                        <h1 id="bottomrow">@ViewData["HeaderTitle"]</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12 headerarrow">
+                        &#8595;
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-12 headerarrow">
-                &#8595;
-            </div>
-        </div>
-    </div>
+        }
+    }
 </div>

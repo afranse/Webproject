@@ -1,0 +1,29 @@
+﻿.SE_Top{
+    margin-top: 50px;
+}
+
+.SE_NoLeft{
+    padding-left: 0px;
+}
+
+.SE_FLex100{
+    display: flex;
+    min-width: 100%;
+}
+
+.SE_SubmitBTN{
+    max-width: 100px;
+    margin-left: 2%;
+}
+
+.SE_SpaceBelow{
+    margin-bottom: 50px;
+}
+
+.SE_Gray{
+    background-color: #ECECEC;
+}
+
+.SE_SpaceBelowSmall{
+    margin-bottom: 10px;
+}

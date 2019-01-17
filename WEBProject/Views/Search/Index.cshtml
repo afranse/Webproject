@@ -1,0 +1,49 @@
+﻿@model WEBProject.Models.SearchModel
+@{
+}
+<div class="container">
+    <div class="row SE_Top">
+        <h4>You searched for: @Model.SearchString</h4>
+    </div>
+    <div class="row">
+        <h5>Search again:</h5>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 SE_NoLeft">
+            <div class="container">
+                <div class="row SE_SpaceBelow">
+                    <form class="form-group SE_FLex100">
+                        <input type="text" class="form-control col-8 col-sm-8 col-md-8" name="q" placeholder="&#128270; Keywords" />
+                        <input type="submit" class="btn btn-danger col-4 col-sm-4 col-md-4 SE_SubmitBTN" value="Search &#8594;" />
+                    </form>
+                </div>
+                @{
+                    int Counter = Model.DBOList.Count();
+                    if (Counter == 0)
+                    {
+                        <div>
+                            <h1>No items found</h1>
+                        </div>
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Counter; i++)
+                        {
+                        <div class="row SE_SpaceBelowSmall">
+                            <div class="col-4 col-sm-4 col-md-4 SE_Gray">
+                                <img src='@Model.DBOList.ElementAt(i).GetPhotoURL()' class="img-fluid"/>
+                            </div>
+                            <div class="col-8 col-sm-8 col-md-8 SE_Gray">
+                                <h5>@Model.DBOList.ElementAt(i).GetSearchAbleString()</h5>
+                                <h6>@Model.DBOList.ElementAt(i).GetContent()</h6>
+                            </div>
+                        </div>
+                            }
+                        }
+                    }
+            </div>
+        </div>
+    </div>
+</div>
+
+
