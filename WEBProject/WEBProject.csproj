@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20190114213949_LanguageFixUpdateNavigation.Designer.cs" />
     <Compile Remove="Migrations\20190115092713_LanguageFixConnections.cs" />
     <Compile Remove="Migrations\20190115092713_LanguageFixConnections.Designer.cs" />
+    <Compile Remove="Migrations\20190117224028_Add_Text_Website_Page_ID.cs" />
+    <Compile Remove="Migrations\20190117224028_Add_Text_Website_Page_ID.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

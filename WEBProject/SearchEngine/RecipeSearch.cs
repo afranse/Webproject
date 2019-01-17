@@ -62,11 +62,15 @@ namespace WEBProject.SearchEngine
         {
             WebsiteContext DB = base.GetDB();
             IQueryable<int> B = DB.TypeCategory_Recipes.Where(x => x.RecipeID == R.RecipeID).Select(q => q.TypeID);
-            IQueryable<Type_Category> TC = DB.Type_Categories.Where(y => B.Contains(y.TypeID));
+            List<Type_Category> TC = DB.Type_Categories.Where(y => B.Contains(y.TypeID)).ToList();
             string Content = null;
             for (int i = 0; i < TC.Count(); i++)
             {
-                Content = Content + " " + TC.ElementAt(i).Name;
+                if (Content != null)
+                {
+                    Content += " ";
+                }
+                Content += TC.ElementAt(i).Name;
             }
             return Content;
         }

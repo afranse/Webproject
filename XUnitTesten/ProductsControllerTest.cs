@@ -11,15 +11,15 @@ namespace XUnitTesten
 {
     public class ProductsControllerTest
     {
-        [Fact]
-        public void IndexInProductsController()
-        {
-            ProductsController c = new ProductsController();
-            var result = c.Index();
+        //[Fact]
+        //public void IndexInProductsController()
+        //{
+        //    ProductsController c = new ProductsController();
+        //    var result = c.Index();
 
-            //result moet een view zijn
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Null(viewResult.ViewName);
-        }
+        //    //result moet een view zijn
+        //    var viewResult = Assert.IsType<ViewResult>(result);
+        //    Assert.Null(viewResult.ViewName);
+        //}
     }
 }

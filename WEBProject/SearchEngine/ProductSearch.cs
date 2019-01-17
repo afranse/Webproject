@@ -72,11 +72,15 @@ namespace WEBProject.SearchEngine
         {
             WebsiteContext DB = base.GetDB();
             IQueryable<int> B = DB.NormalCategory_Products.Where(x => x.ArticleNumber == P.ArticleNumber).Select(q => q.ArticleNumber);
-            IQueryable<Normal_Category> TC = DB.Normal_Categories.Where(y => B.Contains(y.CategoryID));
+            List<Normal_Category> NC = DB.Normal_Categories.Where(y => B.Contains(y.CategoryID)).ToList();
             string Content = null;
-            for (int i = 0; i < TC.Count(); i++)
+            for (int i = 0; i < NC.Count(); i++)
             {
-                Content = Content + " " + TC.ElementAt(i).Name;
+                if (Content != null)
+                {
+                    Content += " ";
+                }
+                Content += NC.ElementAt(i).Name;
             }
             return Content + " " + P.Contents;
         }
