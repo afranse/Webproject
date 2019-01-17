@@ -12,7 +12,7 @@ namespace XUnitTesten
 {
     class SeederInMemoryDB
     {
-        public static void Seeder_Chicken(WebsiteContext C)
+        public static void Seed(WebsiteContext C)
         {
             Branch_Category Chicken = new Branch_Category
             {

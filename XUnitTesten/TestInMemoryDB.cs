@@ -16,7 +16,7 @@ namespace XUnitTesten
         {
             InMemoryDB DB = new InMemoryDB();
             WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seeder_Chicken(C);
+            SeederInMemoryDB.Seed(C);
             Assert.Equal("Chicken", C.Branch_Categories.ToList().ElementAt(0).Name);
             Assert.Equal("ChickenSoup", C.Type_Categories.ToList().ElementAt(0).Name);
             Assert.Equal("SaltChicken", C.Normal_Categories.ToList().ElementAt(0).Name);

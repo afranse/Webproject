@@ -67,6 +67,10 @@ namespace WEBProject.Controllers
             return selectedTypes;
         }
 
+
+
+
+
         //convert the string array to Normal_Category List
         public List<Models.Normal_Category> GetCategories(string[] catstring)
         {
@@ -79,6 +83,13 @@ namespace WEBProject.Controllers
             }
             return selectedCategories;
         }
+
+
+
+
+
+
+
         
         //fill the needed ViewBags 
         private void fillBags(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
