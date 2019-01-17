@@ -1,0 +1,36 @@
+﻿@model Product
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/images/verstegenLogo.png" alt="image" id="inspectimage">
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            @if (Model.ProductPhoto.Count != 0)
+            {
+                <img src='@Model.ProductPhoto[0].Photo.PhotoPath' alt="image" class="inspectimg" id="imageReplace">
+            }
+            else
+            {
+                <img src='' alt="image" class="inspectimg" id="imageReplace">
+
+            }
+        </div>
+    </div>
+    <div class="row grayrow align-items-center justify-content-space-between">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @for (int i = 0; i < Model.ProductPhoto.Count(); i++)
+            {
+                <a href="#imageReplace" onclick="changeImage('@Model.ProductPhoto[i].Photo.PhotoPath');"><img src='@Model.ProductPhoto[i].Photo.PhotoPath' id="inspectimage" /></a>
+            }
+
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿<div class="container-fluid greenBackground">
+﻿@model Product
+<div class="container-fluid greenBackground">
     <div class="row justify-content-flex-end align-items-center">
         <p> menu bar </p>
     </div>
@@ -9,8 +10,8 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <h1> Spicy Churasco </h1>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a risus facilisis, ultrices felis id, ultricies risus. Nulla facilisi. Nulla vehicula, dolor eget finibus placerat, dolor diam commodo lorem, non commodo nunc nisl et est. </p>
+            <h1> @Model.Name</h1>
+            <p>  @Model.Description</p>
         </div>
         <div class="col-md-2">
         </div>
@@ -19,7 +20,7 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <p><b>Category </b> marinades &nbsp; <b> Contents </b> Drum 11 liter </p>
+            <p><b>Category </b>  @Model.NormalCategory.ElementAt(0).Normal_Category.Name &nbsp; <b> Contents </b>  @Model.Contents </p>
         </div>
     </div>
     <div class="col-md-2">
@@ -33,19 +34,19 @@
                     <h2> Product Details </h2>
                 </div>
                 <div class="row" id="productRow">
-                    <p> buiten koeling houdbaar </p>
+                    <p> @Model.Details.ElementAt(0).ProductDetails </p>
                 </div>
                 <div class="row">
-                    <p> dievries besteedbaar </p>
+                    <p> @Model.Details.ElementAt(1).ProductDetails </p>
                 </div>
                 <div class="row" id="productRow">
-                    <p> droog bewaren </p>
+                    <p> @Model.Details.ElementAt(2).ProductDetails </p>
                 </div>
                 <div class="row">
-                    <p> rood / bruine kleur </p>
+                    <p> @Model.Details.ElementAt(3).ProductDetails </p>
                 </div>
                 <div class="row" id="productRow">
-                    <p> geen tekening (glad) </p>
+                    <p>@Model.Details.ElementAt(4).ProductDetails </p>
                 </div>
             </div>
         </div>
@@ -60,7 +61,7 @@
             <a href="~/pdf/Certificate.pdf" target="_blank" download>
                 <div class="button"> Download specsheet </div>
             </a>
-            
+
         </div>
     </div>
 </div>

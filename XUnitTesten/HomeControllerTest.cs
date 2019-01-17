@@ -37,15 +37,15 @@ namespace XUnitTesten
 
         //..........................................
 
-        [Fact]
-        public void IndexInHomeController()
-        {
-            HomeController c = new HomeController();
-            var result = c.Index();
+        //[Fact]
+        //public void IndexInHomeController()
+        //{
+        //    HomeController c = new HomeController();
+        //    var result = c.Index();
 
-            //result moet een view zijn
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Null(viewResult.ViewName);
-        }
+        //    //result moet een view zijn
+        //    var viewResult = Assert.IsType<ViewResult>(result);
+        //    Assert.Null(viewResult.ViewName);
+        //}
     }
 }

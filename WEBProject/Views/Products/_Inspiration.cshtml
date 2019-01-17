@@ -1,4 +1,5 @@
-﻿<div class="container-fluid justify-content-center align-items-center inspiration-background">
+﻿@model List<Recipe>
+<div class="container-fluid justify-content-center align-items-center inspiration-background">
     <div class="row justify-content-center align-items-center">
         <p> Recipes</p>
     </div>
@@ -6,31 +7,21 @@
         <h1> Some inspiration for you </h1>
     </div>
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-6">
-            <div class="thumbnail">
-                <a href="../Recipes/Index">
-                    <img src="~/images/Meat.png" alt="Recipe_image" id="responsive">
-                    <div class="inspiration_caption">
-                        <p id="inspiration_title"> Meat</p>
-                        <p><b> Coq au vin <b id="arrow">&#10132 </b></b> </p>
-                        <p><small> With chicken and Grand verneursauce </small></p>
-                    </div>
-                </a>
+        @foreach (Recipe element in Model)
+        {
+            <div class="col-md-6">
+                <div class="thumbnail">
+                    <a href="./Recipes/Index">
+                        <img src='@element.RecipePhotos.ElementAt(0).Photo.PhotoPath' alt="Recipe_image" id="responsive">
+                        <div class="inspiration_caption">
+                            <p id="inspiration_title"> @element.TypeCategories.ElementAt(0).Type_Category.Name</p>
+                            <p><b> @element.Name <b id="arrow">&#10132 </b></b> </p>
+                            <p><small> @element.RecipeTexts.ElementAt(0).Text.Content</small></p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="thumbnail">
-                <a href="../Recipes/Index">
-                    <img src="~/images/Meat.png" alt="Recipe_image" id="responsive">
-                    <div class="inspiration_caption">
-                        <p id="inspiration_title"> Meat</p>
-                        <p><b> Potatoe dish <b id="arrow">&#10132 </b> </b></p>
-                        <p><small> With chicken and Grand verneursauce </small></p>
-                    </div>
-                </a>
-            </div>
-        </div>
+        }
 
     </div>
     <div class="row justify-content-center align-items-center">
