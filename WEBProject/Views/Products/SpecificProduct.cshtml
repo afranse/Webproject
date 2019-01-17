@@ -1,25 +1,27 @@
-﻿<div class="container-fluid">
+﻿@model PageContent
+
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <partial name="_inspect" />
+            <partial name="_inspectProduct" model="@ViewBag.Product" />
         </div>
         <div class="col-md-6">
-            <partial name="_ProductDetails"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <partial name="_WideContact" />
-        </div>
-        <div class="col-md-6">
-            <partial name="_Learnmore" />
+            <partial name="_ProductDetails" model="@ViewBag.Product" />
         </div>
     </div>
     <div class="row">
-        <partial name="_Inspiration" />
+        <div class="col-md-6">
+            <partial name="_WideContact" model="@ViewBag.contact" />
+        </div>
+        <div class="col-md-6">
+            <partial name="_Learnmore" model="@Model.Pages[0]" />
+        </div>
     </div>
     <div class="row">
-        <partial name="_RelatedProducts"/>
+        <partial name="_Inspiration" model="@ViewBag.inspiratie" />
+    </div>
+    <div class="row">
+        <partial name="_RelatedProducts" />
     </div>
 </div>
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WEBProject.Data;
+using WEBProject.Models;
 
 namespace WEBProject.Controllers
 {
@@ -118,11 +119,78 @@ namespace WEBProject.Controllers
             return RedirectToAction("Index", new {typestring = types, catstring = Categories, BranchID = Branch-1});
         }
 
-        public IActionResult SpecificProduct (int ID)
-        {
-            Models.Product P = _context.Products.Where(p => p.ArticleNumber == ID).FirstOrDefault();
-            return View(P);
-        }
+        
+            public IActionResult SpecificProduct(int ID)
+            {
+                PageContent SpecificProductView = new PageContent(_context);
+
+                Product Product = _context.Products.Where(k => k.ArticleNumber == ID).FirstOrDefault();
+                if (Product == null)
+                {
+                    return RedirectToAction("Foutmelding", new { message = "Product is not found" });
+                }
+
+                //     int ArtID = Product.ArticleNumber;
+                //   int CatID = Product.NormalCategory[0].CategoryID;
+                // var test = _context.NormalCategory_Products.Where(xx => xx.ArticleNumber == ArtID).Where(yy => yy.CategoryID == CatID).ToList();
+
+
+                var result = _context.Products.Where(p => p.NormalCategory[0].CategoryID == Product.NormalCategory[0].CategoryID);
+                List<Models.Product> relatedProducts = new List<Product>();
+
+                if (result != null)
+                {
+                    relatedProducts = result.ToList();
+                }
+
+                Employee_Profile contact = _context.Employee_Profiles.FirstOrDefault();
+
+                PageContent LearnMore = new PageContent(
+                new int[0], //photo
+
+                new int[] //text
+                 {
+                10,11,12,13,14
+                 },
+                _context);
+                SpecificProductView.addPage(LearnMore);
+
+                List<Recipe> recipes = new List<Recipe>();
+                List<Recipe> inspiratie = new List<Recipe>();
+
+                if (_context.Recipes != null)
+                {
+                    recipes = _context.Recipes.ToList();
+                    Random rnd = new Random();
+                    if (recipes.Count() > 1)
+                    {
+                        int r1 = rnd.Next(recipes.Count());
+                        int r2 = rnd.Next(recipes.Count());
+                        while (r2 == r1)
+                        {
+                            r2 = rnd.Next(recipes.Count());
+                        }
+                        inspiratie.Add(recipes[r1]);
+                        inspiratie.Add(recipes[r2]);
+                    }
+                    else
+                    {
+                        inspiratie.Add(recipes[0]);
+                    }
+                }
+
+
+                //  int CID = _context.NormalCategory_Products.Where(p => p.ArticleNumber == Product.ArticleNumber).Select(s => s.CategoryID).FirstOrDefault();
+                //  int[] PID = _context.NormalCategory_Products.Where(x => x.CategoryID == CID).Select(y => y.ArticleNumber).ToArray();
+                //  List<Models.Product> relatedProducts = _context.Products.Where(p => PID.Contains(p.ArticleNumber)).ToList();
+                ViewBag.relatedProducts = relatedProducts;
+                ViewBag.Product = Product;
+                ViewBag.contact = contact;
+                ViewBag.inspiratie = inspiratie;
+                return View(SpecificProductView);
+
+            }
+        
 
 
 
