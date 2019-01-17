@@ -2,7 +2,7 @@
 @{List<Branch_Category> Branches = ViewBag.AllBranches as List<Branch_Category>; }
 @{
 
-    <div class="container">
+    <div class="container filter">
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">
                 @Branches[(int)ViewBag.Branch - 1].Name
