@@ -13,23 +13,62 @@ namespace XUnitTesten
 {
     public class SearchControllerTest
     {
-        [Fact]
-        public void IndexSearchController()
-        {
-            //HomeController c = new HomeController();
-            //var result = c.Index();
+        private DatabaseObject EmployeeTest { get; set; }
+        private DatabaseObject ProductTest { get; set; }
+        private DatabaseObject RecipeTest { get; set; }
+        private DatabaseObject NewsTest { get; set; }
 
-            ////result moet een view zijn
-            //var viewResult = Assert.IsType<ViewResult>(result);
-            //Assert.Null(viewResult.ViewName);
+        private WebsiteContext GetInMemoryDBWithSeeder()
+        {
+            WebsiteContext C = GetInMemoryDB();
+            SeederInMemoryDB.Seed(C);
+            return C;
         }
+
+        private WebsiteContext GetInMemoryDB()
+        {
+            InMemoryDB DB = new InMemoryDB();
+            WebsiteContext C = DB.GetInMemoryDB(true);
+            return C;
+        }
+
+        private void FillDatabaseObjects()
+        {
+            WebsiteContext C = GetInMemoryDBWithSeeder();
+            SearchController SC = new SearchController(C);
+
+            DatabaseObject Employee = new EmployeeSearch(C);
+            DatabaseObject Product = new ProductSearch(C);
+            DatabaseObject Recipe = new RecipeSearch(C);
+            DatabaseObject News = new NewsSearch(C);
+
+            Employee.SetObject(C.Employee_Profiles.ToList().ElementAt(0));
+            Product.SetObject(C.Products.ToList().ElementAt(0));
+            Recipe.SetObject(C.Recipes.ToList().ElementAt(0));
+            News.SetObject(C.News_Items.ToList().ElementAt(0));
+
+            EmployeeTest = Employee;
+            ProductTest = Product;
+            RecipeTest = Recipe;
+            NewsTest = News;
+        }
+
+        //[Fact]
+        //public void IndexSearchController()
+        //{
+        //    WebsiteContext C = GetInMemoryDBWithSeeder();
+        //    SearchController c = new SearchController(C);
+        //    var result = c.Index("",null);
+
+        //    //result moet een view zijn
+        //    var viewResult = Assert.IsType<ViewResult>(result);
+        //    Assert.Null(viewResult.ViewName);
+        //}
 
         [Fact]
         public async void SingleProductName()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Ketchup");
             string q = x.ElementAt(0).GetSearchAbleString();
@@ -39,9 +78,7 @@ namespace XUnitTesten
         [Fact]
         public async void SingleRecipeName()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("ChickenWings");
             string q = x.ElementAt(0).GetSearchAbleString();
@@ -51,9 +88,7 @@ namespace XUnitTesten
         [Fact]
         public async void SingleNewsItemTitle()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("HappyPizza");
             string q = x.ElementAt(0).GetSearchAbleString();
@@ -63,9 +98,7 @@ namespace XUnitTesten
         [Fact]
         public async void SingleEmployeeName()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Marit");
             string q = x.ElementAt(0).GetSearchAbleString();
@@ -75,9 +108,7 @@ namespace XUnitTesten
         [Fact]
         public async void DoubleSearchSingleAwnserTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Marit Marit");
             Assert.Equal("Marit", x.ElementAt(0).GetSearchAbleString());
@@ -92,9 +123,7 @@ namespace XUnitTesten
         [Fact]
         public async void TotalSearchTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Marit Marit Ketchup ChickenWings HappyPizza");
             Assert.Equal("Marit", x.ElementAt(0).GetSearchAbleString());
@@ -108,9 +137,7 @@ namespace XUnitTesten
         [Fact]
         public async void EmployeePartTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("han");
             Assert.Equal("Johan", x.ElementAt(0).GetSearchAbleString());
@@ -119,9 +146,7 @@ namespace XUnitTesten
         [Fact]
         public async void EmployeeNoCapitalsTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("JOHAN");
             Assert.Equal("Johan", x.ElementAt(0).GetSearchAbleString());
@@ -130,9 +155,7 @@ namespace XUnitTesten
         [Fact]
         public async void RecipePartTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Nood");
             Assert.Equal("ChickenNoodles", x.ElementAt(0).GetSearchAbleString());
@@ -141,9 +164,7 @@ namespace XUnitTesten
         [Fact]
         public async void RecipeNoCapitalsTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("CHICKENNOODLES");
             Assert.Equal("ChickenNoodles", x.ElementAt(0).GetSearchAbleString());
@@ -152,9 +173,7 @@ namespace XUnitTesten
         [Fact]
         public async void ProductPartTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("Stick");
             Assert.Equal("ChickenSticks", x.ElementAt(0).GetSearchAbleString());
@@ -163,9 +182,7 @@ namespace XUnitTesten
         [Fact]
         public async void ProductNoCapitalsTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("CHICKENSTICKS");
             Assert.Equal("ChickenSticks", x.ElementAt(0).GetSearchAbleString());
@@ -174,9 +191,7 @@ namespace XUnitTesten
         [Fact]
         public async void NewsItemPartTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("appyP");
             Assert.Equal("HappyPizza", x.ElementAt(0).GetSearchAbleString());
@@ -185,9 +200,7 @@ namespace XUnitTesten
         [Fact]
         public async void NewsItemNoCapitalsTest()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
-            SeederInMemoryDB.Seed(C);
+            WebsiteContext C = GetInMemoryDBWithSeeder();
             SearchController SC = new SearchController(C);
             var x = await SC.SearchEngine("HAPPYPIZZA");
             Assert.Equal("HappyPizza", x.ElementAt(0).GetSearchAbleString());
@@ -196,8 +209,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestProduct()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Product P = new Product();
             P.Name = "Cheese";
@@ -208,8 +220,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestRecipe()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Recipe P = new Recipe();
             P.Name = "Cheese";
@@ -220,8 +231,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestNewsItem()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             News_Item P = new News_Item
             {
@@ -234,8 +244,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestEmployee()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Employee_Profile P = new Employee_Profile
             {
@@ -248,8 +257,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestProductWithCounter()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Product P0 = new Product
             {
@@ -273,8 +281,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestRecipeWithCounter()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Recipe P0 = new Recipe
             {
@@ -298,8 +305,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestNewsItemWithCounter()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             News_Item P0 = new News_Item
             {
@@ -323,8 +329,7 @@ namespace XUnitTesten
         [Fact]
         public void AddDBOTestEmployeeWithCounter()
         {
-            InMemoryDB DB = new InMemoryDB();
-            WebsiteContext C = DB.GetInMemoryDB(true);
+            WebsiteContext C = GetInMemoryDB();
             SearchController SC = new SearchController(C);
             Employee_Profile P0 = new Employee_Profile
             {
@@ -343,6 +348,26 @@ namespace XUnitTesten
             SC.AddDBO(P2, new EmployeeSearch(C));
             Assert.Equal("Cheese", SC.DBO.ElementAt(0).GetSearchAbleString());
             Assert.Equal(3, SC.DBO.ElementAt(0).GetCounter());
+        }
+
+        [Fact]
+        public void GetPhotoURLTest()
+        {
+            FillDatabaseObjects();
+            Assert.Equal("/images/Henk.png", EmployeeTest.GetPhotoURL());
+            Assert.Equal("/Img/uknownC.png", ProductTest.GetPhotoURL());
+            Assert.Equal("/Img/uknownA.img", RecipeTest.GetPhotoURL());
+            Assert.Equal("/Img/uknownA.img", NewsTest.GetPhotoURL());
+        }
+
+        [Fact]
+        public void GetContentTest()
+        {
+            FillDatabaseObjects();
+            Assert.Equal("Sleeping", EmployeeTest.GetContent());
+            Assert.Equal("SaltChicken very small", ProductTest.GetContent());
+            Assert.Equal("ChickenEgg", RecipeTest.GetContent());
+            Assert.Equal("Mad", NewsTest.GetContent());
         }
     }
 }

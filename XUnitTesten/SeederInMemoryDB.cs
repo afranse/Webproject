@@ -185,22 +185,26 @@ namespace XUnitTesten
 
             Text CurryText = new Text
             {
-                Content = "Bla Bla Pizza"
+                Content = "Bla Bla Pizza",
+                WebsitePageID = 1
             };
 
             Text KetchupText = new Text
             {
-                Content = "Hi Hi Hi"
+                Content = "Hi Hi Hi",
+                WebsitePageID = 1
             };
 
             Text Important = new Text
             {
-                Content = "No Live"
+                Content = "No Live",
+                WebsitePageID = null
             };
 
             Text Important2 = new Text
             {
-                Content = "Oh No"
+                Content = "Oh No",
+                WebsitePageID = 2
             };
 
             Product_Text PT0 = new Product_Text
@@ -389,18 +393,25 @@ namespace XUnitTesten
             {
                 Name = "Henk",
                 Job = "Sleeping",
+                Profile_PhotoPath = "/images/Henk.png",
+                CountryOrProvince = "Zuid-Holland",
+                Region = "Netherlands"
             };
 
             Employee_Profile Johan = new Employee_Profile
             {
                 Name = "Johan",
                 Job = "Sales",
+                Profile_PhotoPath = "/images/Johan.png",
+                CountryOrProvince = "South-Africa",
+                Region = "Africa"
             };
 
             Employee_Profile Marit = new Employee_Profile
             {
                 Name = "Marit",
                 Job = "ICT",
+                Profile_PhotoPath = "/images/Marit.png"
             };
 
             Employee_Profile_Email EHenk = new Employee_Profile_Email
