@@ -19,7 +19,6 @@ namespace WEBProject.Controllers
             _context = context;
             // new Seeder(_context);
         }
-
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
         {
             BranchID++;
@@ -46,27 +45,47 @@ namespace WEBProject.Controllers
         }
 
         //convert the string array to Type_Category List
-        private List<Models.Type_Category> getTypes(string[] typestring)
+        public List<Models.Type_Category> getTypes(string[] typestring)
         {
             List<Models.Type_Category> selectedTypes = new List<Models.Type_Category>();
             foreach (string s in typestring)
             {
-                int i = 0;
-                int.TryParse(s.Substring(2), out i);
-                selectedTypes.Add(_context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault());
+                int i = -1;
+                if (s.Count() > 2)
+                {
+                    int.TryParse(s.Substring(2), out i);
+                    if (i != -1)
+                    {
+                        var result = _context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault();
+                        if (result != null)
+                        {
+                            selectedTypes.Add(result);
+                        }
+                    }
+                }
             }
             return selectedTypes;
         }
 
         //convert the string array to Normal_Category List
-        private List<Models.Normal_Category> GetCategories(string[] catstring)
+        public List<Models.Normal_Category> GetCategories(string[] catstring)
         {
             List<Models.Normal_Category> selectedCategories = new List<Models.Normal_Category>();
             foreach (string s in catstring)
             {
-                int i = 0;
-                int.TryParse(s.Substring(2), out i);
-                selectedCategories.Add(_context.Normal_Categories.Where(x => x.CategoryID.Equals(i)).FirstOrDefault());
+                int i = -1;
+                if (s.Count() > 2)
+                {
+                    int.TryParse(s.Substring(2), out i);
+                    if (i != -1)
+                    {
+                        var result = _context.Normal_Categories.Where(x => x.CategoryID.Equals(i)).FirstOrDefault();
+                        if (result != null)
+                        {
+                            selectedCategories.Add(result);
+                        }
+                    }
+                }
             }
             return selectedCategories;
         }
@@ -79,39 +98,56 @@ namespace WEBProject.Controllers
             //The query to search products
             ViewBag.Products = GetProducts(BranchID, selectedTypes, selectedCategories);
             //all Branches
-            ViewBag.AllBranches = _context.Branch_Categories.ToList();
+            ViewBag.AllBranches = getBranches();
             //all Types from certain Branch
-            ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
+            ViewBag.AllTypes = getAllTypes(BranchID);
             //all Categories from certain Types
-            ViewBag.AllCat = (from C in _context.Normal_Categories
-                              join TC in selectedTypes on C.TypeID equals TC.TypeID
-                              select C).ToList(); ;
+            ViewBag.AllCat = getAllCategorie(selectedTypes);
         }
 
-
-        public IActionResult Filter(int id)
+        public List<Models.Branch_Category> getBranches()
         {
-            return RedirectToAction("Index", new { BranchID = id - 1 });
-        }
-
-        public IActionResult Migrate()
-        {
-            try
+            if (_context.Branch_Categories != null)
             {
-                _context.Database.Migrate();
-                return RedirectToAction("Index");
+                return _context.Branch_Categories.ToList();
             }
-            catch (Exception e)
+            else
             {
-                return RedirectToAction("Foutmelding", new { message = e.Message });
+                return new List<Models.Branch_Category>();
             }
         }
 
-        public IActionResult Foutmelding(string message)
+        public List<Models.Normal_Category> getAllCategorie(List<Models.Type_Category> selectedTypes)
         {
-            ViewData["message"] = message;
-            return View();
+            var AllCats = (from C in _context.Normal_Categories
+                           join TC in selectedTypes on C.TypeID equals TC.TypeID
+                           select C);
+            if (AllCats != null)
+            {
+                return AllCats.ToList();
+            }
+            else
+            {
+                return new List<Models.Normal_Category>();
+            }
         }
+
+        public List<Models.Type_Category> getAllTypes(int BranchID)
+        {
+            var AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID));
+            if (AllTypes != null)
+            {
+                return AllTypes.ToList();
+            }
+            else
+            {
+                return new List<Models.Type_Category>();
+            }
+        }
+
+
+
+        
 
         public IActionResult Category(string[] types, string[] Categories, int Branch)
         {
@@ -194,6 +230,7 @@ namespace WEBProject.Controllers
             ViewBag.inspiratie = inspiratie;
         }
 
+    
         public List<Models.Product> GetProducts(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
         {
             var producten = (from p in _context.Products
@@ -217,6 +254,31 @@ namespace WEBProject.Controllers
             }
         }
 
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------
+        public IActionResult Filter(int id)
+        {
+            return RedirectToAction("Index", new { BranchID = id - 1 });
+        }
+
+        public IActionResult Migrate()
+        {
+            try
+            {
+                _context.Database.Migrate();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Foutmelding", new { message = e.Message });
+            }
+        }
+
+        public IActionResult Foutmelding(string message)
+        {
+            ViewData["message"] = message;
+            return View();
+        }
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
