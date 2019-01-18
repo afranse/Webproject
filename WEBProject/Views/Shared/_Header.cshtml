@@ -14,7 +14,7 @@
                     <div class="menu_layout container">
                         <div class="row FI_CloseButton">
                             <div id="foodIndustry" class="col-md-6 col-sm-6 col-6">
-                                Food industry
+                                <div class=" d-block d-sm-none"><a href='/Products'> Products </a></div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-6">
                                 <img id="menu_exitMobile_js" class="d-block d-sm-none" src="~/images/CloseMenu.png" alt="Close menu" />
@@ -25,21 +25,21 @@
                         </div>
                         <br />
                         <div class="menuLinks container">
-                            <div class="row"><button class="btn linkButton">Home</button></div>
+                            <div class="row"><button class="btn linkButton" onclick="window.location.href='/Home'">Home</button></div>
                             <div class="row"><button class="btn linkButton">How we work</button></div>
                             <div class="row"><button class="btn linkButton">Inspiration</button></div>
-                            <div class="row"><button class="btn linkButton">News &amp; Events</button></div>
-                            <div class="row"><button class="btn linkButton">Products</button></div>
+                            <div class="row"><button class="btn linkButton"onclick="window.location.href='/News'">News &amp; Events</button></div>
+                            <div class="row"><button class="btn linkButton"onclick="window.location.href='/Products'">Products</button></div>
                             <div class="row"><button class="btn linkButton">Packaging</button></div>
-                            <div class="row"><button class="btn linkButton">Recipes</button></div>
-                            <div class="row"><button class="btn linkButton">Contact</button></div>
+                            <div class="row"><button class="btn linkButton"onclick="window.location.href='/Recipes'">Recipes</button></div>
+                            <div class="row"><button class="btn linkButton"onclick="window.location.href='/Contact'">Contact</button></div>
                             <br />
 
                             <div class="infoVerstegen container">
                                 <div class="row"><button class="btn linkButton">Verstegen &#8594;</button></div>
                                 <div class="row"><button class="btn linkButton">About Verstegen &#8594;</button></div>
                                 <div class="row"><button class="btn linkButton">Career &#8594;</button></div>
-                                <div class="row"><button class="btn linkButton">News &#8594;</button></div>
+                                <div class="row"><button class="btn linkButton"onclick="window.location.href='/News'">News &#8594;</button></div>
                             </div>
                         </div>
                     </div>
@@ -54,8 +54,8 @@
             <div class="container">
                 <div class="row header_menu_background">
                     <div class="col-sm-8 col-md-8 d-none d-sm-block header_button">
-                        <button type="button" class="btn" id="header_industry_btn">
-                            Food industry
+                        <button type="button" class="btn" id="header_industry_btn"onclick="window.location.href='/Products'">
+                            Products
                         </button>
                     </div>
                     <div class="col-sm-4 col-md-4 header_button">
