@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WEBProject.Data;
-using WEBProject.Models;
 
 namespace WEBProject.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly WebsiteContext _context;
-
-        public AdminController(WebsiteContext context)
+        public IActionResult Index()
         {
-            _context = context;
+            return View();
         }
-        
-
     }
 }

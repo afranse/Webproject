@@ -1,47 +1,29 @@
-﻿@model IEnumerable<WEBProject.Models.Product>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contents)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contents)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArticleNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArticleNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArticleNumber">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h1>Choose a table:</h1>
+<div class="container Admin_Container">
+    <div class="row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminBranch_Category" asp-action="Index">Branch_Category</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminEmployee_Profile" asp-action="Index">Employee_Profile</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminEmployee_Profile_Email" asp-action="Index">Employee_Profile_Email</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminEmployee_Profile_Phone_Number" asp-action="Index">Employee_Profile_Phone_Number</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminLanguages" asp-action="Index">Languages</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminNews_Category" asp-action="Index">News_Category</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminNews_Item" asp-action="Index">News_Item</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminNormal_Category" asp-action="Index">Normal_Category</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminNormalCategory_Product" asp-action="Index">NormalCategory_Product</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminPhoto" asp-action="Index">Photo</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminPhoto_News" asp-action="Index">Photo_News</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminProduct" asp-action="Index">Product</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminProduct_Details" asp-action="Index">Product_Details</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminProduct_Photo" asp-action="Index">Product_Photo</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminProduct_Text" asp-action="Index">Product_Text</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminRecipe" asp-action="Index">Recipe</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminRecipe_Photo" asp-action="Index">Recipe_Photo</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminRecipe_Text" asp-action="Index">Recipe_Text</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminSubscriber" asp-action="Index">Subscriber</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminText" asp-action="Index">Text</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminText_News" asp-action="Index">Text_News</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminType_Category" asp-action="Index">Type_Category</a></div>
+    <div class="row Admin_Row"><a class="btn btn-primary Admin_Btn" asp-area="" asp-controller="AdminTypeCategory_Recipe" asp-action="Index">TypeCategory_Recipe</a></div>
+</div>
