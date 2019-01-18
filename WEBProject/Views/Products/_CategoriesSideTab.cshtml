@@ -33,7 +33,7 @@
         @{List<Type_Category> list = ViewBag.AllTypes as List<Type_Category>;
             List<Type_Category> selectedlist = ViewBag.SelectedTypes as List<Type_Category>;
 
-        <form action="Products/Category" method="get">
+        <form action="Products/Category/#CatogoryContainer" method="get">
             @for (int i = 0; i < 6 && i < list.Count(); i++)
             {
                 var type = list[i];

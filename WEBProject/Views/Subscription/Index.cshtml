@@ -1,13 +1,16 @@
-﻿<div class="container">
+﻿<div class="container" id="subscribeJump">
     <div class="row">
+        <h2>Subscription</h2>
+    </div>
+    <div class="row" style="margin-top: 50px;margin-bottom: 50px;}">
         <div class="col-md-6">
-            <form action="/Subscription/subscribe" method="get" id="mailform">
+            <form action="/Subscription/subscribe#subscribeJump" method="get" id="mailform">
                 <input type="text" name="adress" id="email_input" placeholder="E-mail address">
                 <button type="submit" form="mailform" value="Submit" id="submit-button">Subscribe</button>
             </form>
         </div>
         <div class="col-md-6">
-            <form action="/Subscription/Unsubscribe" method="get" id="mailform2">
+            <form action="/Subscription/Unsubscribe#subscribeJump" method="get" id="mailform2">
                 <input type="text" name="adress" id="email_input" placeholder="E-mail address">
                 <button type="submit" form="mailform2" value="Submit" id="submit-button">Unsubscribe</button>
             </form>
