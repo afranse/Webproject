@@ -17,8 +17,23 @@ namespace WEBProject.Controllers
         public AdminController(WebsiteContext context)
         {
             _context = context;
+        } 
+
+        public IActionResult Create()
+        {
+            return View();
         }
-        
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
 
     }
 }
