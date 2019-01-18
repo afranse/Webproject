@@ -9,9 +9,13 @@ margin:5%;
     background-color: #ECECE6;
     color: black;
 }
+.LearnMoreRow{
+    cursor:pointer;
+}
 .LearnMoreRow:visited {
     background-color: red;
     color: white;
+   
 }
 
 .LearnMoreRow:focus {

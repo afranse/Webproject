@@ -1,10 +1,10 @@
 ﻿@model Product
 <div class="container-fluid greenBackground">
-    <div class="row justify-content-flex-end align-items-center">
-        <p> menu bar </p>
+    <div class="row" id="HeaderRow">
+      <!--Header-->
     </div>
     <div class="row justify-content-flex-start align-items-center">
-        <p> Home &#62; Products &#62; </p>
+        <p> Home &#62; Products &#62; @Model.NormalCategory.ElementAt(0).Normal_Category.Name &#62; <content id= "footer_title"> @Model.Name </content> </p>
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -53,7 +53,7 @@
         <div class="col-md-2">
         </div>
     </div>
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" id="space_between">
         <div class="col-md-6">
             <i> looking for more specifications? </i>
         </div>
