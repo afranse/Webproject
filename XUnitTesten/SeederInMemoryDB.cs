@@ -393,14 +393,18 @@ namespace XUnitTesten
             {
                 Name = "Henk",
                 Job = "Sleeping",
-                Profile_PhotoPath = "/images/Henk.png"
+                Profile_PhotoPath = "/images/Henk.png",
+                CountryOrProvince = "Zuid-Holland",
+                Region = "Netherlands"
             };
 
             Employee_Profile Johan = new Employee_Profile
             {
                 Name = "Johan",
                 Job = "Sales",
-                Profile_PhotoPath = "/images/Johan.png"
+                Profile_PhotoPath = "/images/Johan.png",
+                CountryOrProvince = "South-Africa",
+                Region = "Africa"
             };
 
             Employee_Profile Marit = new Employee_Profile
