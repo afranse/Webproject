@@ -28,6 +28,14 @@ namespace WEBProject.Controllers
                 selectedType = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
             }
             ViewBag.Branch = BranchID;
+            ViewBag.recipes = GetRecipes(BranchID);
+            ViewBag.AllBranches = _context.Branch_Categories.ToList();
+            ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
+            return View();
+        }
+
+        public List<Models.Recipe> GetRecipes(int BranchID)
+        {
             var recipes = (from r in _context.Recipes
                            join tcr in _context.TypeCategory_Recipes on r.RecipeID equals tcr.RecipeID
                            join tc in _context.Type_Categories on tcr.TypeID equals tc.TypeID
@@ -36,15 +44,12 @@ namespace WEBProject.Controllers
                            select r);
             if (recipes != null)
             {
-                ViewBag.recipes = recipes.ToList();
+                return recipes.ToList();
             }
             else
             {
-                ViewBag.recipes = new List<Models.Recipe>();
+                return new List<Models.Recipe>();
             }
-            ViewBag.AllBranches = _context.Branch_Categories.ToList();
-            ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
-            return View();
         }
 
         public IActionResult Products()
