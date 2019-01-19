@@ -158,14 +158,18 @@ namespace WEBProject.Controllers
 
         public IActionResult SpecificProduct(int ID)
         {
-            //specific product
+            //get a specific product
             Product Product = _context.Products.Where(k => k.ArticleNumber == ID).FirstOrDefault();
             if (Product == null)
             {
                 return RedirectToAction("Foutmelding", new { message = "Product is not found" });
             }
-            
+            //get a specific contact
             Employee_Profile contact = _context.Employee_Profiles.FirstOrDefault();
+            if (contact == null)
+            {
+                return RedirectToAction("Foutmelding", new { message = "Contact not found" });
+            }
 
             PageContent SpecificProductView = new PageContent(_context);
             PageContent LearnMore = new PageContent(
@@ -178,8 +182,8 @@ namespace WEBProject.Controllers
             _context);
             SpecificProductView.addPage(LearnMore);
 
-            RelatedProduct(Product);
-            InspirationRecipe();
+            ViewBag.relatedProducts = RelatedProduct(Product);
+            ViewBag.inspiratie = InspirationRecipe();
 
             ViewBag.ShowHeaderImg = false;
             ViewBag.Product = Product;
@@ -187,7 +191,7 @@ namespace WEBProject.Controllers
             return View(SpecificProductView);
         }
 
-        private void RelatedProduct(Product product)
+        public List<Models.Product> RelatedProduct(Product product)
         {
             //all products with the same CategoryID
             var result = _context.Products.Where(p => p.NormalCategory[0].CategoryID == product.NormalCategory[0].CategoryID);
@@ -198,11 +202,11 @@ namespace WEBProject.Controllers
                 relatedProducts = result.ToList();
             }
 
-            ViewBag.relatedProducts = relatedProducts;
+            return relatedProducts;
         }
 
 
-        private void InspirationRecipe()
+        public List<Recipe> InspirationRecipe()
         {
             List<Recipe> recipes = new List<Recipe>();
             List<Recipe> inspiratie = new List<Recipe>();
@@ -227,9 +231,10 @@ namespace WEBProject.Controllers
                     inspiratie.Add(recipes[0]);
                 }
             }
-            ViewBag.inspiratie = inspiratie;
+            return inspiratie;
         }
 
+     
     
         public List<Models.Product> GetProducts(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
         {

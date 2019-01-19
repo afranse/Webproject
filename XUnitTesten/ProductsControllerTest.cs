@@ -199,5 +199,56 @@ namespace XUnitTesten
 
             Assert.Equal(context.Products.ToList()[0], result.ToList()[0]);
         }
+
+        [Fact]
+        public void TestSpecificProductInProductsController()
+        {
+            var result = c.SpecificProduct(1);
+            Employee_Profile contact = context.Employee_Profiles.ToList()[0];
+
+            //result moet een view zijn
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Null(viewResult.ViewName);
+        }
+
+        [Fact]
+        public void TestFoutmeldingInProductsController()
+        {
+            var result = c.SpecificProduct(10);
+            // result moet een foutmelding zijn
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+
+            var result2 = c.SpecificProduct(0);
+            Employee_Profile contact = null;
+            var redirectToActiobResult = Assert.IsType<RedirectToActionResult>(result2);
+
+        }
+
+
+
+        [Fact]
+        public void TestRelatedProducts()
+        {
+            //when there are no other products with the same category
+            var result = c.RelatedProduct(context.Products.ToList()[0]);
+            Assert.Empty(result.ToList());
+
+            //test if it shows the right related product
+            var result1 = c.RelatedProduct(context.Products.ToList()[1]);
+            Assert.Equal("Bread", result1.ToList()[0].Name);
+        }
+
+        [Fact]
+        public void TestInspirationRecipe()
+        {
+            //test the right amount
+            var result = c.InspirationRecipe();
+            Assert.Equal(2, result.Count);
+
+            //test if context.recipy is empty            
+            context.Recipes = null;
+            var result2 = c.InspirationRecipe();
+            Assert.Empty(result2);
+        }
     }
 }
