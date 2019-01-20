@@ -1,4 +1,5 @@
-﻿<partial name="_T15contact" />
+﻿@model PageContent
+<partial name="_T15contact" model="@Model.Pages[0]" />
 <partial name="_HowToContacts" />
 @for (int i = 0; i < 3; i++)
 {
@@ -6,7 +7,7 @@
         @for (int x = 0; x < 3; x++)
         {
             <div class="col-md-4 ">
-                <partial name="_MultipleContact" />
+                <partial name="_MultipleContact" model="@ViewBag.Contact" />
             </div>
         }
     </div>

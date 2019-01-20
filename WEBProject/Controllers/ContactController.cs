@@ -19,21 +19,43 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Contact = new Models.Employee_Profile
+            {
+                Name = "Justin Ulsamer",
+                Job = "Developer",
+                Profile_PhotoPath = "/images/Sir.jpg",
+                Region = "Rijswijk",
+                CountryOrProvince = "The Netherlands",
+                Emails = new List<Models.Employee_Profile_Email>
+                {
+                    new Models.Employee_Profile_Email
+                    {
+                        Email = "17042623@student.hhs.nl"
+                    }
+                },
+                Phone_Numbers = new List<Models.Employee_Profile_Phone_Number>
+                {
+                    new Models.Employee_Profile_Phone_Number
+                    {
+                        Number = "0000000000000000000"
+                    }
+                }
+            };
             PageContent ContactView = new PageContent(_context);
 
-            PageContent Anecdote = new PageContent(
+            PageContent T15contact = new PageContent(
             new int[] //photo
              {
-                1
+                14,15,16,17
              },
             new int[] //text
              {
-                1
+                16,17,18,19,20,21,22,23,24,25,26
              },
             _context);
-            ContactView.addPage(Anecdote);
+            ContactView.addPage(T15contact);
 
-            PageContent Themes = new PageContent(
+            PageContent HowToContacts = new PageContent(
                 new int[]
                 {
                     2,3,4,5,6,7,8
@@ -43,17 +65,7 @@ namespace WEBProject.Controllers
                     2,3,4,5,6,7,8,10
                 },
                 _context);
-            ContactView.addPage(Themes);
-
-            PageContent Spotlight = new PageContent(
-                new int[0],
-                new int[]
-                {
-                    9
-                },
-                _context);
-            ContactView.addPage(Spotlight);
-
+            ContactView.addPage(HowToContacts);
 
 
             List<Branch_Category> Branches = _context.Branch_Categories.ToList();
@@ -62,6 +74,12 @@ namespace WEBProject.Controllers
 
 
             return View(ContactView);
+        }
+
+        public IActionResult specificContact(int id)
+        {
+
+            return View();
         }
 
 
