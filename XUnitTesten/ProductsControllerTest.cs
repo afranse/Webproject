@@ -227,19 +227,19 @@ namespace XUnitTesten
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             
         }
-        
-        //[Fact]
-        //public void TestRelatedProducts()
+
+        //[fact]
+        //public void testrelatedproducts()
         //{
-        //    DB = new InMemoryDB();
-        //    context = DB.GetInMemoryDB(true);
-        //    SeederInMemoryDB.Seed(context);
-        //    context.SaveChanges();
+        //    db = new inmemorydb();
+        //    context = db.getinmemorydb(true);
+        //    seederinmemorydb.seed(context);
+        //    context.savechanges();
         //    //when there are no other products with the same category
-        //    var result = c.RelatedProduct(context.Products.ToList()[0]);
-        //    Assert.Empty(result.ToList());
+        //    var result = c.relatedproduct(context.products.tolist()[0]);
+        //    assert.empty(result.tolist());
         //}
-        
+
 
         [Fact]
         public void TestInspirationRecipe()

@@ -1,12 +1,12 @@
-﻿
+﻿@model News_Item
 <body>
-    <div class="container workingcontainer">
+    <div class="container-fluid workingcontainer">
         <div class="row centerrow">
-            <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow"><img src="img/working.png" id="working"></div>
+            <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow"><img src='@Model.PhotoNews.ElementAt(0).Photo' id="working"></div>
             <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow" id="flex">
-                <div class="row innovationrows" style="size: 1" id="Team">Team</div>
-                <div class="row innovationrows"><h1 id="tekstcolor">We love working on innovations, together</h1></div>
-                <div class="row innovationsrows" style="size: 1" id="tekstcolor">Aenean eu leo quam. Pellentesque omara sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum.</div>
+                <div class="row innovationrows" style="size: 1" id="Team">@Model.News_Category.Category</div>
+                <div class="row innovationrows"><h1 id="tekstcolor">@Model.Title</h1></div>
+                <div class="row innovationsrows" style="size: 1" id="tekstcolor">@Model.TextNews.ElementAt(0).Text.Content</div>
             </div>
         </div>
     </div>
