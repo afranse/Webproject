@@ -21,6 +21,22 @@ namespace WEBProject.Controllers
 
         public IActionResult Index(int BranchID, string[] typestring)
         {
+            PageContent RecipeView = new PageContent(_context);
+            PageContent RecipeText = new PageContent(
+                new int[] //Photo
+                {
+                1
+                },
+
+                new int[]
+                {
+                    1, 2
+                },
+
+                _context);
+
+            RecipeView.addPage(RecipeText);
+
             BranchID++;
             List<Models.Type_Category> selectedType = getTypes(typestring);
             ViewBag.SelectedTypes = selectedType;
@@ -32,28 +48,17 @@ namespace WEBProject.Controllers
             ViewBag.recipes = GetRecipes(BranchID);
             ViewBag.AllBranches = _context.Branch_Categories.ToList();
             ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
-            return View();
+            return View(RecipeView);
         }
 
-        public IActionResult SpecificRecipe(int RecipeID)
+        public IActionResult SpecificRecipe(int ID)
         {
-            Recipe recipe = _context.Recipes.Where(r => r.RecipeID == RecipeID).FirstOrDefault();
+            Recipe recipe = _context.Recipes.Where(r => r.RecipeID == ID).FirstOrDefault();
             if (recipe == null)
             {
                 return RedirectToAction("Error message", new { message = "Recipe is not found" });
             }
-
-            PageContent SpecificRecipeView = new PageContent(_context);
-            PageContent RecipeDetails = new PageContent(
-                new int[0],
-                new int[]
-                {
-                    1,2,3,4,5,6
-                },
-                    _context);
-            SpecificRecipeView.addPage(RecipeDetails);
-            ViewBag.Recipe = recipe;
-            return View(SpecificRecipeView);
+            return View(recipe);
         }
 
         public List<Models.Recipe> GetRecipes(int BranchID)

@@ -7,18 +7,18 @@
 
     <div class="content container">
         <div class="row recipeIngredients">
-
+            @Model.RecipeTexts.ElementAt(0).Text
         </div>
         <div class="img-fluid">
-
+            @Model.RecipePhotos.ElementAt(0).Photo
         </div>
 
         <div class="row instructions">
-
+            @Model.RecipeTexts.ElementAt(1).Text
         </div>
 
         <div class="row note">
-
+            @Model.RecipeTexts.ElementAt(2).Text
         </div>
 
 

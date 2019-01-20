@@ -1,7 +1,7 @@
-﻿
+﻿@model Recipe
 @{
     string image = "../images/sausage.jpg";
-    string link = "../Recipes/SpecificRecipe";
+    string link = "../Recipes/SpecificRecipe/" + Model.RecipeID;
     string text_block = "Recipe";
     string title = "African Farmer Sausages";
     string subtitle = "Meat";
