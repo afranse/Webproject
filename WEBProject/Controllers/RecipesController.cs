@@ -36,7 +36,7 @@ namespace WEBProject.Controllers
                 _context);
 
             RecipeView.addPage(RecipeText);
-
+            ViewBag.Contact = _context.Employee_Profiles.FirstOrDefault();
             BranchID++;
             List<Models.Type_Category> selectedType = getTypes(typestring);
             ViewBag.SelectedTypes = selectedType;
