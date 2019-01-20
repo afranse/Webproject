@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEBProject", "WEBProject\WEBProject.csproj", "{B5BD9744-387D-4C8B-9F3B-88F227249518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTesten", "XUnitTesten\XUnitTesten.csproj", "{9A5364C9-69A3-4731-A21D-1E143CF151CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTesten", "XUnitTesten\XUnitTesten.csproj", "{9A5364C9-69A3-4731-A21D-1E143CF151CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

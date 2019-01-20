@@ -1,0 +1,25 @@
+﻿@model WEBProject.Models.Language
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Language</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LangTag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LangTag)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LangID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

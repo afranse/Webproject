@@ -19,21 +19,33 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index()
         {
+            
+            Models.Employee_Profile Contact = _context.Employee_Profiles.FirstOrDefault();
+            if (_context.Employee_Profiles != null)
+            {
+               // ViewBag.Contacten = new List<Models.Employee_Profile> { Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact };
+
+                ViewBag.Contacten = _context.Employee_Profiles.ToList();
+            }
+            else
+            {
+                ViewBag.Contacten = new List<Models.Employee_Profile>();
+            }
             PageContent ContactView = new PageContent(_context);
 
-            PageContent Anecdote = new PageContent(
+            PageContent T15contact = new PageContent(
             new int[] //photo
              {
-                1
+                14,15,16,17
              },
             new int[] //text
              {
-                1
+                16,17,18,19,20,21,22,23,24,25,26
              },
             _context);
-            ContactView.addPage(Anecdote);
+            ContactView.addPage(T15contact);
 
-            PageContent Themes = new PageContent(
+            PageContent HowToContacts = new PageContent(
                 new int[]
                 {
                     2,3,4,5,6,7,8
@@ -43,17 +55,7 @@ namespace WEBProject.Controllers
                     2,3,4,5,6,7,8,10
                 },
                 _context);
-            ContactView.addPage(Themes);
-
-            PageContent Spotlight = new PageContent(
-                new int[0],
-                new int[]
-                {
-                    9
-                },
-                _context);
-            ContactView.addPage(Spotlight);
-
+            ContactView.addPage(HowToContacts);
 
 
             List<Branch_Category> Branches = _context.Branch_Categories.ToList();
@@ -62,6 +64,12 @@ namespace WEBProject.Controllers
 
 
             return View(ContactView);
+        }
+
+        public IActionResult specificContact(int id)
+        {
+
+            return View();
         }
 
 

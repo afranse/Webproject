@@ -1,0 +1,11 @@
+﻿@model News_Item
+<div class="container_fluid">
+    <div class="row justify-content-center align-items-center">
+        <h1> <b> @Model.Title</b></h1>
+        <p id="smallArticleText"> @Model.TextNews.ElementAt(0).Text.Content</p>
+        <a href="../Recipes/Index">
+            <div class="red_button"> Read more &#10132 </div>
+        </a>
+    </div>
+</div>
+

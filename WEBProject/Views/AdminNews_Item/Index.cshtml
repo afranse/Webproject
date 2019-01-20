@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WEBProject.Models.News_Item>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last_Modified_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News_Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Modified_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.News_Category.CategoryID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NewsID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NewsID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NewsID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -51,7 +51,7 @@ namespace WEBProject.Controllers
             foreach (string s in typestring)
             {
                 int i = -1;
-                if (s.Count() > 2)
+                if (s.Count() > 0)
                 {
                     int.TryParse(s.Substring(2), out i);
                     if (i != -1)

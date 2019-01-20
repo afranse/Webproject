@@ -40,34 +40,42 @@ namespace XUnitTesten
         [Fact]
         public void TestGetSelectedTypes()
         {
-            string[] array = new string[] { "B 1" };
+            //Test #1
+            int i = context.Type_Categories.ToList()[0].TypeID;
+            string[] array = new string[] { "T " + i };
             var result = c.getTypes(array);
 
-            //    Assert.Equal(context.Type_Categories.ToList()[0], result.ToList()[1]);
-            Assert.Equal(context.Type_Categories.ToList()[1], result.ToList()[0]);
+            Assert.Equal(i, result.ToList()[0].TypeID);
+
+
+            //Test #2
+            context = DB.GetInMemoryDB(true);
+
+            array = new string[] { "SKJHGD" };
+            var result1 = c.getTypes(array);
+
+            Assert.Empty(result1.ToList());
         }
-
-
-
-
 
         [Fact]
         public void TestGetSelectedCats()
         {
-
-            string[] array = new string[] { "B 1" };
+            //Test #1
+            int i = context.Normal_Categories.ToList()[0].CategoryID;
+            string[] array = new string[] { "C " + i};
             var result = c.GetCategories(array);
 
-            Assert.Equal(context.Normal_Categories.ToList()[0].CategoryID, 0);
-            //Assert.Equal(context.Normal_Categories.ToList()[0], result.ToList()[1]);
-            //Assert.Equal(context.Normal_Categories.ToList()[1], result.ToList()[0]);
-            //Assert.Equal(context.Normal_Categories.ToList()[2], result.ToList()[2]);
-            //Assert.Equal(context.Normal_Categories.ToList()[3], result.ToList()[3]);
+            Assert.Equal(i, result.ToList()[0].CategoryID);
+
+
+            //Test #2
+            context = DB.GetInMemoryDB(true);
+
+            array = new string[] { "SKJHGD" };
+            var result1 = c.GetCategories(array);
+
+            Assert.Empty(result1.ToList());
         }
-
-
-
-
 
 
 
@@ -132,7 +140,7 @@ namespace XUnitTesten
         public void TestgetAllTypes()
         {
             //Test #1
-            int BranchID = 0;
+            int BranchID = context.Branch_Categories.ToList()[0].BranchID;
 
             var result = c.getAllTypes(BranchID);
 
@@ -151,7 +159,7 @@ namespace XUnitTesten
         public void TestGetProducts()
         {
             //Test #1
-            int BranchID = 0;
+            int BranchID = context.Branch_Categories.ToList()[0].BranchID;
             List<Type_Category> Types = new List<Type_Category>
             {
                 context.Type_Categories.ToList()[0],
@@ -172,7 +180,7 @@ namespace XUnitTesten
             Assert.Equal(context.Products.ToList()[3], result.ToList()[2]);
 
             //Test #2
-            BranchID = 0;
+            BranchID = context.Branch_Categories.ToList()[0].BranchID;
             Types = new List<Type_Category>
             {
                 context.Type_Categories.ToList()[0],
@@ -185,7 +193,7 @@ namespace XUnitTesten
             Assert.Empty(result2.ToList());
 
             //Test #3
-            BranchID = 0;
+            BranchID = context.Branch_Categories.ToList()[0].BranchID;
             Types = new List<Type_Category>
             {
                 context.Type_Categories.ToList()[0],

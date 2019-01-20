@@ -1,0 +1,49 @@
+﻿@model WEBProject.Models.Employee_Profile
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee_Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile_PhotoPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile_PhotoPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryOrProvince)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryOrProvince)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Employee_ProfileID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
