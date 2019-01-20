@@ -1,0 +1,75 @@
+﻿@model SpecificNewsItemModel
+
+<div class="container">
+    <div class="row">
+        <div class="BufferAllPartialViews">
+            @{
+                if (ViewBag.Page != null)
+                {
+                    <partial name="_Anecdote" model="@(PageContent)ViewBag.Page" />
+                }
+            }
+        </div>
+        
+        @{ 
+            if(Model.Item != null)
+            {
+                <div class="col-12 col-sm-12 col-md-12">@Model.Item.Last_Modified_Date
+                    @{ 
+                        if (Model.Content != null && Model.Content.Any())
+                        {
+                            @Model.Content.ElementAt(0);
+                        } else
+                        {
+                            <div>
+                                No text to display
+                            </div>
+                        }
+                    }
+                
+                </div>
+            } else
+            {
+                <div>
+                    No item found to display because none is selected.
+                </div>
+            }
+        }
+    </div>
+    @{ 
+    }
+    <div class="row">
+        <div class="IE_Img_Fluid_FIX">
+            <div class="col-12 col-sm-12 col-md-12">
+                <img src='@Model.PhotoPath' class="img-fluid" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @{
+            if (Model.Item.Title != null)
+            {
+                <div class="col-12 col-sm-12 col-md-12">
+                    <h5>@Model.Item.Title</h5>
+                </div>
+                
+            }
+
+            if (Model.Content != null && Model.Content.Any())
+            {
+                for (int i = 1; i < Model.Content.Count(); i++)
+                {
+                    <div class="col-12 col-sm-12 col-md-12">
+                        @Model.Content.ElementAt(i)
+                    </div>
+                }
+            }
+            else
+            {
+                <div>
+                    No text to display.
+                </div>
+            }
+        }
+    </div>
+</div>
