@@ -11,18 +11,18 @@
     <div class=" themes_catalog">
         <div class="row align-items-center justify-content-center test">
 
-
+            @{List<Recipe> recipes = ViewBag.Themes as List<Recipe>; }
             @for (int y = 0; y < 3; y++)
             {
                 <div class="col-md-4">
                     <div class="thumbnail">
                         <a href="Recipes/Index">
-                            <img src='@Model.Photos[0]' alt="Lights" id="responsive">
+                            <img src='@recipes[y].RecipePhotos[0].Photo.PhotoPath' alt="Lights" id="responsive">
                             <div class="image-block">
                                 <img src='@Model.Photos[y+1]' alt="easter" id="responsive">
                             </div>
                             <div class="themes_caption">
-                                <p id="themes_title"> @Model.Texts[y]  <i id="arrow">&#10132 </i> </p>
+                                <p id="themes_title"> @recipes[y].Name  <i id="arrow">&#10132 </i> </p>
                             </div>
                         </a>
                     </div>
@@ -36,12 +36,12 @@
                 <div class="col-md-4">
                     <div class="thumbnail">
                         <a href="Recipes/Index">
-                            <img src='@Model.Photos[0]' alt="Lights" id="responsive">
+                            <img src='@recipes[y].RecipePhotos[0].Photo.PhotoPath' alt="Lights" id="responsive">
                             <div class="image-block">
                                 <img src='@Model.Photos[y+1]' alt="easter" id="responsive">
                             </div>
                             <div class="themes_caption">
-                                <p id="themes_title"> @Model.Texts[y]  <i id="arrow">&#10132 </i> </p>
+                                <p id="themes_title"> @recipes[y].Name  <i id="arrow">&#10132 </i> </p>
                             </div>
                         </a>
                     </div>
