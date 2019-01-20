@@ -1,4 +1,5 @@
-﻿@model PageContent
+﻿
+@model PageContent
 <div class="container-fluid">
     <div class="row align-items-center justify-content-center">
 
@@ -12,12 +13,13 @@
         <div class="row align-items-center justify-content-center test">
 
             @{List<Recipe> recipes = ViewBag.Themes as List<Recipe>; }
-            @for (int y = 0; y < 3; y++)
+            @{List<string> recipesPaths = ViewBag.ThemesPaths as List<string>;}
+            @for (int y = 0; y < 3 && y < recipes.Count(); y++)
             {
                 <div class="col-md-4">
                     <div class="thumbnail">
                         <a href="Recipes/Index">
-                            <img src='@recipes[y].RecipePhotos[0].Photo.PhotoPath' alt="Lights" id="responsive">
+                            <img src='@recipesPaths[y]' alt="Lights" id="responsive">
                             <div class="image-block">
                                 <img src='@Model.Photos[y+1]' alt="easter" id="responsive">
                             </div>
@@ -31,12 +33,12 @@
             }
         </div>
         <div class="row align-items-center justify-content-center test">
-            @for (int y = 3; y < 6; y++)
+            @for (int y = 3; y < 6 && y < recipes.Count(); y++)
             {
                 <div class="col-md-4">
                     <div class="thumbnail">
                         <a href="Recipes/Index">
-                            <img src='@recipes[y].RecipePhotos[0].Photo.PhotoPath' alt="Lights" id="responsive">
+                            <img src='@recipesPaths[y]' alt="Lights" id="responsive">
                             <div class="image-block">
                                 <img src='@Model.Photos[y+1]' alt="easter" id="responsive">
                             </div>

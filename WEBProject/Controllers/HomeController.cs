@@ -56,8 +56,15 @@ namespace WEBProject.Controllers
                 _context);
             HomeView.addPage(Spotlight);
 
-            List<Recipe> recipes = _context.Recipes.ToList().GetRange(0, 6).ToList();
-            ViewBag.Themes(recipes);
+            List<Recipe> recipes = _context.Recipes.Take(6).ToList(); //.GetRange(0, 6).ToList()
+            ViewBag.Themes = recipes;
+
+            List<string> recipesPaths = new List<string>();
+            foreach(Recipe r in recipes)
+            {
+                recipesPaths.Add(_context.Recipe_Photos.Where(o => o.RecipeID == r.RecipeID).FirstOrDefault().Photo.PhotoPath);
+            }
+            ViewBag.ThemesPaths = recipesPaths;
 
             List<Branch_Category> Branches = _context.Branch_Categories.ToList();
             ViewBag.Branches = Branches;

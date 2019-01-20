@@ -68,8 +68,14 @@ namespace WEBProject.Controllers
 
         public IActionResult specificContact(int id)
         {
+            Models.Employee_Profile Contact = _context.Employee_Profiles.Where(e => e.Employee_ProfileID == id).FirstOrDefault();
 
-            return View();
+            if (Contact == null)
+            {
+                return RedirectToAction(null, "no Employee found in Database");
+            }
+            
+            return View(Contact);
         }
 
 

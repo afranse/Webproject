@@ -3,7 +3,7 @@
     <partial name="_Anecdote" model="@Model.Pages[0]" />
 </div>
 <div class="BufferAllPartialViews">
-    <partial name="_Themes" model="@ViewBag.Themes" />
+    <partial name="_Themes" model="@Model.Pages[1]" />
 </div>
 
 @{List<Branch_Category> Branches = ViewBag.Branches as List<Branch_Category>; }
@@ -12,7 +12,7 @@
 </div>
 
 <div class="BufferAllPartialViews">
-    <partial name="_Spotlight" model="Model.Pages[1]" />
+    <partial name="_Spotlight" model="Model.Pages[2]" />
 </div>
 
 
