@@ -1,0 +1,63 @@
+﻿
+<div class="container-fluid">
+    <div class="row">
+        <p><a href="../HomeController/Index" id="red_color"> Home </a> &#62; How we work </p>
+    </div>
+    @{
+        List<News_Item> lijst = ViewBag.articles as List<News_Item>;
+    }
+    @if (lijst.Count() != 0)
+    {
+        Boolean Block_left = true;
+        @for (int x = 0; x < lijst.Count(); x++)
+        {
+            if (Block_left)
+            {
+                Block_left = false;
+                if (x % 2 == 0 && x != 0)
+                {
+                    <partial name="_GreenArticle" />
+                }
+                <div class="row">
+                    <div class="col-md-6">
+                        <partial name="_Image" model="lijst[x]" />
+                    </div>
+                    <div class="col-md-6">
+                        <partial name="_SmallArticle" model="lijst[x]" />
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                Block_left = true;
+                if (x % 2 == 0 && x != 0)
+                {
+                    <partial name="_GreenArticle" />
+                }
+                <div class="row">
+                    <div class="col-md-6">
+                        <partial name="_SmallArticle" model="lijst[x]" />
+                    </div>
+                    <div class="col-md-6">
+                        <partial name="_Image" model="lijst[x]" />
+                    </div>
+                </div>
+            }
+
+        }
+    }
+
+    <div class="row justify-content-center">
+        <h1> <b> How can we help you? </b></h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <partial name="_WideContact" model="ViewBag.contact" />
+        </div>
+        <div class="col-md-6">
+            <partial name="_LearnMore" model="@Model.Pages[0]" />
+        </div>
+    </div>
+</div>
+
