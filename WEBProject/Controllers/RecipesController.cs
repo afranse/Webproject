@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WEBProject.Data;
+using WEBProject.Models;
 
 namespace WEBProject.Controllers
 {
@@ -20,6 +21,22 @@ namespace WEBProject.Controllers
 
         public IActionResult Index(int BranchID, string[] typestring)
         {
+            PageContent RecipeView = new PageContent(_context);
+            PageContent RecipeText = new PageContent(
+                new int[] //Photo
+                {
+                1
+                },
+
+                new int[]
+                {
+                    1, 2
+                },
+
+                _context);
+
+            RecipeView.addPage(RecipeText);
+
             BranchID++;
             List<Models.Type_Category> selectedType = getTypes(typestring);
             ViewBag.SelectedTypes = selectedType;
@@ -31,7 +48,17 @@ namespace WEBProject.Controllers
             ViewBag.recipes = GetRecipes(BranchID);
             ViewBag.AllBranches = _context.Branch_Categories.ToList();
             ViewBag.AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
-            return View();
+            return View(RecipeView);
+        }
+
+        public IActionResult SpecificRecipe(int ID)
+        {
+            Recipe recipe = _context.Recipes.Where(r => r.RecipeID == ID).FirstOrDefault();
+            if (recipe == null)
+            {
+                return RedirectToAction("Error message", new { message = "Recipe is not found" });
+            }
+            return View(recipe);
         }
 
         public List<Models.Recipe> GetRecipes(int BranchID)

@@ -1,7 +1,6 @@
-﻿@{ 
-    string title = "The finest recipes";
-    string description = "An overview of all our finest recipes.";
-}
+﻿@model PageContent
 
-<h2>@title</h2>
-<p>@description</p>
+
+
+<h2>@Model.Texts[0]</h2>
+<p>@Model.Texts[1]</p>
