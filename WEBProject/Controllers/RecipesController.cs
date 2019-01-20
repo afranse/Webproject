@@ -21,7 +21,7 @@ namespace WEBProject.Controllers
 
         public IActionResult Index(int BranchID, string[] typestring)
         {
-            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[59].PhotoPath;
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[58].PhotoPath;
             PageContent RecipeView = new PageContent(_context);
             PageContent RecipeText = new PageContent(
                 new int[] //Photo

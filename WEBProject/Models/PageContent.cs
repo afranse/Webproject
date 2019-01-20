@@ -23,8 +23,17 @@ namespace WEBProject.Models
         public PageContent(int[] photoList, int[] textList, WebsiteContext context)
         {
             _context = context;
-            this.Photos = _context.Photos.Where(i => photoList.Contains(i.PhotoID)).Select(s => s.PhotoPath).ToList();
-            this.Texts = _context.Text.Where(i => textList.Contains(i.TextID)).Select(s =>s.Content).ToList();
+            //this.Photos = _context.Photos.Where(i => photoList.Contains(i.PhotoID)).Select(s => s.PhotoPath).ToList();
+            //this.Texts = _context.Text.Where(i => textList.Contains(i.TextID)).Select(s =>s.Content).ToList();
+            foreach(int i in photoList)
+            {
+                this.Photos.Add(_context.Photos.ToList()[i-1].PhotoPath);
+            }
+            foreach (int i in textList)
+            {
+
+                this.Texts.Add(_context.Text.ToList()[i - 1].Content);
+            }
         }
 
         public void addPage(PageContent page)
