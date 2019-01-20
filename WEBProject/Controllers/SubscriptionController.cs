@@ -22,10 +22,27 @@ namespace WEBProject.Controllers
             ViewBag.SubscriptionMessage = message;
             return View();
         }
-        
+
         public IActionResult subscribe(string adress)
         {
             string SubscriptionMessage = "";
+
+            if (canAdd(adress))
+            {
+                SubscriptionMessage = "You have now been subscribed to our news letter!";
+                _context.Subscribers.Add(new Subscriber() { Email = adress });
+                _context.SaveChanges();
+            }
+            else
+            {
+                SubscriptionMessage = "You are already subscribed to our news letter.";
+
+            }
+            return RedirectToAction("Index", new { message = SubscriptionMessage });
+        }
+
+        public bool canAdd(string adress)
+        {
             if (adress != null)
             {
                 if (adress.Contains('@') && adress.Contains('.'))
@@ -34,32 +51,38 @@ namespace WEBProject.Controllers
                     {
                         if (_context.Subscribers.Where(s => s.Email == adress).FirstOrDefault() == null)
                         {
-                            SubscriptionMessage = "You have now been subscribed to our news letter!";
-                            _context.Subscribers.Add(new Subscriber() { Email = adress });
-                            _context.SaveChanges();
-                        }
-                        else
-                        {
-                            SubscriptionMessage = "You are already subscribed to our news letter.";
-
+                            return true;
                         }
                     }
                     else
                     {
-                        SubscriptionMessage = "You have now been subscribed to our news letter!";
-                        _context.Subscribers.Add(new Subscriber() { Email = adress });
-                        _context.SaveChanges();
+                        return true;
                     }
                 }
             }
-            return RedirectToAction("Index", new { message = SubscriptionMessage });
+            return false;
         }
-
 
         public IActionResult Unsubscribe(string adress)
         {
             string SubscriptionMessage = "";
-            if (adress != null)
+
+            if (canRemove(adress))
+            {
+                SubscriptionMessage = "You have now been unsubscribed from our news letter.";
+                _context.Subscribers.Remove(_context.Subscribers.Where(s => s.Email == adress).FirstOrDefault());
+                _context.SaveChanges();
+            }
+            else
+            {
+                SubscriptionMessage = "You were not subscribed in the first place.";
+            }
+            return RedirectToAction("Index", new { message = SubscriptionMessage }); 
+        }
+
+        public bool canRemove(string adress)
+        {
+            if(adress != null)
             {
                 if (adress.Contains('@') && adress.Contains('.'))
                 {
@@ -67,26 +90,12 @@ namespace WEBProject.Controllers
                     {
                         if (_context.Subscribers.Where(s => s.Email == adress).FirstOrDefault() != null)
                         {
-                            SubscriptionMessage = "You have now been unsubscribed from our news letter.";
-                            _context.Subscribers.Remove(_context.Subscribers.Where(s => s.Email == adress).FirstOrDefault());
-                            _context.SaveChanges();
+                            return true; 
                         }
-                        else
-                        {
-                            SubscriptionMessage = "You were not subscribed in the first place.";
-
-                        }
-                    }
-                    else
-                    {
-                        SubscriptionMessage = "You were not subscribed in the first place.";
                     }
                 }
             }
-            return RedirectToAction("Index", new { message = SubscriptionMessage });
+            return false;
         }
     }
-
-    
-
 }
