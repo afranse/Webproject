@@ -217,15 +217,9 @@ namespace XUnitTesten
             var result = c.SpecificProduct(10);
             // result moet een foutmelding zijn
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
-
-            var result2 = c.SpecificProduct(0);
-            Employee_Profile contact = null;
-            var redirectToActiobResult = Assert.IsType<RedirectToActionResult>(result2);
-
+            
         }
-
-
-
+        
         [Fact]
         public void TestRelatedProducts()
         {
@@ -233,6 +227,11 @@ namespace XUnitTesten
             var result = c.RelatedProduct(context.Products.ToList()[0]);
             Assert.Empty(result.ToList());
 
+
+            DB = new InMemoryDB();
+            context = DB.GetInMemoryDB(true);
+            SeederInMemoryDB.Seed(context);
+            context.SaveChanges();
             //test if it shows the right related product
             var result1 = c.RelatedProduct(context.Products.ToList()[1]);
             Assert.Equal("Bread", result1.ToList()[0].Name);
@@ -245,7 +244,7 @@ namespace XUnitTesten
             var result = c.InspirationRecipe();
             Assert.Equal(2, result.Count);
 
-            //test if context.recipy is empty            
+            //test when context.recipy is empty            
             context.Recipes = null;
             var result2 = c.InspirationRecipe();
             Assert.Empty(result2);
