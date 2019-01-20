@@ -21,6 +21,7 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
         {
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[59].PhotoPath;
             BranchID++;
             List<Models.Type_Category> selectedTypes = getTypes(typestring);
 

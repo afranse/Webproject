@@ -19,7 +19,7 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index()
         {
-            
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[59].PhotoPath;
             Models.Employee_Profile Contact = _context.Employee_Profiles.FirstOrDefault();
             if (_context.Employee_Profiles != null)
             {
