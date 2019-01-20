@@ -19,6 +19,7 @@ namespace WEBProject.Controllers
 
         public IActionResult Index(string message)
         {
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[59].PhotoPath;
             ViewBag.SubscriptionMessage = message;
             return View();
         }

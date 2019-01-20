@@ -23,6 +23,7 @@ namespace WEBProject.Controllers
 
         public async Task<IActionResult> Index(string q, int? i)
         {
+            ViewData["HeaderBackgroundImg"] = DBC.Photos.ToList()[59].PhotoPath;
             SearchModel SearchModel = new SearchModel();
             if (q != null)
             {

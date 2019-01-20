@@ -19,6 +19,7 @@ namespace WEBProject.Controllers
 
         public IActionResult Index(int id)
         {
+            ViewData["HeaderBackgroundImg"] = C.Photos.ToList()[59].PhotoPath;
             SpecificNewsItemModel S = new SpecificNewsItemModel();
 
             News_Item N = C.News_Items.Where(x => x.NewsID == id).FirstOrDefault();

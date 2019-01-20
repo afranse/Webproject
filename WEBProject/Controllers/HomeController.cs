@@ -20,6 +20,7 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index()
         {
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[59].PhotoPath;
             PageContent HomeView = new PageContent(_context);
 
             PageContent Anecdote = new PageContent(
