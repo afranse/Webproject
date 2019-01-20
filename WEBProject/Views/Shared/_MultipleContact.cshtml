@@ -1,10 +1,11 @@
-﻿<div class="container">
+﻿@model Employee_Profile
+<div class="container">
     <div class="container contacts_container-looks">
 
         <div class="contact_top">
             <div class="row" id="contact_profile">
                 <div class="col-md-5">
-                    <img src="~/images/Sir.png" id="contact_pic" />
+                    <img src=@Model.Profile_PhotoPath id="contact_pic" />
                 </div>
                 <div class="col-md-7">
                     <b size="4">Jan van den Heijer</b>
@@ -19,7 +20,7 @@
                     <img src="~/images/mb.png" id="contact_mbpic">
                 </div>
                 <div class="col-md-10">
-                    <a href="tel:+316-22571514" id="contact_c1">+31(0)6-22571514</a>
+                    <a href="tel:+316-22571514" id="contact_c1">@Model.Phone_Numbers</a>
                 </div>
             </div>
 
@@ -28,7 +29,7 @@
                     <img src="~/images/mail.png" id="contact_mbpic" />
                 </div>
                 <div class="col-md-10">
-                    <a href="mailto:hhensen@verstegen.nl" id="contact_c1">hhensen@verstegen.nl</a>
+                    <a href="mailto:hhensen@verstegen.nl" id="contact_c1">@Model.Emails</a>
                 </div>
             </div>
 

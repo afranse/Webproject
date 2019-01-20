@@ -23,9 +23,13 @@ namespace WEBProject.Controllers
             Models.Employee_Profile Contact = _context.Employee_Profiles.FirstOrDefault();
             if (_context.Employee_Profiles != null)
             {
-                ViewBag.Contacten = new List<Models.Employee_Profile> { Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact };
+               // ViewBag.Contacten = new List<Models.Employee_Profile> { Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact };
 
                 ViewBag.Contacten = _context.Employee_Profiles.ToList();
+            }
+            else
+            {
+                ViewBag.Contacten = new List<Models.Employee_Profile>();
             }
             PageContent ContactView = new PageContent(_context);
 
