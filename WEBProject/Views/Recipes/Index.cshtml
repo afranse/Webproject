@@ -1,49 +1,50 @@
-﻿<div class="container">
+﻿@model PageContent
+
+<div class="container">
     <div class="row titleRow">
         <div class="col-4 col-sm-4 col-md-4">
-            <img src="https://baconmockup.com/300/200/" alt="temp image" />
+            <img src='@Model.Pages[0].Photos[0]' alt="temp image" />
         </div>
         <div class="col-8 col-sm-8 col-md-8">
-            <partial name="_RecipeText" />
+            <partial name="_RecipeText" model="@Model.Pages[0]" />
         </div>
     </div>
-    @{
-        List<int> lijst = new List<int>
-{
-1,
-2,
-3,
-4,
-5,
-6,
-7,
-8,
-9
-};
-    }
 
     <div class="container">
         <div class="row">
             <div class="col-4 col-sm-4 col-md-4">
                 <partial name="_RecipesSideTab" />
-                <partial name="_SingleContact" />
+                <partial name="_SingleContact" model="@ViewBag.Contact"/>
             </div>
 
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="container">
                     <div class="container recipeOverview">
-                        @for (int x = 0; x < lijst.Count(); x = x + 3)
+                        @{
+                            List<Recipe> lijst = ViewBag.recipes as List<Recipe>;
+                        }
+                        @if (lijst.Count() != 0)
                         {
-                            <div class="row">
-                                @for (int i = 0; i < 3; i++)
-                                {
-                                    <div class="col-4 col-sm-4 col-md-4">
-                                        <partial name="_RecipeCatalog" />
-                                    </div>
-                                }
+                            @for (int x = 0; x < lijst.Count(); x = x + 3)
+                            {
+                                <div class="row">
+                                    @for (int i = 0; i < 3 && x + i <lijst.Count(); i++)
+                                    {
+                                        <div class="col-4 col-sm-4 col-md-4">
+                                            <partial name="_RecipeCatalog" model="lijst[x + i]" />
+                                        </div>
+                                    }
 
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="row justify-content-center align-items-center">
+                                No recipes found.
                             </div>
                         }
+
                     </div>
                 </div>
 

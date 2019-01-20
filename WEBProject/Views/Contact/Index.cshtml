@@ -1,12 +1,13 @@
-﻿<partial name="_T15contact" />
+﻿@model PageContent
+<partial name="_T15contact" model="@Model.Pages[0]" />
 <partial name="_HowToContacts" />
-@for (int i = 0; i < 3; i++)
-{
+@for (int i = 0; i < 9; i= i +3)
+{List<Employee_Profile> list = ViewBag.Contacten as List<Employee_Profile>;
     <div class="row contactform">
-        @for (int x = 0; x < 3; x++)
+        @for (int x = 0; x < 3 && i+x<list.Count(); x++)
         {
             <div class="col-md-4 ">
-                <partial name="_MultipleContact" />
+                <partial name="_MultipleContact" model="list[i+x]" />
             </div>
         }
     </div>
