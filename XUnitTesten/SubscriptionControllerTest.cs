@@ -26,17 +26,45 @@ namespace XUnitTesten
         [Fact]
         public void subscribeTest()
         {
-            context = DB.GetInMemoryDB(true);
+            //Test #1
             string mail = "Test@Testmail.Test";
-            c.subscribe(mail);
-            Assert.Equal(context.Subscribers.ToList()[0].Email, mail);
+            bool b = c.canAdd(mail);
+            Assert.True(b);
+
+            //Test #2
+            mail = "";
+            b = c.canAdd(mail);
+            Assert.False(b);
+
+            //Test #3
+            mail = null;
+            b = c.canAdd(mail);
+            Assert.False(b);
         }
         [Fact]
         public void unsubscribeTest()
         {
+            //Test #1
             string mail = "Test@Testmail.Test";
-            c.Unsubscribe(mail);
-            Assert.Empty(context.Subscribers.ToList());
+            bool b = c.canRemove(mail);
+            Assert.False(b);
+
+            //Test #2
+            mail = "Test@Testmail.Test";
+            context.Subscribers.Add(new Subscriber { Email = "Test@Testmail.Test" });
+            context.SaveChanges();
+            b = c.canRemove(mail);
+            Assert.True(b);
+
+            //Test #3
+            mail = "";
+            b = c.canRemove(mail);
+            Assert.False(b);
+
+            //Test #4
+            mail = null;
+            b = c.canRemove(mail);
+            Assert.False(b);
         }
     }
 }
