@@ -19,28 +19,14 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Contact = new Models.Employee_Profile
+            
+            Models.Employee_Profile Contact = _context.Employee_Profiles.FirstOrDefault();
+            if (_context.Employee_Profiles != null)
             {
-                Name = "Justin Ulsamer",
-                Job = "Developer",
-                Profile_PhotoPath = "/images/Sir.jpg",
-                Region = "Rijswijk",
-                CountryOrProvince = "The Netherlands",
-                Emails = new List<Models.Employee_Profile_Email>
-                {
-                    new Models.Employee_Profile_Email
-                    {
-                        Email = "17042623@student.hhs.nl"
-                    }
-                },
-                Phone_Numbers = new List<Models.Employee_Profile_Phone_Number>
-                {
-                    new Models.Employee_Profile_Phone_Number
-                    {
-                        Number = "0000000000000000000"
-                    }
-                }
-            };
+                ViewBag.Contacten = new List<Models.Employee_Profile> { Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact, Contact };
+
+                ViewBag.Contacten = _context.Employee_Profiles.ToList();
+            }
             PageContent ContactView = new PageContent(_context);
 
             PageContent T15contact = new PageContent(
