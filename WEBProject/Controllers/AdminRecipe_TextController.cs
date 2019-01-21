@@ -12,155 +12,78 @@ namespace WEBProject.Controllers
 {
     public class AdminRecipe_TextController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminRecipe_TextController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminRecipe_Text
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.Recipe_Texts.Include(r => r.Recipe).Include(r => r.Text);
+            var websiteContext = C.Recipe_Texts.Include(r => r.Recipe).Include(r => r.Text);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminRecipe_Text/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var recipe_Text = await _context.Recipe_Texts
-                .Include(r => r.Recipe)
-                .Include(r => r.Text)
-                .FirstOrDefaultAsync(m => m.RecipeID == id);
-            if (recipe_Text == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipe_Text);
-        }
-
-        // GET: AdminRecipe_Text/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID");
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content");
             return View();
         }
 
-        // POST: AdminRecipe_Text/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int TextID, int RecipeID)
+        {
+            return View(new Recipe_Text() { TextID = TextID, RecipeID = RecipeID });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipeID,TextID")] Recipe_Text recipe_Text)
+        public async Task<IActionResult> Create(int? TextID, int? RecipeID)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(recipe_Text);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Text.RecipeID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", recipe_Text.TextID);
-            return View(recipe_Text);
-        }
-
-        // GET: AdminRecipe_Text/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (TextID == null || RecipeID == null)
             {
                 return NotFound();
             }
-
-            var recipe_Text = await _context.Recipe_Texts.FindAsync(id);
-            if (recipe_Text == null)
-            {
-                return NotFound();
-            }
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Text.RecipeID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", recipe_Text.TextID);
-            return View(recipe_Text);
+            int Text = TextID ?? 0;
+            int Recipe = RecipeID ?? 0;
+            C.Recipe_Texts.Add(new Recipe_Text() { TextID = Text, RecipeID = Recipe });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminRecipe_Text/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeID,TextID")] Recipe_Text recipe_Text)
+        public async Task<IActionResult> Edit(int? RecipeID, int? newRecipeID, int? TextID, int? newTextID)
         {
-            if (id != recipe_Text.RecipeID)
+            if (RecipeID == null || newRecipeID == null || TextID == null || newTextID == null)
             {
                 return NotFound();
             }
+            int Recipe = RecipeID ?? 0;
+            int newRecipe = newRecipeID ?? 0;
+            int Text = TextID ?? 0;
+            int newText = newTextID ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(recipe_Text);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Recipe_TextExists(recipe_Text.RecipeID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Text.RecipeID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", recipe_Text.TextID);
-            return View(recipe_Text);
+            Recipe_Text Change = await C.Recipe_Texts.Where(x => x.TextID == Text).Where(y => y.RecipeID == Recipe).FirstAsync();
+            C.Recipe_Texts.Remove(Change);
+            C.Recipe_Texts.Add(new Recipe_Text() { TextID = newText, RecipeID = newRecipe });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminRecipe_Text/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? RecipeID, int? TextID)
         {
-            if (id == null)
+            if (RecipeID == null || TextID == null)
             {
                 return NotFound();
             }
-
-            var recipe_Text = await _context.Recipe_Texts
-                .Include(r => r.Recipe)
-                .Include(r => r.Text)
-                .FirstOrDefaultAsync(m => m.RecipeID == id);
-            if (recipe_Text == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipe_Text);
-        }
-
-        // POST: AdminRecipe_Text/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var recipe_Text = await _context.Recipe_Texts.FindAsync(id);
-            _context.Recipe_Texts.Remove(recipe_Text);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Recipe_TextExists(int id)
-        {
-            return _context.Recipe_Texts.Any(e => e.RecipeID == id);
+            int Recipe = RecipeID ?? 0;
+            int Text = TextID ?? 0;
+            Recipe_Text P = C.Recipe_Texts.Where(x => x.TextID == Text).Where(y => y.RecipeID == Recipe).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

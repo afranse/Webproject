@@ -1,42 +1,29 @@
-﻿@model IEnumerable<WEBProject.Models.Product_Photo>
+﻿@model List<Product_Photo>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Index</h1>
+<a asp-action="Create">Create</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Product)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo.PhotoID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@foreach (Product_Photo P in Model)
+{
+    <div class="row Admin_Flex">
+        <form asp-action="Edit" method="get">
+            <input type="hidden" name="PhotoID" value="@P.PhotoID" />
+            <input type="hidden" name="ArtNR" value="@P.ArticleNumber" />
+            <input type="submit" value="Edit" />
+        </form>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="PhotoID" value="@P.PhotoID" />
+            <input type="hidden" name="ArtNR" value="@P.ArticleNumber" />
+            <input type="submit" value="Delete" />
+        </form>
+        <div>
+            | ArticleNumber:@P.ArticleNumber | PhotoID:@P.PhotoID
+        </div>
+    </div>
+
 }
-    </tbody>
-</table>

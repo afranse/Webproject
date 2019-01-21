@@ -1,42 +1,29 @@
-﻿@model IEnumerable<WEBProject.Models.Recipe_Text>
+﻿@model List<Recipe_Text>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Index</h1>
+<a asp-action="Create">Create</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Text)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Recipe.RecipeID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text.Content)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@foreach (Recipe_Text P in Model)
+{
+    <div class="row Admin_Flex">
+        <form asp-action="Edit" method="get">
+            <input type="hidden" name="TextID" value="@P.TextID" />
+            <input type="hidden" name="RecipeID" value="@P.RecipeID" />
+            <input type="submit" value="Edit" />
+        </form>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="TextID" value="@P.TextID" />
+            <input type="hidden" name="RecipeID" value="@P.RecipeID" />
+            <input type="submit" value="Delete" />
+        </form>
+        <div>
+            | RecieID:@P.RecipeID | TextID:@P.TextID
+        </div>
+    </div>
+
 }
-    </tbody>
-</table>

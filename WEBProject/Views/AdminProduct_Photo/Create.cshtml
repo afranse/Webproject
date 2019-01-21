@@ -1,34 +1,13 @@
-﻿@model WEBProject.Models.Product_Photo
-
-@{
+﻿@{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
-
-<h4>Product_Photo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ArticleNumber" class="control-label"></label>
-                <select asp-for="ArticleNumber" class ="form-control" asp-items="ViewBag.ArticleNumber"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhotoID" class="control-label"></label>
-                <select asp-for="PhotoID" class ="form-control" asp-items="ViewBag.PhotoID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+<div class="row" >
+    <h1>Create</h1>
+    <form asp-action="Create" method="post">
+        PhotoID:<input type="number" name="PhotoID" />
+        ArticleNumber:<input type="number" name="ArtNR" />
+        <input type="submit" value="Submit" />
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

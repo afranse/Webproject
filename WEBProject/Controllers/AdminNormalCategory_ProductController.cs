@@ -12,155 +12,79 @@ namespace WEBProject.Controllers
 {
     public class AdminNormalCategory_ProductController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminNormalCategory_ProductController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminNormalCategory_Product
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.NormalCategory_Products.Include(n => n.Normal_Category).Include(n => n.Product);
+            var websiteContext = C.NormalCategory_Products.Include(n => n.Normal_Category).Include(n => n.Product);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminNormalCategory_Product/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var normalCategory_Product = await _context.NormalCategory_Products
-                .Include(n => n.Normal_Category)
-                .Include(n => n.Product)
-                .FirstOrDefaultAsync(m => m.CategoryID == id);
-            if (normalCategory_Product == null)
-            {
-                return NotFound();
-            }
-
-            return View(normalCategory_Product);
-        }
-
-        // GET: AdminNormalCategory_Product/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Normal_Categories, "CategoryID", "Name");
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name");
             return View();
         }
 
-        // POST: AdminNormalCategory_Product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int CategoryID, int ArtNR)
+        {
+            return View(new NormalCategory_Product { CategoryID = CategoryID, ArticleNumber = ArtNR });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryID,ArticleNumber")] NormalCategory_Product normalCategory_Product)
+        public async Task<IActionResult> Create(int? CategoryID, int? ArtNR)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(normalCategory_Product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryID"] = new SelectList(_context.Normal_Categories, "CategoryID", "Name", normalCategory_Product.CategoryID);
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", normalCategory_Product.ArticleNumber);
-            return View(normalCategory_Product);
-        }
-
-        // GET: AdminNormalCategory_Product/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (CategoryID == null || ArtNR == null)
             {
                 return NotFound();
             }
-
-            var normalCategory_Product = await _context.NormalCategory_Products.FindAsync(id);
-            if (normalCategory_Product == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoryID"] = new SelectList(_context.Normal_Categories, "CategoryID", "Name", normalCategory_Product.CategoryID);
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", normalCategory_Product.ArticleNumber);
-            return View(normalCategory_Product);
+            int Category = CategoryID ?? 0;
+            int Art = ArtNR ?? 0;
+            C.NormalCategory_Products.Add(new NormalCategory_Product() { CategoryID = Category, ArticleNumber = Art });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminNormalCategory_Product/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryID,ArticleNumber")] NormalCategory_Product normalCategory_Product)
+        public async Task<IActionResult> Edit(int? CategoryID, int? newCategoryID, int? ArtNR, int? newArtNR)
         {
-            if (id != normalCategory_Product.CategoryID)
+            if (CategoryID == null || newCategoryID == null || ArtNR == null || newArtNR == null)
             {
                 return NotFound();
             }
+            int Category = CategoryID ?? 0;
+            int newCategory = newCategoryID ?? 0;
+            int Art = ArtNR ?? 0;
+            int newArt = newArtNR ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(normalCategory_Product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!NormalCategory_ProductExists(normalCategory_Product.CategoryID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryID"] = new SelectList(_context.Normal_Categories, "CategoryID", "Name", normalCategory_Product.CategoryID);
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", normalCategory_Product.ArticleNumber);
-            return View(normalCategory_Product);
+            NormalCategory_Product Change = await C.NormalCategory_Products.Where(x => x.ArticleNumber == Art).Where(y => y.CategoryID == Category).FirstAsync();
+            C.NormalCategory_Products.Remove(Change);
+            C.NormalCategory_Products.Add(new NormalCategory_Product() { ArticleNumber = newArt, CategoryID = newCategory });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminNormalCategory_Product/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? CategoryID, int? ArtNR)
         {
-            if (id == null)
+            if (CategoryID == null || ArtNR == null)
             {
                 return NotFound();
             }
-
-            var normalCategory_Product = await _context.NormalCategory_Products
-                .Include(n => n.Normal_Category)
-                .Include(n => n.Product)
-                .FirstOrDefaultAsync(m => m.CategoryID == id);
-            if (normalCategory_Product == null)
-            {
-                return NotFound();
-            }
-
-            return View(normalCategory_Product);
+            int Category = CategoryID ?? 0;
+            int Art = ArtNR ?? 0;
+            NormalCategory_Product P = C.NormalCategory_Products.Where(x => x.ArticleNumber == Art).Where(y => y.CategoryID == Category).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminNormalCategory_Product/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var normalCategory_Product = await _context.NormalCategory_Products.FindAsync(id);
-            _context.NormalCategory_Products.Remove(normalCategory_Product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool NormalCategory_ProductExists(int id)
-        {
-            return _context.NormalCategory_Products.Any(e => e.CategoryID == id);
-        }
     }
 }

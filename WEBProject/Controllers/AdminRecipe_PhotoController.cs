@@ -12,155 +12,79 @@ namespace WEBProject.Controllers
 {
     public class AdminRecipe_PhotoController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminRecipe_PhotoController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminRecipe_Photo
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.Recipe_Photos.Include(r => r.Photo).Include(r => r.Recipe);
+            var websiteContext = C.Recipe_Photos.Include(r => r.Photo).Include(r => r.Recipe);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminRecipe_Photo/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var recipe_Photo = await _context.Recipe_Photos
-                .Include(r => r.Photo)
-                .Include(r => r.Recipe)
-                .FirstOrDefaultAsync(m => m.PhotoID == id);
-            if (recipe_Photo == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipe_Photo);
-        }
-
-        // GET: AdminRecipe_Photo/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID");
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID");
             return View();
         }
 
-        // POST: AdminRecipe_Photo/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int PhotoID, int RecipeID)
+        {
+            return View(new Recipe_Photo { PhotoID = PhotoID, RecipeID = RecipeID });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipeID,PhotoID")] Recipe_Photo recipe_Photo)
+        public async Task<IActionResult> Create(int? PhotoID, int? RecipeID)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(recipe_Photo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", recipe_Photo.PhotoID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Photo.RecipeID);
-            return View(recipe_Photo);
-        }
-
-        // GET: AdminRecipe_Photo/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (PhotoID == null || RecipeID == null)
             {
                 return NotFound();
             }
-
-            var recipe_Photo = await _context.Recipe_Photos.FindAsync(id);
-            if (recipe_Photo == null)
-            {
-                return NotFound();
-            }
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", recipe_Photo.PhotoID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Photo.RecipeID);
-            return View(recipe_Photo);
+            int Photo = PhotoID ?? 0;
+            int Art = RecipeID ?? 0;
+            C.Recipe_Photos.Add(new Recipe_Photo() { PhotoID = Photo, RecipeID = Art });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminRecipe_Photo/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeID,PhotoID")] Recipe_Photo recipe_Photo)
+        public async Task<IActionResult> Edit(int? PhotoID, int? newPhotoID, int? RecipeID, int? newRecipeID)
         {
-            if (id != recipe_Photo.PhotoID)
+            if (PhotoID == null || newPhotoID == null || RecipeID == null || newRecipeID == null)
             {
                 return NotFound();
             }
+            int Photo = PhotoID ?? 0;
+            int newPhoto = newPhotoID ?? 0;
+            int Art = RecipeID ?? 0;
+            int newArt = newRecipeID ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(recipe_Photo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Recipe_PhotoExists(recipe_Photo.PhotoID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", recipe_Photo.PhotoID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipes, "RecipeID", "RecipeID", recipe_Photo.RecipeID);
-            return View(recipe_Photo);
+            Recipe_Photo Change = await C.Recipe_Photos.Where(x => x.RecipeID == Art).Where(y => y.PhotoID == Photo).FirstAsync();
+            C.Recipe_Photos.Remove(Change);
+            C.Recipe_Photos.Add(new Recipe_Photo() { RecipeID = newArt, PhotoID = newPhoto });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminRecipe_Photo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? PhotoID, int? RecipeID)
         {
-            if (id == null)
+            if (PhotoID == null || RecipeID == null)
             {
                 return NotFound();
             }
-
-            var recipe_Photo = await _context.Recipe_Photos
-                .Include(r => r.Photo)
-                .Include(r => r.Recipe)
-                .FirstOrDefaultAsync(m => m.PhotoID == id);
-            if (recipe_Photo == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipe_Photo);
-        }
-
-        // POST: AdminRecipe_Photo/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var recipe_Photo = await _context.Recipe_Photos.FindAsync(id);
-            _context.Recipe_Photos.Remove(recipe_Photo);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Recipe_PhotoExists(int id)
-        {
-            return _context.Recipe_Photos.Any(e => e.PhotoID == id);
+            int Photo = PhotoID ?? 0;
+            int Art = RecipeID ?? 0;
+            Recipe_Photo P = C.Recipe_Photos.Where(x => x.RecipeID == Art).Where(y => y.PhotoID == Photo).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
+
 }

@@ -12,155 +12,78 @@ namespace WEBProject.Controllers
 {
     public class AdminPhoto_NewsController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminPhoto_NewsController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminPhoto_News
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.Photo_News.Include(p => p.News).Include(p => p.Photo);
+            var websiteContext = C.Photo_News.Include(p => p.News).Include(p => p.Photo);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminPhoto_News/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var photo_News = await _context.Photo_News
-                .Include(p => p.News)
-                .Include(p => p.Photo)
-                .FirstOrDefaultAsync(m => m.NewsID == id);
-            if (photo_News == null)
-            {
-                return NotFound();
-            }
-
-            return View(photo_News);
-        }
-
-        // GET: AdminPhoto_News/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title");
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID");
             return View();
         }
 
-        // POST: AdminPhoto_News/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int PhotoID, int NewsID)
+        {
+            return View(new Photo_News() { PhotoID = PhotoID, NewsID = NewsID });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NewsID,PhotoID")] Photo_News photo_News)
+        public async Task<IActionResult> Create(int? PhotoID, int? NewsID)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(photo_News);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", photo_News.NewsID);
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", photo_News.PhotoID);
-            return View(photo_News);
-        }
-
-        // GET: AdminPhoto_News/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (PhotoID == null || NewsID == null)
             {
                 return NotFound();
             }
-
-            var photo_News = await _context.Photo_News.FindAsync(id);
-            if (photo_News == null)
-            {
-                return NotFound();
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", photo_News.NewsID);
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", photo_News.PhotoID);
-            return View(photo_News);
+            int Photo = PhotoID ?? 0;
+            int News = NewsID ?? 0;
+            C.Photo_News.Add(new Photo_News() { PhotoID = Photo, NewsID = News });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminPhoto_News/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NewsID,PhotoID")] Photo_News photo_News)
+        public async Task<IActionResult> Edit(int? PhotoID, int? newPhotoID, int? NewsID, int? newNewsID)
         {
-            if (id != photo_News.NewsID)
+            if (PhotoID == null || newPhotoID == null || NewsID == null || newNewsID == null)
             {
                 return NotFound();
             }
+            int Photo = PhotoID ?? 0;
+            int newPhoto = newPhotoID ?? 0;
+            int News = NewsID ?? 0;
+            int newNews = newNewsID ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(photo_News);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Photo_NewsExists(photo_News.NewsID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", photo_News.NewsID);
-            ViewData["PhotoID"] = new SelectList(_context.Photos, "PhotoID", "PhotoID", photo_News.PhotoID);
-            return View(photo_News);
+            Photo_News Change = await C.Photo_News.Where(x => x.NewsID == News).Where(y => y.PhotoID == Photo).FirstAsync();
+            C.Photo_News.Remove(Change);
+            C.Photo_News.Add(new Photo_News() { NewsID = newNews, PhotoID = newPhoto });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminPhoto_News/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? PhotoID, int? NewsID)
         {
-            if (id == null)
+            if (PhotoID == null || NewsID == null)
             {
                 return NotFound();
             }
-
-            var photo_News = await _context.Photo_News
-                .Include(p => p.News)
-                .Include(p => p.Photo)
-                .FirstOrDefaultAsync(m => m.NewsID == id);
-            if (photo_News == null)
-            {
-                return NotFound();
-            }
-
-            return View(photo_News);
-        }
-
-        // POST: AdminPhoto_News/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var photo_News = await _context.Photo_News.FindAsync(id);
-            _context.Photo_News.Remove(photo_News);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Photo_NewsExists(int id)
-        {
-            return _context.Photo_News.Any(e => e.NewsID == id);
+            int Photo = PhotoID ?? 0;
+            int News = NewsID ?? 0;
+            Photo_News P = C.Photo_News.Where(x => x.NewsID == News).Where(y => y.PhotoID == Photo).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

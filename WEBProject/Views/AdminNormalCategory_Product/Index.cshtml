@@ -1,42 +1,29 @@
-﻿@model IEnumerable<WEBProject.Models.NormalCategory_Product>
+﻿@model List<NormalCategory_Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Index</h1>
+<a asp-action="Create">Create</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Normal_Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Normal_Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@foreach (NormalCategory_Product P in Model)
+{
+    <div class="row Admin_Flex">
+        <form asp-action="Edit" method="get">
+            <input type="hidden" name="CategoryID" value="@P.CategoryID" />
+            <input type="hidden" name="ArtNr" value="@P.ArticleNumber" />
+            <input type="submit" value="Edit" />
+        </form>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="CategoryID" value="@P.CategoryID" />
+            <input type="hidden" name="ArtNR" value="@P.ArticleNumber" />
+            <input type="submit" value="Delete" />
+        </form>
+        <div>
+            | CategoryID:@P.CategoryID | ArticleNumber:@P.ArticleNumber
+        </div>
+    </div>
+
 }
-    </tbody>
-</table>

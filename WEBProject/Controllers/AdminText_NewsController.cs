@@ -12,155 +12,78 @@ namespace WEBProject.Controllers
 {
     public class AdminText_NewsController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminText_NewsController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminText_News
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.Text_News.Include(t => t.News).Include(t => t.Text);
+            var websiteContext = C.Text_News.Include(t => t.News).Include(t => t.Text);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminText_News/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var text_News = await _context.Text_News
-                .Include(t => t.News)
-                .Include(t => t.Text)
-                .FirstOrDefaultAsync(m => m.NewsID == id);
-            if (text_News == null)
-            {
-                return NotFound();
-            }
-
-            return View(text_News);
-        }
-
-        // GET: AdminText_News/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title");
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content");
             return View();
         }
 
-        // POST: AdminText_News/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int TextID, int NewsID)
+        {
+            return View(new Text_News { TextID = TextID, NewsID = NewsID });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NewsID,TextID")] Text_News text_News)
+        public async Task<IActionResult> Create(int? TextID, int? NewsID)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(text_News);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", text_News.NewsID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", text_News.TextID);
-            return View(text_News);
-        }
-
-        // GET: AdminText_News/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (TextID == null || NewsID == null)
             {
                 return NotFound();
             }
-
-            var text_News = await _context.Text_News.FindAsync(id);
-            if (text_News == null)
-            {
-                return NotFound();
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", text_News.NewsID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", text_News.TextID);
-            return View(text_News);
+            int Text = TextID ?? 0;
+            int News = NewsID ?? 0;
+            C.Text_News.Add(new Text_News() { TextID = Text, NewsID = News });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminText_News/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NewsID,TextID")] Text_News text_News)
+        public async Task<IActionResult> Edit(int? TextID, int? newTextID, int? NewsID, int? newNewsID)
         {
-            if (id != text_News.NewsID)
+            if (TextID == null || newTextID == null || NewsID == null || newNewsID == null)
             {
                 return NotFound();
             }
+            int Text = TextID ?? 0;
+            int newText = newTextID ?? 0;
+            int News = NewsID ?? 0;
+            int newNews = newNewsID ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(text_News);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Text_NewsExists(text_News.NewsID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["NewsID"] = new SelectList(_context.News_Items, "NewsID", "Title", text_News.NewsID);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", text_News.TextID);
-            return View(text_News);
+            Text_News Change = await C.Text_News.Where(x => x.NewsID == News).Where(y => y.TextID == Text).FirstAsync();
+            C.Text_News.Remove(Change);
+            C.Text_News.Add(new Text_News() { NewsID = newNews, TextID = newText });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminText_News/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? NewsID, int? TextID)
         {
-            if (id == null)
+            if (NewsID == null || TextID == null)
             {
                 return NotFound();
             }
-
-            var text_News = await _context.Text_News
-                .Include(t => t.News)
-                .Include(t => t.Text)
-                .FirstOrDefaultAsync(m => m.NewsID == id);
-            if (text_News == null)
-            {
-                return NotFound();
-            }
-
-            return View(text_News);
-        }
-
-        // POST: AdminText_News/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var text_News = await _context.Text_News.FindAsync(id);
-            _context.Text_News.Remove(text_News);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Text_NewsExists(int id)
-        {
-            return _context.Text_News.Any(e => e.NewsID == id);
+            int News = NewsID ?? 0;
+            int Text = TextID ?? 0;
+            Text_News P = C.Text_News.Where(x => x.TextID == Text).Where(y => y.NewsID == News).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }
