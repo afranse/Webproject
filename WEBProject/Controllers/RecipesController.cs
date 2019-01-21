@@ -53,6 +53,7 @@ namespace WEBProject.Controllers
             return View(RecipeView);
         }
 
+        //Method to determine a specific type of recipe. 
         public IActionResult SpecificRecipe(int ID)
         {
             ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[58].PhotoPath;
@@ -64,6 +65,7 @@ namespace WEBProject.Controllers
             return View(recipe);
         }
 
+        //Get the right recipes from a list. 
         public List<Models.Recipe> GetRecipes(int BranchID)
         {
             var recipes = (from r in _context.Recipes
@@ -86,6 +88,8 @@ namespace WEBProject.Controllers
         {
             return View();
         }
+
+        //Get types of the branches 
         public List<Models.Type_Category> getTypes(string[] typestring)
         {
             List<Models.Type_Category> selectedTypes = new List<Models.Type_Category>();
