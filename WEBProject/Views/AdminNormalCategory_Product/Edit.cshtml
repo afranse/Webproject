@@ -1,28 +1,16 @@
-﻿@model WEBProject.Models.NormalCategory_Product
-
+﻿@model NormalCategory_Product
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
-
-<h4>NormalCategory_Product</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CategoryID" />
-            <input type="hidden" asp-for="ArticleNumber" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+    <h1>Edit</h1>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" name="CategoryID" value="@Model.CategoryID" />
+        <input type="hidden" name="ArtNR" value="@Model.ArticleNumber" />
+        New CategoryID:<input type="number" name="newCategoryID" />
+        New ArticleNumber:<input type="number" name="newArtNR" />
+        <input type="submit" value="Submit" />
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

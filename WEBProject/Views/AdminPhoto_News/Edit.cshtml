@@ -1,28 +1,16 @@
-﻿@model WEBProject.Models.Photo_News
-
+﻿@model Photo_News
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
-
-<h4>Photo_News</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NewsID" />
-            <input type="hidden" asp-for="PhotoID" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+    <h1>Edit</h1>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" name="PhotoID" value="@Model.PhotoID" />
+        <input type="hidden" name="NewsID" value="@Model.NewsID" />
+        New PhotoID:<input type="number" name="newPhotoID" />
+        New NewsID:<input type="number" name="newNewsID" />
+        <input type="submit" value="Submit" />
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

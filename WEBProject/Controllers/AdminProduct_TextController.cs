@@ -12,155 +12,78 @@ namespace WEBProject.Controllers
 {
     public class AdminProduct_TextController : Controller
     {
-        private readonly WebsiteContext _context;
+        private readonly WebsiteContext C;
 
         public AdminProduct_TextController(WebsiteContext context)
         {
-            _context = context;
+            C = context;
         }
 
-        // GET: AdminProduct_Text
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var websiteContext = _context.Product_Texts.Include(p => p.Product).Include(p => p.Text);
+            var websiteContext = C.Product_Texts.Include(p => p.Product).Include(p => p.Text);
             return View(await websiteContext.ToListAsync());
         }
 
-        // GET: AdminProduct_Text/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product_Text = await _context.Product_Texts
-                .Include(p => p.Product)
-                .Include(p => p.Text)
-                .FirstOrDefaultAsync(m => m.TextID == id);
-            if (product_Text == null)
-            {
-                return NotFound();
-            }
-
-            return View(product_Text);
-        }
-
-        // GET: AdminProduct_Text/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name");
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content");
             return View();
         }
 
-        // POST: AdminProduct_Text/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult Edit(int ArtNR, int TextID)
+        {
+            return View(new Product_Text() { ArticleNumber = ArtNR, TextID = TextID });
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArticleNumber,TextID")] Product_Text product_Text)
+        public async Task<IActionResult> Create(int? TextID, int? ArtNR)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product_Text);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", product_Text.ArticleNumber);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", product_Text.TextID);
-            return View(product_Text);
-        }
-
-        // GET: AdminProduct_Text/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if (TextID == null || ArtNR == null)
             {
                 return NotFound();
             }
-
-            var product_Text = await _context.Product_Texts.FindAsync(id);
-            if (product_Text == null)
-            {
-                return NotFound();
-            }
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", product_Text.ArticleNumber);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", product_Text.TextID);
-            return View(product_Text);
+            int Text = TextID ?? 0;
+            int Art = ArtNR ?? 0;
+            C.Product_Texts.Add(new Product_Text() { TextID = Text, ArticleNumber = Art });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // POST: AdminProduct_Text/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArticleNumber,TextID")] Product_Text product_Text)
+        public async Task<IActionResult> Edit(int? TextID, int? newTextID, int? ArtNR, int? newArtNR)
         {
-            if (id != product_Text.TextID)
+            if (TextID == null || newTextID == null || ArtNR == null || newArtNR == null)
             {
                 return NotFound();
             }
+            int Text = TextID ?? 0;
+            int newText = newTextID ?? 0;
+            int Art = ArtNR ?? 0;
+            int newArt = newArtNR ?? 0;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(product_Text);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Product_TextExists(product_Text.TextID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ArticleNumber"] = new SelectList(_context.Products, "ArticleNumber", "Name", product_Text.ArticleNumber);
-            ViewData["TextID"] = new SelectList(_context.Text, "TextID", "Content", product_Text.TextID);
-            return View(product_Text);
+            Product_Text Change = await C.Product_Texts.Where(x => x.ArticleNumber == Art).Where(y => y.TextID == Text).FirstAsync();
+            C.Product_Texts.Remove(Change);
+            C.Product_Texts.Add(new Product_Text() { ArticleNumber = newArt, TextID = newText });
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        // GET: AdminProduct_Text/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? TextID, int? ArtNR)
         {
-            if (id == null)
+            if (TextID == null || ArtNR == null)
             {
                 return NotFound();
             }
-
-            var product_Text = await _context.Product_Texts
-                .Include(p => p.Product)
-                .Include(p => p.Text)
-                .FirstOrDefaultAsync(m => m.TextID == id);
-            if (product_Text == null)
-            {
-                return NotFound();
-            }
-
-            return View(product_Text);
-        }
-
-        // POST: AdminProduct_Text/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product_Text = await _context.Product_Texts.FindAsync(id);
-            _context.Product_Texts.Remove(product_Text);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Product_TextExists(int id)
-        {
-            return _context.Product_Texts.Any(e => e.TextID == id);
+            int Text = TextID ?? 0;
+            int Art = ArtNR ?? 0;
+            Product_Text P = C.Product_Texts.Where(x => x.ArticleNumber == Art).Where(y => y.TextID == Text).First();
+            C.Remove(P);
+            await C.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

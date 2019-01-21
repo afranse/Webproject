@@ -1,28 +1,16 @@
-﻿@model WEBProject.Models.Text_News
-
+﻿@model Text_News
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
-
-<h4>Text_News</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NewsID" />
-            <input type="hidden" asp-for="TextID" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+    <h1>Edit</h1>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" name="TextID" value="@Model.TextID" />
+        <input type="hidden" name="NewsID" value="@Model.NewsID" />
+        New TextID:<input type="number" name="newTextID" />
+        New NewsID:<input type="number" name="newNewsID" />
+        <input type="submit" value="Submit" />
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

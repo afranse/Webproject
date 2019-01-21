@@ -1,54 +1,29 @@
-﻿@model IEnumerable<WEBProject.Models.TypeCategory_Recipe>
+﻿@model List<TypeCategory_Recipe>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Index</h1>
+<a asp-action="Create">Create</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Type_Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Percent)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type_Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Recipe.RecipeID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Percent)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@foreach (TypeCategory_Recipe P in Model)
+{
+    <div class="row Admin_Flex">
+        <form asp-action="Edit" method="get">
+            <input type="hidden" name="TypeID" value="@P.TypeID" />
+            <input type="hidden" name="RecipeID" value="@P.RecipeID" />
+            <input type="submit" value="Edit" />
+        </form>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="TypeID" value="@P.TypeID" />
+            <input type="hidden" name="RecipeID" value="@P.RecipeID" />
+            <input type="submit" value="Delete" />
+        </form>
+        <div>
+            | RecipeID:@P.RecipeID | TypeID:@P.TypeID
+        </div>
+    </div>
+
 }
-    </tbody>
-</table>
