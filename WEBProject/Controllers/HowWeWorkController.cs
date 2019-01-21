@@ -38,6 +38,7 @@ namespace WEBProject.Controllers
             }
             ViewBag.contact = contact;
             ViewBag.articles = Articles();
+            ViewBag.CustomVsStandardArt = CustomVsStandardArt();
             return View(HowWeWorkView);
         }
 
@@ -54,6 +55,11 @@ namespace WEBProject.Controllers
             return articles;
         }
 
+        public News_Item CustomVsStandardArt()
+        {
+            News_Item CustomVsStandardArt = _context.News_Items.Where(p => p.News_Category.Category == "Custom vs standard").FirstOrDefault();
+            return CustomVsStandardArt;
+        }
 
         public IActionResult Foutmelding(string message)
         {
