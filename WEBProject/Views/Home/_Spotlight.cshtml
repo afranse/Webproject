@@ -40,18 +40,18 @@
                 {
                     if (x == 0)
                     {
-                        @{
+                        
                             ViewBag.SpotlightPath = productPaths[x];
-                        }
+                        
                         <div class="carousel-item active">
                             <partial name="_Catalog2" model="ViewBag.Spotlight[x]" />
                         </div>
                     }
                     else
                     {
-                        @{
+                        
                             ViewBag.SpotlightPath = productPaths[x];
-                        }
+                        
                         <div class="carousel-item">
                             <partial name="_Catalog2" model="ViewBag.Spotlight[x]" />
                         </div>

@@ -69,7 +69,10 @@ namespace WEBProject.Controllers
             List<Branch_Category> Branches = _context.Branch_Categories.ToList();
             ViewBag.Branches = Branches;
 
-            List<Product> products = _context.Products.Take(8).ToList();
+
+            List<Product> products = _context.Products.Take(9).ToList();
+            products.RemoveAt(0);
+            
             ViewBag.Spotlight = products;
 
             List<string> productPaths = new List<string>();
