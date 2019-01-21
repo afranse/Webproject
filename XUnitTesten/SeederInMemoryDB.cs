@@ -113,7 +113,7 @@ namespace XUnitTesten
             TypeCategory_Recipe ChickenRecipe2 = new TypeCategory_Recipe
             {
                 Type_Category = ChickenEgg,
-                Recipe = Spinach,
+                Recipe = ChickenNoodles,
                 Percent = 80,
                 Weight = 2.56
             };
