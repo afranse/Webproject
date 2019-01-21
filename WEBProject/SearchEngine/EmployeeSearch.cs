@@ -62,7 +62,7 @@ namespace WEBProject.SearchEngine
 
         public override string GetRedirectURL()
         {
-            return null;
+            return "/contact/SpecificContact/" + E.Employee_ProfileID;
         }
     }
 }

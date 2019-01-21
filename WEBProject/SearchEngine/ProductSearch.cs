@@ -87,7 +87,7 @@ namespace WEBProject.SearchEngine
 
         public override string GetRedirectURL()
         {
-            return null;
+            return "/Products/SpecificProduct/" + P.ArticleNumber;
         }
     }
 }

@@ -77,7 +77,7 @@ namespace WEBProject.SearchEngine
 
         public override string GetRedirectURL()
         {
-            return null;
+            return "/Recipes/SpecificRecipe/" + R.RecipeID;
         }
     }
 }

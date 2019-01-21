@@ -70,7 +70,7 @@ namespace WEBProject.SearchEngine
 
         public override string GetRedirectURL()
         {
-            return "/SpecificNewsItem/?=" + N.NewsID;
+            return "/SpecificNewsItem/" + N.NewsID;
         }
     }
 }
