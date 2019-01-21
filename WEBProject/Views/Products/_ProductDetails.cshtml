@@ -33,21 +33,24 @@
                 <div class="row">
                     <h2> Product Details </h2>
                 </div>
-                <div class="row" id="productRow">
-                    <p> @Model.Details.ElementAt(0).ProductDetails </p>
-                </div>
-                <div class="row">
-                    <p> @Model.Details.ElementAt(1).ProductDetails </p>
-                </div>
-                <div class="row" id="productRow">
-                    <p> @Model.Details.ElementAt(2).ProductDetails </p>
-                </div>
-                <div class="row">
-                    <p> @Model.Details.ElementAt(3).ProductDetails </p>
-                </div>
-                <div class="row" id="productRow">
-                    <p>@Model.Details.ElementAt(4).ProductDetails </p>
-                </div>
+                @{bool b = true; }
+                @foreach (Product_Details p in Model.Details)
+                {
+                    if (b)
+                    {
+                        b = false;
+                    <div class="row" id="productRow">
+                        <p> @p.ProductDetails</p>
+                    </div>
+                    }
+                    else
+                    {
+                        b = true;
+                    <div class="row">
+                        <p> @p.ProductDetails</p>
+                    </div>
+                    }
+                }
             </div>
         </div>
         <div class="col-md-2">

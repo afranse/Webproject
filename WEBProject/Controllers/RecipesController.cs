@@ -16,7 +16,7 @@ namespace WEBProject.Controllers
         public RecipesController(WebsiteContext context)
         {
             _context = context;
-            new Seeder(_context);
+            //new Seeder(_context);
         }
 
         public IActionResult Index(int BranchID, string[] typestring)
@@ -26,20 +26,21 @@ namespace WEBProject.Controllers
             PageContent RecipeText = new PageContent(
                 new int[] //Photo
                 {
-                1
+                    2
                 },
 
                 new int[]
                 {
-                    1, 2
+                    2, 3
                 },
 
                 _context);
 
             RecipeView.addPage(RecipeText);
+
             ViewBag.Contact = _context.Employee_Profiles.FirstOrDefault();
             BranchID++;
-            List<Models.Type_Category> selectedType = getTypes(typestring);
+            List<Models.Type_Category> selectedType = getTypes(typestring); //
             ViewBag.SelectedTypes = selectedType;
             if (selectedType.Count() == 0)
             {
@@ -84,14 +85,24 @@ namespace WEBProject.Controllers
         {
             return View();
         }
-        private List<Models.Type_Category> getTypes(string[] typestring)
+        public List<Models.Type_Category> getTypes(string[] typestring)
         {
             List<Models.Type_Category> selectedTypes = new List<Models.Type_Category>();
             foreach (string s in typestring)
             {
-                int i = 0;
-                int.TryParse(s.Substring(2), out i);
-                selectedTypes.Add(_context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault());
+                int i = -1;
+                if (s.Count() > 0)
+                {
+                    int.TryParse(s.Substring(2), out i);
+                    if (i != -1)
+                    {
+                        var result = _context.Type_Categories.Where(x => x.TypeID.Equals(i)).FirstOrDefault();
+                        if (result != null)
+                        {
+                            selectedTypes.Add(result);
+                        }
+                    }
+                }
             }
             return selectedTypes;
         }

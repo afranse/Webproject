@@ -1,12 +1,12 @@
 ﻿@model Product
 @{string s = "../Products/SpecificProduct/" + Model.ArticleNumber;}
-@{string p = "/images/product.png";}
+@{string p = Model.ProductPhoto[0].Photo.PhotoPath;}
 <div class="thumbnail">
     <a href="@s">
         <img src='@p' alt="product" id="responsive" />
         <div class="spotlight_caption">
             <p id="spotlight_title"> @Model.Name </p>
-            <p id="subtitle"> @Model.Description </p>
+            <p id="subtitle"> @Model.NormalCategory[0].Normal_Category.Name </p>
         </div>
     </a>
 </div>

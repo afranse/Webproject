@@ -27,12 +27,25 @@ namespace WEBProject.Models
             //this.Texts = _context.Text.Where(i => textList.Contains(i.TextID)).Select(s =>s.Content).ToList();
             foreach(int i in photoList)
             {
-                this.Photos.Add(_context.Photos.ToList()[i-1].PhotoPath);
+                if (context.Photos.Count() >= i)
+                {
+                    this.Photos.Add(_context.Photos.ToList()[i - 1].PhotoPath);
+                }
+                else
+                {
+                    this.Photos.Add("Photo not found");
+                }
             }
             foreach (int i in textList)
             {
-
-                this.Texts.Add(_context.Text.ToList()[i - 1].Content);
+                if (context.Text.Count() >= i)
+                {
+                    this.Texts.Add(_context.Text.ToList()[i - 1].Content);
+                }
+                else
+                {
+                    this.Texts.Add("Text not found");
+                }
             }
         }
 

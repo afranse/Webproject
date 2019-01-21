@@ -21,6 +21,8 @@ namespace WEBProject.Controllers
         }
         public IActionResult Index(int BranchID, string[] typestring, string[] catstring)
         {
+            Models.Employee_Profile Contact = _context.Employee_Profiles.FirstOrDefault();
+            ViewBag.Contact = Contact;
             ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[58].PhotoPath;
             BranchID++;
             List<Models.Type_Category> selectedTypes = getTypes(typestring);
