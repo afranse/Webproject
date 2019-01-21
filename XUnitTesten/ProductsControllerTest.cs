@@ -25,17 +25,6 @@ namespace XUnitTesten
             c = new ProductsController(context);
         }
 
-        [Fact]
-        public void TestIndexInProductsController()
-        {
-            string[] array1 = new string[0];
-            string[] array2 = new string[0];
-            var result = c.Index(0, array1, array2);
-
-            //result moet een view zijn
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Null(viewResult.ViewName);
-        }
 
         [Fact]
         public void TestGetSelectedTypes()

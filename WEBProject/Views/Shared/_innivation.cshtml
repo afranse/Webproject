@@ -1,7 +1,7 @@
 ﻿
     <div class="container-fluid workingcontainer">
         <div class="row centerrow">
-            <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow"><img src='@Model.PhotoNews.ElementAt(0).Photo' id="working"></div>
+            <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow"><img src='@Model.PhotoNews.ElementAt(0).Photo.PhotoPath' id="working"></div>
             <div class="col-md-6 col-6 col-sm-6 col-xs-6 crow" id="flex">
                 <div class="row innovationrows" style="size: 1" id="Team">@Model.News_Category.Category</div>
                 <div class="row innovationrows"><h1 id="tekstcolor">@Model.Title</h1></div>
