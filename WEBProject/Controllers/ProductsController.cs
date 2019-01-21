@@ -44,7 +44,20 @@ namespace WEBProject.Controllers
             }
             fillBags(BranchID, selectedTypes, selectedCategories);
 
-            return View();
+            PageContent ProductView = new PageContent(_context);
+            PageContent SubHeader = new PageContent(
+            new int[] //photo
+            {
+                1
+            },
+            new int[] //text
+             {
+                30,29,31,14
+             },
+            _context);
+            ProductView.addPage(SubHeader);
+
+            return View(ProductView);
         }
 
         //convert the string array to Type_Category List
@@ -180,7 +193,7 @@ namespace WEBProject.Controllers
 
             new int[] //text
              {
-                10,11,12,13,14
+                10,11,12,13,14,32
              },
             _context);
             SpecificProductView.addPage(LearnMore);

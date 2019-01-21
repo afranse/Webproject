@@ -26,7 +26,7 @@ namespace WEBProject.Controllers
 
             new int[] //text
              {
-                10,11,12,13,14
+                10,11,12,13,14,33
              },
             _context);
             HowWeWorkView.addPage(LearnMore);
