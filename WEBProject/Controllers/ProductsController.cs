@@ -32,7 +32,8 @@ namespace WEBProject.Controllers
             ViewBag.SelectedTypes = selectedTypes;
             ViewBag.SelectedCategories = selectedCategories;
 
-            if (selectedTypes.Count() == 0)
+            //when nothing is selected, select everything
+            if (selectedTypes.Count() == 0)     
             {
                 selectedTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID)).ToList();
             }
@@ -44,6 +45,7 @@ namespace WEBProject.Controllers
             }
             fillBags(BranchID, selectedTypes, selectedCategories);
 
+            //Data to send to the Pages
             PageContent ProductView = new PageContent(_context);
             PageContent SubHeader = new PageContent(
             new int[] //photo
@@ -132,7 +134,7 @@ namespace WEBProject.Controllers
                 return new List<Models.Branch_Category>();
             }
         }
-
+        //get all categories based on the selected types
         public List<Models.Normal_Category> getAllCategorie(List<Models.Type_Category> selectedTypes)
         {
             var AllCats = (from C in _context.Normal_Categories
@@ -148,6 +150,7 @@ namespace WEBProject.Controllers
             }
         }
 
+        //get all Types based on the selected Branch
         public List<Models.Type_Category> getAllTypes(int BranchID)
         {
             var AllTypes = _context.Type_Categories.Where(s => s.BranchCategory.BranchID.Equals(BranchID));
@@ -172,6 +175,7 @@ namespace WEBProject.Controllers
         }
 
 
+        //When clicked on a specific product send to this page.
         public IActionResult SpecificProduct(int ID)
         {
             Product product= GetSpecificProduct(ID);
@@ -197,6 +201,7 @@ namespace WEBProject.Controllers
             _context);
             SpecificProductView.addPage(LearnMore);
 
+            //filling all data used on the specific product page
             ViewBag.relatedProducts = RelatedProduct(product);
             ViewBag.inspiratie = InspirationRecipe();
 
@@ -232,7 +237,7 @@ namespace WEBProject.Controllers
             return relatedProducts;
         }
 
-
+        //gets two random recipes for inspiration
         public List<Recipe> InspirationRecipe()
         {
             List<Recipe> recipes = new List<Recipe>();
@@ -262,7 +267,7 @@ namespace WEBProject.Controllers
         }
 
      
-    
+        // Gets the product which are in the right Branch, Category and type.
         public List<Models.Product> GetProducts(int BranchID, List<Models.Type_Category> selectedTypes, List<Models.Normal_Category> selectedCategories)
         {
             var producten = (from p in _context.Products
@@ -286,6 +291,7 @@ namespace WEBProject.Controllers
             }
         }
 
+        //  Standard Seeding methods
         //---------------------------------------------------------------------------------------------------------------------------------------------------------
         public IActionResult Filter(int id)
         {
