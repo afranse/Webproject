@@ -1,0 +1,36 @@
+﻿.sustain {
+    width: 90%; 
+    height: 50%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+#flex1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+#tekst {
+    color: #848484;
+}
+
+
+.shiba {
+    width: 320px;
+    height: 300px;
+}
+
+.shiba {
+    width: 320px;
+    height: 300px;
+}
