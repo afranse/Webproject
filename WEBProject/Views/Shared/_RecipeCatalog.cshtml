@@ -1,21 +1,19 @@
 ﻿@model Recipe
 @{
-    string image = "../images/sausage.jpg";
+    string image = Model.RecipePhotos[0].Photo.PhotoPath;
     string link = "../Recipes/SpecificRecipe/" + Model.RecipeID;
     string text_block = "Recipe";
-    string title = "African Farmer Sausages";
-    string subtitle = "Meat";
 }
 
 <div class="thumbnail">
     <a href="@link">
-        <img src="@image" alt="Allspice ground" id="responsive">
+        <img src='@image' alt="Allspice ground" id="responsive">
         <div class="text-block">
             <p>@text_block</p>
         </div>
         <div class="spotlight_caption">
-            <p id="spotlight_title"> @title</p>
-            <p id="subtitle"> @subtitle </p>
+            <p id="spotlight_title"> @Model.Name</p>
+            <p id="subtitle"> @Model.TypeCategories[0].Type_Category.Name </p>
         </div>
     </a>
 </div>

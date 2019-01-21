@@ -55,6 +55,7 @@ namespace WEBProject.Controllers
 
         public IActionResult SpecificRecipe(int ID)
         {
+            ViewData["HeaderBackgroundImg"] = _context.Photos.ToList()[58].PhotoPath;
             Recipe recipe = _context.Recipes.Where(r => r.RecipeID == ID).FirstOrDefault();
             if (recipe == null)
             {
