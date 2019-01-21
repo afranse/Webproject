@@ -72,6 +72,14 @@ namespace WEBProject.Controllers
             List<Product> products = _context.Products.Take(8).ToList();
             ViewBag.Spotlight = products;
 
+            List<string> productPaths = new List<string>();
+            foreach (Product p in products)
+            {
+                productPaths.Add(_context.Product_Photos.Where(o => o.ArticleNumber == p.ArticleNumber).FirstOrDefault().Photo.PhotoPath);
+            }
+            ViewBag.SpotlightPaths = productPaths;
+
+
             return View(HomeView);
         }
 

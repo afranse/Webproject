@@ -1,10 +1,11 @@
 ﻿@model Product
 @{string s = "../Products/SpecificProduct/" + Model.ArticleNumber;}
-   
+
+@ViewBag.SpotlightPath
 
 <div class="thumbnail">
     <a href="@s">
-        <img src='@Model.ProductPhoto.ElementAt(0).Photo.PhotoNews' alt="Allspice ground" id="responsive">
+        <img src='@ViewBag.SpotlightPath' alt="Allspice ground" id="responsive">
         <div class="text-block">
             <p>Product</p>
         </div>
