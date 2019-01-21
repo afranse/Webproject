@@ -174,14 +174,13 @@ namespace WEBProject.Controllers
 
         public IActionResult SpecificProduct(int ID)
         {
-            //get a specific product
-            Product Product = _context.Products.Where(k => k.ArticleNumber == ID).FirstOrDefault();
-            if (Product == null)
+            Product product= GetSpecificProduct(ID);
+            if (product == null)
             {
                 return RedirectToAction("Foutmelding", new { message = "Product is not found" });
             }
-            //get a specific contact
-            Employee_Profile contact = _context.Employee_Profiles.FirstOrDefault();
+
+            Employee_Profile contact = GetContact();
             if (contact == null)
             {
                 return RedirectToAction("Foutmelding", new { message = "Contact not found" });
@@ -198,13 +197,25 @@ namespace WEBProject.Controllers
             _context);
             SpecificProductView.addPage(LearnMore);
 
-            ViewBag.relatedProducts = RelatedProduct(Product);
+            ViewBag.relatedProducts = RelatedProduct(product);
             ViewBag.inspiratie = InspirationRecipe();
 
             ViewBag.ShowHeaderImg = false;
-            ViewBag.Product = Product;
+            ViewBag.Product = product;
             ViewBag.contact = contact;
             return View(SpecificProductView);
+        }
+
+        public Product GetSpecificProduct(int ID)
+        {
+            Product product = _context.Products.Where(k => k.ArticleNumber == ID).FirstOrDefault();
+            return product;
+        }
+
+        public Employee_Profile GetContact()
+        {
+            Employee_Profile contact = _context.Employee_Profiles.FirstOrDefault();
+            return contact;
         }
 
         public List<Models.Product> RelatedProduct(Product product)
