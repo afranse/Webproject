@@ -8,22 +8,18 @@
     <div class="row align-items-center justify-content-center">
         <h2>@Model.Texts[0]</h2>
     </div>
-    @{
-        List<int> lijst = new List<int>
-{
-1,2,3,4,5,6,7,8
-};
-    }
+
+    @{List<Product> products = ViewBag.Spotlight as List<Product>; }
 
     <div class="spotlight_bigscreen">
 
-        @for (int x = 0; x < lijst.Count(); x = x + 4)
+        @for (int x = 0; x < products.Count() ; x = x + 4)
         {
             <div class="row">
                 @for (int i = 0; i < 4; i++)
                 {
                     <div class="col-md-3">
-                        <partial name="_Catalog2" />
+                        <partial name="_Catalog2" model="ViewBag.Spotlight[x]"/>
                     </div>
                 };
 
@@ -36,15 +32,21 @@
 
             <!-- The slideshow -->
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <partial name="_Catalog2" />
-                </div>
-                <div class="carousel-item">
-                    <partial name="_Catalog2" />
-                </div>
-                <div class="carousel-item">
-                    <partial name="_Catalog2" />
-                </div>
+                @for (int x = 0; x < products.Count(); x++)
+                {
+                    if (x == 0)
+                    {
+                        <div class="carousel-item active">
+                            <partial name="_Catalog2" model="ViewBag.Spotlight[x]" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <partial name="_Catalog2" model="ViewBag.Spotlight[x]" />
+                        </div>
+                    }
+                }
             </div>
 
             <!-- Left and right controls -->

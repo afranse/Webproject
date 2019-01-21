@@ -36,6 +36,10 @@
   -webkit-transform: rotate(45deg);
 }
 
+.themes_catalg{
+
+}
+
 
 @media only screen and (max-device-width: 480px){
     .image-block{

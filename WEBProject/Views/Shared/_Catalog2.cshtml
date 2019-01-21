@@ -1,21 +1,16 @@
-﻿
-@{
-    string image = "~/images/product.png";
-    string link = "../Products/Index";
-    string text_block = "product";
-    string title = "Allspice ground";
-    string subtitle = "Spices & Herbs";
-}
+﻿@model Product
+@{string s = "../Products/SpecificProduct/" + Model.ArticleNumber;}
+   
 
 <div class="thumbnail">
-    <a href="@link">
-        <img src="~/images/recipes.jpg" alt="Allspice ground" id="responsive">
+    <a href="@s">
+        <img src='@Model.ProductPhoto.ElementAt(0).Photo.PhotoNews' alt="Allspice ground" id="responsive">
         <div class="text-block">
-            <p>@text_block</p>
+            <p>Product</p>
         </div>
         <div class="spotlight_caption">
-            <p id="spotlight_title"> @title</p>
-            <p id="subtitle"> @subtitle </p>
+            <p id="spotlight_title"> @Model.Name</p>
+            <p id="subtitle">@Model.NormalCategory[0].Normal_Category.Name </p>
         </div>
     </a>
 </div>

@@ -69,7 +69,8 @@ namespace WEBProject.Controllers
             List<Branch_Category> Branches = _context.Branch_Categories.ToList();
             ViewBag.Branches = Branches;
 
-
+            List<Product> products = _context.Products.Take(8).ToList();
+            ViewBag.Spotlight = products;
 
             return View(HomeView);
         }
